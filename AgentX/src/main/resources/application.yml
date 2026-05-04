@@ -85,7 +85,7 @@ mail:
 github:
   target:
     repo-name: ${GITHUB_REPO_NAME:agent-mcp-community}
-    username: ${GITHUB_USERNAME:lucky-aeon}
+    username: ${GITHUB_USERNAME:xuhaoliyoh}
     token: ${GITHUB_TOKEN:your_github_token}
 
 # 高可用网关配置

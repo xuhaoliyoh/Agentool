@@ -121,7 +121,7 @@ services:
       
       # GitHub集成配置
       GITHUB_REPO_NAME: ${GITHUB_REPO_NAME:-agent-mcp-community}
-      GITHUB_USERNAME: ${GITHUB_USERNAME:-lucky-aeon}
+      GITHUB_USERNAME: ${GITHUB_USERNAME:-xuhaoliyoh}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-your_github_token}
       
       # 其他配置
