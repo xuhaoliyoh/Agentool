@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import dev.langchain4j.service.output.ServiceOutputParser;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import org.xhy.domain.tool.model.ToolEntity;
 import org.xhy.domain.tool.repository.ToolRepository;
@@ -58,6 +59,7 @@ public class UserDomainService {
     }
 
     /** 注册 密码加密存储 */
+    @Transactional
     public UserEntity register(String email, String phone, String password) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(email);
@@ -73,10 +75,10 @@ public class UserDomainService {
         // 设置普通登录平台
         userEntity.setLoginPlatform("normal");
 
-        // userRepository.checkInsert(userEntity);
+        userRepository.checkInsert(userEntity);
         UserSettingsEntity userSettingsEntity = new UserSettingsEntity();
         userSettingsEntity.setUserId(userEntity.getId());
-        // settingsRepository.insert(userSettingsEntity);
+        settingsRepository.checkInsert(userSettingsEntity);
         return userEntity;
     }
 
