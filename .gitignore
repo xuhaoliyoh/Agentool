@@ -153,6 +153,10 @@ yarn-error.log*
 
 # env files
 .env*
+!.env.example
+!deploy/.env.local.example
+!deploy/.env.production.example
+!deploy/.env.external.example
 
 # vercel
 .vercel
@@ -160,3 +164,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local AI tool settings
+.claude/
+**/.claude/
+
+# keep npm dependency lock for reproducible frontend installs
+!agentx-frontend-plus/package-lock.json
