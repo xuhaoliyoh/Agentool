@@ -687,35 +687,6 @@ export async function resetPasswordApi(
   )
 }
 
-// 获取GitHub授权URL
-export async function getGithubAuthorizeUrlApi() {
-  return httpClient.get<{ code: number; message: string; data: { authorizeUrl: string } }>(
-    '/oauth/github/authorize'
-  )
-}
-
-// 处理GitHub回调
-export async function handleGithubCallbackApi(code: string) {
-  return httpClient.get<{ code: number; message: string; data: { token: string } }>(
-    `/oauth/github/callback?code=${code}`
-  )
-}
-
-// 获取SSO登录URL
-export async function getSsoLoginUrlApi(provider: string, redirectUrl?: string) {
-  const params = redirectUrl ? `?redirectUrl=${encodeURIComponent(redirectUrl)}` : ''
-  return httpClient.get<{ code: number; message: string; data: { loginUrl: string } }>(
-    `/sso/${provider}/login${params}`
-  )
-}
-
-// 处理SSO回调
-export async function handleSsoCallbackApi(provider: string, code: string) {
-  return httpClient.get<{ code: number; message: string; data: { token: string } }>(
-    `/sso/${provider}/callback?code=${code}`
-  )
-}
-
 // 生成系统提示词
 export async function generateSystemPrompt(data: {
   agentName: string;

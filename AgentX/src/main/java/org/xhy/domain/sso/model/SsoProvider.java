@@ -1,7 +1,7 @@
 package org.xhy.domain.sso.model;
 
 public enum SsoProvider {
-    COMMUNITY("community", "敲鸭"), GITHUB("github", "GitHub"), GOOGLE("google", "Google"), WECHAT("wechat", "微信");
+    GITHUB("github", "GitHub"), GOOGLE("google", "Google"), WECHAT("wechat", "微信");
 
     private final String code;
     private final String name;

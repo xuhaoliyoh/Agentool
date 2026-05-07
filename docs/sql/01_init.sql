@@ -197,7 +197,7 @@ comment on column public.api_keys.deleted_at is '逻辑删除时间';
 create table public.auth_settings (
                                       id character varying(36) primary key not null, -- 配置记录唯一ID
                                       feature_type character varying(50) not null, -- 功能类型：LOGIN-登录功能，REGISTER-注册功能
-                                      feature_key character varying(100) not null, -- 功能键：NORMAL_LOGIN, GITHUB_LOGIN, COMMUNITY_LOGIN, USER_REGISTER等
+                                      feature_key character varying(100) not null, -- 功能键：NORMAL_LOGIN, USER_REGISTER等
                                       feature_name character varying(100) not null, -- 功能显示名称
                                       enabled boolean default true, -- 是否启用该功能
                                       config_data jsonb, -- 功能配置数据，JSON格式，存储SSO配置等
@@ -211,7 +211,7 @@ create unique index auth_settings_feature_key_key on auth_settings using btree (
 comment on table public.auth_settings is '认证配置表，管理登录方式和注册功能的开关';
 comment on column public.auth_settings.id is '配置记录唯一ID';
 comment on column public.auth_settings.feature_type is '功能类型：LOGIN-登录功能，REGISTER-注册功能';
-comment on column public.auth_settings.feature_key is '功能键：NORMAL_LOGIN, GITHUB_LOGIN, COMMUNITY_LOGIN, USER_REGISTER等';
+comment on column public.auth_settings.feature_key is '功能键：NORMAL_LOGIN, USER_REGISTER等';
 comment on column public.auth_settings.feature_name is '功能显示名称';
 comment on column public.auth_settings.enabled is '是否启用该功能';
 comment on column public.auth_settings.config_data is '功能配置数据，JSON格式，存储SSO配置等';
@@ -1044,9 +1044,7 @@ comment on column public.users.deleted_at is '逻辑删除时间';
 
         -- 初始化认证配置数据
 INSERT INTO auth_settings (id, feature_type, feature_key, feature_name, enabled, display_order, description) VALUES
-                                                                                                                 ('auth-normal-login', 'LOGIN', 'NORMAL_LOGIN', '普通登录', TRUE, 1, '邮箱/手机号密码登录'),
-                                                                                                                 ('auth-github-login', 'LOGIN', 'GITHUB_LOGIN', 'GitHub登录', TRUE, 2, 'GitHub OAuth登录'),
-                                                                                                                 ('auth-community-login', 'LOGIN', 'COMMUNITY_LOGIN', '敲鸭登录', TRUE, 3, '敲鸭社区OAuth登录'),
+                                                                                                                 ('auth-normal-login', 'LOGIN', 'NORMAL_LOGIN', '普通登录', TRUE, 1, '邮箱密码登录'),
                                                                                                                  ('auth-user-register', 'REGISTER', 'USER_REGISTER', '用户注册', TRUE, 1, '允许新用户注册账号');
 
 

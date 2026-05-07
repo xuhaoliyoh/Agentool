@@ -110,8 +110,6 @@ public class AuthSettingAppService {
     private String getProviderCodeByFeatureKey(String featureKey) {
         if (AuthFeatureKey.GITHUB_LOGIN.getCode().equals(featureKey)) {
             return SsoProvider.GITHUB.getCode().toUpperCase();
-        } else if (AuthFeatureKey.COMMUNITY_LOGIN.getCode().equals(featureKey)) {
-            return SsoProvider.COMMUNITY.getCode().toUpperCase();
         }
         return null;
     }

@@ -40,26 +40,17 @@ public class SsoServiceFactory {
     }
 
     public SsoService getSsoService(String providerCode) {
-        return getSsoService(SsoProvider.fromCode(providerCode));
-    }
-
-    public List<SsoProvider> getSupportedProviders() {
-        return ssoServiceMap.keySet().stream().filter(this::isProviderEnabled).collect(Collectors.toList());
-    }
-
-    private boolean isProviderEnabled(SsoProvider provider) {
-        AuthFeatureKey featureKey = getAuthFeatureKeyByProvider(provider);
-        return featureKey == null || authSettingDomainService.isFeatureEnabled(featureKey);
+        try {
+            return getSsoService(SsoProvider.fromCode(providerCode));
+        } catch (IllegalArgumentException e) {
+            throw new BusinessException("不支持的SSO提供商: " + providerCode);
+        }
     }
 
     private AuthFeatureKey getAuthFeatureKeyByProvider(SsoProvider provider) {
-        switch (provider) {
-            case GITHUB :
-                return AuthFeatureKey.GITHUB_LOGIN;
-            case COMMUNITY :
-                return AuthFeatureKey.COMMUNITY_LOGIN;
-            default :
-                return null;
+        if (provider == SsoProvider.GITHUB) {
+            return AuthFeatureKey.GITHUB_LOGIN;
         }
+        return null;
     }
 }

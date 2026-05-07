@@ -28,7 +28,7 @@ const defaultInterceptor: Interceptor = {
   request: (config) => {
     // 检查是否是FormData，如果是则不设置Content-Type
     const isFormData = config.body instanceof FormData;
-    
+
     // 默认添加Content-Type和Accept头
     config.headers = {
       ...(isFormData ? {} : { "Content-Type": "application/json" }),
@@ -41,7 +41,7 @@ const defaultInterceptor: Interceptor = {
 
   // 响应拦截器
   response: async (response, options) => {
- 
+
     if (response.status === 401) {
       // 清除本地存储的 token
       if (typeof window !== "undefined") {
@@ -72,7 +72,7 @@ const defaultInterceptor: Interceptor = {
 
   // 错误拦截器
   error: async (error) => {
- 
+
     // 处理超时错误
     if (error.name === "AbortError") {
       return {
@@ -170,17 +170,17 @@ class HttpClient {
 
     // 构建完整URL
     const url = this.buildUrl(endpoint, processedConfig.params);
- 
+
 
     try {
       // 处理超时
       let timeoutId: NodeJS.Timeout | null = null;
       let abortController: AbortController | null = null;
-      
+
       if (processedConfig.timeout || this.defaultTimeout) {
         abortController = new AbortController();
         processedConfig.signal = abortController.signal;
-        
+
         timeoutId = setTimeout(() => {
           if (abortController) {
             abortController.abort();
@@ -189,7 +189,7 @@ class HttpClient {
       }
 
       const response = await fetch(url, processedConfig);
-      
+
       // 清除超时定时器
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -212,7 +212,7 @@ class HttpClient {
 
       // 处理响应
       let result: any;
-      
+
       // 如果是原始响应模式，直接返回
       if (options?.raw) {
         return response as unknown as T;
@@ -237,9 +237,9 @@ class HttpClient {
           description: result.message
         });
       }
-      
+
       return result;
-      
+
     } catch (error: any) {
       // 处理异常
       const errorResult = {
@@ -248,7 +248,7 @@ class HttpClient {
         data: null,
         timestamp: Date.now(),
       };
-      
+
       // 显示toast提示
       if (options?.showToast) {
         toast({
@@ -257,7 +257,7 @@ class HttpClient {
           description: errorResult.message
         });
       }
-      
+
       return errorResult as unknown as T;
     }
   }
@@ -270,7 +270,7 @@ class HttpClient {
   async post<T>(endpoint: string, data?: any, config: RequestConfig = {}, options?: RequestOptions): Promise<T> {
     // 处理 FormData 类型的数据
     const isFormData = data instanceof FormData;
-    
+
     return this.request<T>(endpoint, {
       ...config,
       method: "POST",
@@ -309,7 +309,7 @@ export const addAuthInterceptor = () => {
       // 在每个请求中动态读取token
       if (typeof window !== "undefined") {
         let token = localStorage.getItem("auth_token");
-        
+
         // 如果localStorage中没有token，尝试从cookie中读取
         if (!token) {
           const cookies = document.cookie.split(';');
@@ -323,7 +323,7 @@ export const addAuthInterceptor = () => {
             }
           }
         }
-        
+
         if (token) {
           // 基本的token格式检查（JWT通常包含两个点）
           if (token.split('.').length === 3) {
@@ -331,7 +331,7 @@ export const addAuthInterceptor = () => {
               ...config.headers,
               Authorization: `Bearer ${token}`
             };
-            
+
             // 调试日志（仅在开发环境）
             if (process.env.NODE_ENV === 'development') {
               console.log(`[HttpClient] 添加认证头到请求: ${config.method || 'GET'} ${config.headers?.['X-Debug-Endpoint'] || '未知端点'}`);
@@ -349,32 +349,31 @@ export const addAuthInterceptor = () => {
           }
         }
       }
-      
+
       return config;
     },
-    
+
     response: async (response, options) => {
       // 处理401认证失败的响应
       if (response.status === 401) {
         console.warn('[HttpClient] 收到401响应，清理认证信息');
-        
+
         if (typeof window !== "undefined") {
           // 清理认证信息
           localStorage.removeItem("auth_token");
           document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          
+
           // 如果当前不在登录相关页面，则重定向
           const currentPath = window.location.pathname;
-          if (!currentPath.includes('/login') && 
-              !currentPath.includes('/sso/') && 
+          if (!currentPath.includes('/login') &&
               !currentPath.includes('/register')) {
-            
+
             toast({
               variant: "destructive",
               title: "登录已过期",
               description: "请重新登录"
             });
-            
+
             // 延迟重定向，确保toast能显示
             setTimeout(() => {
               window.location.href = '/login';
@@ -382,16 +381,16 @@ export const addAuthInterceptor = () => {
           }
         }
       }
-      
+
       return undefined; // 让默认响应拦截器处理
     },
-    
+
     error: async (error) => {
       // 处理认证相关错误
       if (error.status === 401) {
         console.warn('[HttpClient] 请求认证失败:', error.message);
       }
-      
+
       return undefined; // 让默认错误拦截器处理
     }
   });
@@ -400,10 +399,10 @@ export const addAuthInterceptor = () => {
 // 认证状态检查工具
 export const checkAuthStatus = (): boolean => {
   if (typeof window === "undefined") return false;
-  
+
   const token = localStorage.getItem("auth_token");
   if (!token) return false;
-  
+
   // 基本格式检查
   if (token.split('.').length !== 3) {
     // 格式异常，清理token
@@ -411,19 +410,19 @@ export const checkAuthStatus = (): boolean => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     return false;
   }
-  
+
   try {
     // 简单的JWT payload解析（不验证签名，只检查过期时间）
     const payload = JSON.parse(atob(token.split('.')[1]));
     const currentTime = Math.floor(Date.now() / 1000);
-    
+
     if (payload.exp && payload.exp < currentTime) {
       console.warn('[HttpClient] Token已过期');
       localStorage.removeItem("auth_token");
       document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       return false;
     }
-    
+
     return true;
   } catch (error) {
     console.warn('[HttpClient] Token解析失败:', error);
@@ -442,4 +441,4 @@ export interface ApiResponse<T> {
   message: string;
   data: T;
   timestamp?: number;
-} 
+}

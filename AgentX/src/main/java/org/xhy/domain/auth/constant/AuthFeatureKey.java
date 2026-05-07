@@ -4,8 +4,7 @@ package org.xhy.domain.auth.constant;
 public enum AuthFeatureKey {
 
     // 登录方式常量
-    NORMAL_LOGIN("NORMAL_LOGIN", "普通登录"), GITHUB_LOGIN("GITHUB_LOGIN", "GitHub登录"), COMMUNITY_LOGIN("COMMUNITY_LOGIN",
-            "敲鸭登录"),
+    NORMAL_LOGIN("NORMAL_LOGIN", "普通登录"), GITHUB_LOGIN("GITHUB_LOGIN", "GitHub登录"),
 
     // 注册功能常量
     USER_REGISTER("USER_REGISTER", "用户注册");

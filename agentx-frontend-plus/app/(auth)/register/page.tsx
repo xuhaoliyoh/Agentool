@@ -9,7 +9,7 @@ import { toast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { registerApi, sendEmailCodeApi, verifyEmailCodeApi, getCaptchaApi } from "@/lib/api-services"
+import { registerApi, sendEmailCodeApi, getCaptchaApi } from "@/lib/api-services"
 import { getAuthConfigWithToast } from "@/lib/auth-config-service"
 import type { AuthConfig } from "@/lib/types/auth-config"
 
@@ -17,13 +17,12 @@ export default function RegisterPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
     email: "",
-    phone: "",
     password: "",
     confirmPassword: "",
     code: "",
     captchaCode: ""
   })
-  
+
   const [captchaData, setCaptchaData] = useState({
     uuid: "",
     imageBase64: ""
@@ -32,8 +31,6 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false)
   const [codeSent, setCodeSent] = useState(false)
   const [countdown, setCountdown] = useState(0)
-  const [verifying, setVerifying] = useState(false)
-  const [codeVerified, setCodeVerified] = useState(false)
   const [sendingCode, setSendingCode] = useState(false)
   const [authConfig, setAuthConfig] = useState<AuthConfig | null>(null)
   const [configLoading, setConfigLoading] = useState(true)
@@ -47,7 +44,7 @@ export default function RegisterPage() {
           setAuthConfig(response.data)
         }
       } catch (error) {
- 
+
       } finally {
         setConfigLoading(false)
       }
@@ -63,7 +60,7 @@ export default function RegisterPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [configLoading, authConfig?.registerEnabled])
-  
+
   // 倒计时逻辑
   useEffect(() => {
     if (countdown > 0) {
@@ -77,7 +74,6 @@ export default function RegisterPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
 
     if (name === "email") {
-      setCodeVerified(false)
       setCodeSent(false)
     }
   }
@@ -94,7 +90,7 @@ export default function RegisterPage() {
         setFormData(prev => ({ ...prev, captchaCode: "" }))
       }
     } catch (error) {
- 
+
     } finally {
       setLoadingCaptcha(false)
     }
@@ -119,7 +115,7 @@ export default function RegisterPage() {
       })
       return
     }
-    
+
     if (!formData.captchaCode) {
       toast({
         variant: "destructive",
@@ -132,11 +128,11 @@ export default function RegisterPage() {
     setSendingCode(true)
     try {
       const res = await sendEmailCodeApi(
-        formData.email, 
-        captchaData.uuid, 
+        formData.email,
+        captchaData.uuid,
         formData.captchaCode
       )
-      
+
       if (res.code === 200) {
         setCodeSent(true)
         setCountdown(60)
@@ -146,47 +142,14 @@ export default function RegisterPage() {
         })
       }
     } catch (error) {
- 
+
     } finally {
       setSendingCode(false)
     }
   }
 
-  const handleVerifyCode = async () => {
-    if (!formData.code) {
-      toast({
-        variant: "destructive",
-        title: "错误",
-        description: "请输入验证码"
-      })
-      return
-    }
-
-    setVerifying(true)
-    try {
-      const res = await verifyEmailCodeApi(formData.email, formData.code)
-      if (res.code === 200 && res.data) {
-        setCodeVerified(true)
-        toast({
-          title: "成功",
-          description: "验证码验证成功"
-        })
-      } else {
-        toast({
-          variant: "destructive",
-          title: "错误",
-          description: res.message || "验证码无效或已过期"
-        })
-      }
-    } catch (error) {
- 
-    } finally {
-      setVerifying(false)
-    }
-  }
-
   const validateForm = () => {
- 
+
     if (!formData.password) {
       toast({
         variant: "destructive",
@@ -203,34 +166,32 @@ export default function RegisterPage() {
       })
       return false
     }
-    
-    if (!formData.email && !formData.phone) {
+
+    if (!formData.email) {
       toast({
         variant: "destructive",
         title: "错误",
-        description: "邮箱和手机号至少填写一个"
+        description: "请输入邮箱"
       })
       return false
     }
 
-    if (formData.email && !formData.phone) {
-      if (!formData.captchaCode) {
-        toast({
-          variant: "destructive",
-          title: "错误",
-          description: "请输入验证码"
-        })
-        return false
-      }
-      
-      if (!formData.code) {
-        toast({
-          variant: "destructive",
-          title: "错误",
-          description: "请先验证邮箱验证码"
-        })
-        return false
-      }
+    if (!formData.captchaCode) {
+      toast({
+        variant: "destructive",
+        title: "错误",
+        description: "请输入图形验证码"
+      })
+      return false
+    }
+
+    if (!formData.code) {
+      toast({
+        variant: "destructive",
+        title: "错误",
+        description: "请输入邮箱验证码"
+      })
+      return false
     }
 
     return true
@@ -238,21 +199,20 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!validateForm()) {
       return
     }
 
     setLoading(true)
     try {
-      const { email, phone, password, code } = formData
-      const res = await registerApi({ 
-        email: email || undefined, 
-        phone: phone || undefined, 
+      const { email, password, code } = formData
+      const res = await registerApi({
+        email,
         password,
-        code: email ? code : undefined
+        code
       }, true)
-      
+
       if (res.code === 200) {
         toast({
           title: "成功",
@@ -261,7 +221,7 @@ export default function RegisterPage() {
         router.push("/login")
       }
     } catch (error: any) {
- 
+
     } finally {
       setLoading(false)
     }
@@ -314,9 +274,9 @@ export default function RegisterPage() {
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <p className="text-xs text-muted-foreground">带 <span className="text-red-500">*</span> 的字段为必填项</p>
-          
+
           <div className="space-y-2">
-            <Label htmlFor="email">电子邮件</Label>
+            <Label htmlFor="email">电子邮件 <span className="text-red-500">*</span></Label>
             <div className="flex space-x-2">
               <Input
                 id="email"
@@ -326,91 +286,75 @@ export default function RegisterPage() {
                 value={formData.email}
                 onChange={handleChange}
                 className="flex-1"
+                required
               />
             </div>
-            <p className="text-xs text-muted-foreground">邮箱和手机号至少填写一个</p>
           </div>
-          
-          {formData.email && (
-            <div className="space-y-2">
-              <Label htmlFor="captcha">
-                图形验证码 <span className="text-red-500">*</span>
-              </Label>
-              <div className="flex space-x-2">
-                <Input
-                  id="captchaCode"
-                  name="captchaCode"
-                  type="text"
-                  placeholder="请输入图形验证码"
-                  value={formData.captchaCode}
-                  onChange={handleChange}
-                  className="flex-1"
-                />
-                <div 
-                  className="flex-shrink-0 w-[120px] h-[40px] relative cursor-pointer border rounded-md overflow-hidden" 
-                  onClick={fetchCaptcha}
-                  title="点击刷新验证码"
-                >
-                  {captchaData.imageBase64 ? (
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={captchaData.imageBase64}
-                        alt="验证码"
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-70 bg-black/20 transition-opacity text-white text-xs">
-                        点击刷新
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center text-sm">
-                      {loadingCaptcha ? "加载中..." : "点击获取"}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {formData.email && (
-            <div className="space-y-2">
-              <Label htmlFor="code">
-                邮箱验证码 <span className="text-red-500">*</span>
-              </Label>
-              <div className="flex space-x-2">
-                <Input
-                  id="code"
-                  name="code"
-                  type="text"
-                  placeholder="请输入验证码"
-                  value={formData.code}
-                  onChange={handleChange}
-                  className="flex-1"
-                  disabled={!codeSent}
-                />
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  onClick={handleSendCode}
-                  disabled={countdown > 0 || sendingCode || !formData.email || !formData.captchaCode}
-                >
-                  {countdown > 0 ? `${countdown}s` : sendingCode ? "发送中..." : "发送验证码"}
-                </Button>
-              </div>
-            </div>
-          )}
 
           <div className="space-y-2">
-            <Label htmlFor="phone">手机号</Label>
-            <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              placeholder="请输入手机号"
-              value={formData.phone}
-              onChange={handleChange}
-            />
+            <Label htmlFor="captcha">
+              图形验证码 <span className="text-red-500">*</span>
+            </Label>
+            <div className="flex space-x-2">
+              <Input
+                id="captchaCode"
+                name="captchaCode"
+                type="text"
+                placeholder="请输入图形验证码"
+                value={formData.captchaCode}
+                onChange={handleChange}
+                className="flex-1"
+              />
+              <div
+                className="flex-shrink-0 w-[120px] h-[40px] relative cursor-pointer border rounded-md overflow-hidden"
+                onClick={fetchCaptcha}
+                title="点击刷新验证码"
+              >
+                {captchaData.imageBase64 ? (
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={captchaData.imageBase64}
+                      alt="验证码"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-70 bg-black/20 transition-opacity text-white text-xs">
+                      点击刷新
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full h-full bg-gray-200 flex items-center justify-center text-sm">
+                    {loadingCaptcha ? "加载中..." : "点击获取"}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="code">
+              邮箱验证码 <span className="text-red-500">*</span>
+            </Label>
+            <div className="flex space-x-2">
+              <Input
+                id="code"
+                name="code"
+                type="text"
+                placeholder="请输入验证码"
+                value={formData.code}
+                onChange={handleChange}
+                className="flex-1"
+                disabled={!codeSent}
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleSendCode}
+                disabled={countdown > 0 || sendingCode || !formData.email || !formData.captchaCode}
+              >
+                {countdown > 0 ? `${countdown}s` : sendingCode ? "发送中..." : "发送验证码"}
+              </Button>
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -456,4 +400,4 @@ export default function RegisterPage() {
       </form>
     </div>
   )
-} 
+}

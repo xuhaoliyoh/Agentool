@@ -75,25 +75,25 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     return `¥${amount.toFixed(2)}`;
   }, []);
 
-  // 检查是否在SSO登录过程中
-  const isSsoLogin = useCallback(() => {
+  // 检查是否在登录页
+  const isLoginPage = useCallback(() => {
     if (typeof window === "undefined") return false;
     const currentPath = window.location.pathname;
-    return currentPath.includes('/sso/') || currentPath.includes('/login');
+    return currentPath.includes('/login');
   }, []);
 
   // 智能初始化时机控制
   useEffect(() => {
-    // 如果正在SSO登录过程中，延迟初始化避免竞态条件
-    if (isSsoLogin()) {
-      console.log('[AccountContext] 检测到SSO登录，延迟初始化账户数据');
+    // 如果在登录页，延迟初始化避免登录流程中的竞态条件
+    if (isLoginPage()) {
+      console.log('[AccountContext] 检测到登录页，延迟初始化账户数据');
       
-      // 延迟2秒后再初始化，给SSO登录过程足够时间
+      // 延迟2秒后再初始化，给登录过程足够时间
       const timer = setTimeout(() => {
         if (typeof window !== "undefined") {
           const token = localStorage.getItem("auth_token");
           if (token) {
-            console.log('[AccountContext] SSO登录完成，开始获取账户数据');
+            console.log('[AccountContext] 登录完成，开始获取账户数据');
             refreshAccount();
           }
         }
@@ -101,10 +101,10 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       
       return () => clearTimeout(timer);
     } else {
-      // 非SSO登录情况，立即初始化
+      // 非登录页情况，立即初始化
       refreshAccount();
     }
-  }, [refreshAccount, isSsoLogin]);
+  }, [refreshAccount, isLoginPage]);
 
   const value: AccountContextType = {
     account,

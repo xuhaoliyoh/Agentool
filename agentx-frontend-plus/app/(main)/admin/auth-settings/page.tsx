@@ -10,9 +10,7 @@ import {
   Settings, 
   Key, 
   Users, 
-  Github, 
   Shield, 
-  Edit,
   ChevronRight
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
@@ -22,7 +20,6 @@ import {
 } from "@/lib/auth-config-service";
 import type { AuthSetting, FeatureType } from "@/lib/types/auth-config";
 import { FEATURE_TYPE, AUTH_FEATURE_KEY } from "@/lib/types/auth-config";
-import SSOConfigDialog from "./components/SSOConfigDialog";
 
 interface AuthSettingsPageProps {}
 
@@ -79,21 +76,11 @@ export default function AuthSettingsPage({}: AuthSettingsPageProps) {
     }
   };
 
-  // 处理配置更新
-  const handleConfigUpdate = (updatedSetting: AuthSetting) => {
-    // 重新加载配置列表
-    loadAuthSettings();
-  };
-
   // 获取功能图标
   const getFeatureIcon = (featureKey: string) => {
     switch (featureKey) {
       case AUTH_FEATURE_KEY.NORMAL_LOGIN:
         return <Key className="h-5 w-5" />;
-      case AUTH_FEATURE_KEY.GITHUB_LOGIN:
-        return <Github className="h-5 w-5" />;
-      case AUTH_FEATURE_KEY.COMMUNITY_LOGIN:
-        return <Shield className="h-5 w-5" />;
       case AUTH_FEATURE_KEY.USER_REGISTER:
         return <Users className="h-5 w-5" />;
       default:
@@ -108,6 +95,13 @@ export default function AuthSettingsPage({}: AuthSettingsPageProps) {
 
   // 按功能类型分组
   const groupedSettings = authSettings.reduce((acc, setting) => {
+    if (
+      setting.featureKey !== AUTH_FEATURE_KEY.NORMAL_LOGIN &&
+      setting.featureKey !== AUTH_FEATURE_KEY.USER_REGISTER
+    ) {
+      return acc;
+    }
+
     if (!acc[setting.featureType]) {
       acc[setting.featureType] = [];
     }
@@ -186,14 +180,6 @@ export default function AuthSettingsPage({}: AuthSettingsPageProps) {
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          {/* SSO配置按钮 */}
-                          {(setting.featureKey === AUTH_FEATURE_KEY.GITHUB_LOGIN || 
-                            setting.featureKey === AUTH_FEATURE_KEY.COMMUNITY_LOGIN) && (
-                            <SSOConfigDialog
-                              setting={setting}
-                              onConfigUpdate={handleConfigUpdate}
-                            />
-                          )}
                           {/* 开关 */}
                           <Switch
                             checked={setting.enabled}
@@ -219,15 +205,7 @@ export default function AuthSettingsPage({}: AuthSettingsPageProps) {
         <CardContent className="text-sm text-blue-800 space-y-2">
           <div className="flex items-start gap-2">
             <ChevronRight className="h-4 w-4 mt-0.5 flex-shrink-0" />
-            <span>普通登录：用户使用邮箱/手机号和密码进行登录</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <ChevronRight className="h-4 w-4 mt-0.5 flex-shrink-0" />
-            <span>GitHub登录：用户通过GitHub账号进行OAuth登录</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <ChevronRight className="h-4 w-4 mt-0.5 flex-shrink-0" />
-            <span>敲鸭登录：用户通过敲鸭社区账号进行OAuth登录</span>
+            <span>普通登录：用户使用邮箱和密码进行登录</span>
           </div>
           <div className="flex items-start gap-2">
             <ChevronRight className="h-4 w-4 mt-0.5 flex-shrink-0" />

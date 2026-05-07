@@ -45,30 +45,6 @@ public class SsoConfigProvider {
         }
     }
 
-    /** 获取Community SSO配置
-     * 
-     * @return Community配置 */
-    public CommunitySsoConfig getCommunityConfig() {
-        AuthSettingEntity entity = authSettingDomainService.getByFeatureKey(AuthFeatureKey.COMMUNITY_LOGIN);
-        if (entity == null || entity.getConfigData() == null) {
-            return new CommunitySsoConfig();
-        }
-
-        try {
-            Map<String, Object> configMap = entity.getConfigData();
-
-            CommunitySsoConfig config = new CommunitySsoConfig();
-            config.setBaseUrl((String) configMap.get("baseUrl"));
-            config.setAppKey((String) configMap.get("appKey"));
-            config.setAppSecret((String) configMap.get("appSecret"));
-            config.setCallbackUrl((String) configMap.get("callbackUrl"));
-
-            return config;
-        } catch (Exception e) {
-            return new CommunitySsoConfig();
-        }
-    }
-
     /** GitHub SSO配置类 */
     public static class GitHubSsoConfig {
         private String clientId;
@@ -136,43 +112,4 @@ public class SsoConfigProvider {
         }
     }
 
-    /** Community SSO配置类 */
-    public static class CommunitySsoConfig {
-        private String baseUrl;
-        private String appKey;
-        private String appSecret;
-        private String callbackUrl;
-
-        public String getBaseUrl() {
-            return baseUrl;
-        }
-
-        public void setBaseUrl(String baseUrl) {
-            this.baseUrl = baseUrl;
-        }
-
-        public String getAppKey() {
-            return appKey;
-        }
-
-        public void setAppKey(String appKey) {
-            this.appKey = appKey;
-        }
-
-        public String getAppSecret() {
-            return appSecret;
-        }
-
-        public void setAppSecret(String appSecret) {
-            this.appSecret = appSecret;
-        }
-
-        public String getCallbackUrl() {
-            return callbackUrl;
-        }
-
-        public void setCallbackUrl(String callbackUrl) {
-            this.callbackUrl = callbackUrl;
-        }
-    }
 }

@@ -85,7 +85,6 @@ export default function UsersPage() {
     const platformMap: { [key: string]: { name: string; color: string } } = {
       normal: { name: '普通登录', color: 'bg-gray-100 text-gray-800' },
       github: { name: 'GitHub', color: 'bg-gray-900 text-white' },
-      community: { name: '敲鸭', color: 'bg-blue-100 text-blue-800' },
       google: { name: 'Google', color: 'bg-red-100 text-red-800' },
       wechat: { name: '微信', color: 'bg-green-100 text-green-800' }
     };

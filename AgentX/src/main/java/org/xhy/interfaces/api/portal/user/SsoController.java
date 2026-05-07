@@ -21,7 +21,7 @@ public class SsoController {
     }
 
     /** 获取SSO登录URL
-     * @param provider SSO提供商（community、github等）
+     * @param provider SSO提供商（github等）
      * @param redirectUrl 登录成功后的回调地址
      * @return 登录URL */
     @GetMapping("/{provider}/login")

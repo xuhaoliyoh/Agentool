@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { toast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
@@ -10,40 +9,11 @@ import { Toaster } from "@/components/ui/toaster"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { loginApi, getSsoLoginUrlApi } from "@/lib/api-services"
+import { loginApi } from "@/lib/api-services"
 import { setCookie } from "@/lib/utils"
 import { getAuthConfigWithToast } from "@/lib/auth-config-service"
 import type { AuthConfig } from "@/lib/types/auth-config"
 import { AUTH_FEATURE_KEY } from "@/lib/types/auth-config"
-
-// GitHub 图标组件
-const GitHubIcon = ({ className }: { className?: string }) => (
-  <svg 
-    className={className} 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="24" 
-    height="24" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-  >
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-  </svg>
-)
-
-// 敲鸭 Logo 组件
-const QiaoyaLogo = ({ className }: { className?: string }) => (
-  <Image 
-    src="/logo.jpg" 
-    alt="敲鸭 Logo" 
-    width={20} 
-    height={20}
-    className={`${className} rounded`}
-  />
-)
 
 export default function LoginPage() {
   const router = useRouter()
@@ -52,8 +22,6 @@ export default function LoginPage() {
     password: ""
   })
   const [loading, setLoading] = useState(false)
-  const [githubLoading, setGithubLoading] = useState(false)
-  const [qiaoyaLoading, setQiaoyaLoading] = useState(false)
   const [authConfig, setAuthConfig] = useState<AuthConfig | null>(null)
   const [configLoading, setConfigLoading] = useState(true)
 
@@ -66,7 +34,7 @@ export default function LoginPage() {
           setAuthConfig(response.data)
         }
       } catch (error) {
- 
+
       } finally {
         setConfigLoading(false)
       }
@@ -94,7 +62,7 @@ export default function LoginPage() {
         setLoading(false)
         return
       }
-      
+
       // 使用带toast参数的API
       const res = await loginApi({ account, password }, true)
       if (res.code === 200 && res.data?.token) {
@@ -104,59 +72,9 @@ export default function LoginPage() {
       }
     } catch (error: any) {
       // 错误已由API处理
- 
+
     } finally {
       setLoading(false)
-    }
-  }
-
-  const handleGitHubLogin = async () => {
-    try {
-      setGithubLoading(true)
-      const res = await getSsoLoginUrlApi('github')
-      if (res.code === 200 && res.data?.loginUrl) {
-        window.location.href = res.data.loginUrl
-      } else {
-        toast({
-          variant: "destructive",
-          title: "错误",
-          description: "获取GitHub授权链接失败"
-        })
-      }
-    } catch (error) {
- 
-      toast({
-        variant: "destructive",
-        title: "错误",
-        description: "GitHub登录失败，请稍后再试"
-      })
-    } finally {
-      setGithubLoading(false)
-    }
-  }
-
-  const handleQiaoyaLogin = async () => {
-    try {
-      setQiaoyaLoading(true)
-      const res = await getSsoLoginUrlApi('community')
-      if (res.code === 200 && res.data?.loginUrl) {
-        window.location.href = res.data.loginUrl
-      } else {
-        toast({
-          variant: "destructive",
-          title: "错误",
-          description: "获取敲鸭授权链接失败"
-        })
-      }
-    } catch (error) {
- 
-      toast({
-        variant: "destructive",
-        title: "错误",
-        description: "敲鸭登录失败，请稍后再试"
-      })
-    } finally {
-      setQiaoyaLoading(false)
     }
   }
 
@@ -180,12 +98,9 @@ export default function LoginPage() {
   // 检查是否有可用的登录方式
   const availableLoginMethods = authConfig?.loginMethods || {}
   const hasNormalLogin = availableLoginMethods[AUTH_FEATURE_KEY.NORMAL_LOGIN]?.enabled
-  const hasGitHubLogin = availableLoginMethods[AUTH_FEATURE_KEY.GITHUB_LOGIN]?.enabled
-  const hasCommunityLogin = availableLoginMethods[AUTH_FEATURE_KEY.COMMUNITY_LOGIN]?.enabled
-  const hasSsoLogin = hasGitHubLogin || hasCommunityLogin
 
   // 如果没有可用的登录方式
-  if (!hasNormalLogin && !hasSsoLogin) {
+  if (!hasNormalLogin) {
     return (
       <div className="container max-w-[400px] py-10 h-screen flex flex-col justify-center">
         <div className="text-center space-y-4">
@@ -219,7 +134,7 @@ export default function LoginPage() {
                     id="account"
                     name="account"
                     type="text"
-                    placeholder="请输入账号/邮箱/手机号"
+                    placeholder="请输入邮箱"
                     value={formData.account}
                     onChange={handleChange}
                     required
@@ -244,63 +159,6 @@ export default function LoginPage() {
                 </Button>
               </div>
             </form>
-          )}
-
-          {/* SSO登录分隔线 */}
-          {hasNormalLogin && hasSsoLogin && (
-            <div className="relative my-4">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-background text-muted-foreground">或者</span>
-              </div>
-            </div>
-          )}
-
-          {/* SSO登录按钮 */}
-          {hasSsoLogin && (
-            <div className="space-y-2">
-              {/* 敲鸭登录 */}
-              {hasCommunityLogin && (
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  className="w-full flex items-center justify-center gap-2"
-                  onClick={handleQiaoyaLogin}
-                  disabled={qiaoyaLoading}
-                >
-                  {qiaoyaLoading ? (
-                    <>正在跳转到敲鸭...</>
-                  ) : (
-                    <>
-                      <QiaoyaLogo className="h-5 w-5" />
-                      <span>{availableLoginMethods[AUTH_FEATURE_KEY.COMMUNITY_LOGIN]?.name || "使用敲鸭登录"}</span>
-                    </>
-                  )}
-                </Button>
-              )}
-
-              {/* GitHub登录 */}
-              {hasGitHubLogin && (
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  className="w-full flex items-center justify-center gap-2"
-                  onClick={handleGitHubLogin}
-                  disabled={githubLoading}
-                >
-                  {githubLoading ? (
-                    <>正在跳转到 GitHub...</>
-                  ) : (
-                    <>
-                      <GitHubIcon className="h-5 w-5" />
-                      <span>{availableLoginMethods[AUTH_FEATURE_KEY.GITHUB_LOGIN]?.name || "使用 GitHub 登录"}</span>
-                    </>
-                  )}
-                </Button>
-              )}
-            </div>
           )}
 
           {/* 底部链接 */}
@@ -329,4 +187,4 @@ export default function LoginPage() {
       <Toaster />
     </>
   )
-} 
+}
