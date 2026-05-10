@@ -14,6 +14,8 @@ volumes:
     driver: local
   storage-data:
     driver: local
+  minio-data:
+    driver: local
   gateway-logs:
     driver: local
 
@@ -65,6 +67,48 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+
+  # 本地 S3 兼容对象存储服务
+  minio:
+    image: minio/minio:latest
+    container_name: agentx-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-agentx_minio}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-agentx_minio_password}
+      MINIO_DOMAIN: ${MINIO_DOMAIN:-minio}
+    volumes:
+      - minio-data:/data
+    ports:
+      - "${MINIO_API_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    networks:
+      agentx-network:
+        aliases:
+          - ${S3_BUCKET_NAME:-agentx}.minio
+    restart: unless-stopped
+
+  # 初始化本地对象存储 Bucket
+  minio-init:
+    image: minio/mc:latest
+    container_name: agentx-minio-init
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-agentx_minio}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-agentx_minio_password}
+      MINIO_BUCKET: ${S3_BUCKET_NAME:-agentx}
+    entrypoint: >
+      /bin/sh -c "
+      until mc alias set local http://minio:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD; do
+        sleep 2;
+      done;
+      mc mb --ignore-existing local/$$MINIO_BUCKET;
+      mc anonymous set download local/$$MINIO_BUCKET;
+      "
+    networks:
+      - agentx-network
+    depends_on:
+      - minio
+    restart: "no"
 
   # AgentX后端服务
   agentx-backend:
@@ -124,6 +168,14 @@ services:
       GITHUB_USERNAME: ${GITHUB_USERNAME:-xuhaoliyoh}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-your_github_token}
       
+      # S3对象存储配置（本地默认使用 MinIO）
+      S3_SECRET_ID: ${S3_SECRET_ID:-agentx_minio}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-agentx_minio_password}
+      S3_REGION: ${S3_REGION:-us-east-1}
+      S3_ENDPOINT: ${S3_ENDPOINT:-http://minio:9000}
+      S3_BUCKET_NAME: ${S3_BUCKET_NAME:-agentx}
+      S3_DOMAIN: ${S3_DOMAIN:-http://localhost:9000/agentx/}
+
       # 其他配置
       FILE_STORAGE_PATH: ${FILE_STORAGE_PATH:-/app/storage}
     volumes:
@@ -141,6 +193,8 @@ services:
         required: false  # external模式不需要postgres
       rabbitmq:
         condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
     restart: unless-stopped
     # 开发环境暂时禁用健康检查以避免curl依赖
     # healthcheck:
