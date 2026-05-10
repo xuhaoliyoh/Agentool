@@ -33,6 +33,7 @@
         <x-file-storage.version>2.2.0</x-file-storage.version>
         <pdf-box>3.0.2</pdf-box>
         <commons-io.version>2.16.1</commons-io.version>
+        <commons-compress.version>1.27.1</commons-compress.version>
         <poi.version>5.4.0</poi.version>
         <stream-query.version>3.0.0</stream-query.version>
         <forest.version>1.7.1</forest.version>
@@ -56,7 +57,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- 强制使用兼容的POI和commons-io版本 -->
+            <!-- 强制使用兼容的POI、commons-io和commons-compress版本 -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
@@ -76,6 +77,11 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>${commons-compress.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

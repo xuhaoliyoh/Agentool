@@ -132,19 +132,24 @@ public class RagDocConsumer {
             autoStartVectorization(docMessage.getFileId(), fileEntity);
 
         } catch (Exception e) {
-            log.error("OCR处理失败，文件ID: {}", docMessage != null ? docMessage.getFileId() : "unknown", e);
-            // 处理失败
-            try {
-                if (docMessage != null) {
-                    FileDetailEntity fileEntity = fileDetailDomainService
-                            .getFileByIdWithoutUserCheck(docMessage.getFileId());
-                    fileDetailDomainService.failFileOcrProcessing(docMessage.getFileId(), fileEntity.getUserId());
-                }
-            } catch (Exception ex) {
-                log.error("更新文件状态为失败失败，文件ID: {}", docMessage != null ? docMessage.getFileId() : "unknown", ex);
-            }
+            handleOcrFailure(docMessage, e);
+        } catch (LinkageError e) {
+            handleOcrFailure(docMessage, e);
         } finally {
             channel.basicAck(deliveryTag, false);
+        }
+    }
+
+    private void handleOcrFailure(RagDocMessage docMessage, Throwable throwable) {
+        log.error("OCR处理失败，文件ID: {}", docMessage != null ? docMessage.getFileId() : "unknown", throwable);
+        try {
+            if (docMessage != null) {
+                FileDetailEntity fileEntity = fileDetailDomainService
+                        .getFileByIdWithoutUserCheck(docMessage.getFileId());
+                fileDetailDomainService.failFileOcrProcessing(docMessage.getFileId(), fileEntity.getUserId());
+            }
+        } catch (Exception ex) {
+            log.error("更新文件状态为失败失败，文件ID: {}", docMessage != null ? docMessage.getFileId() : "unknown", ex);
         }
     }
 
