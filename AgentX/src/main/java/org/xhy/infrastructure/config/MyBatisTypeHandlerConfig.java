@@ -16,6 +16,8 @@ import org.xhy.domain.scheduledtask.constant.ScheduleTaskStatus;
 import org.xhy.domain.scheduledtask.model.RepeatConfig;
 import org.xhy.domain.tool.constant.ToolStatus;
 import org.xhy.domain.tool.constant.ToolType;
+import org.xhy.domain.tool.constant.ToolRuntimeType;
+import org.xhy.domain.tool.constant.ToolAuthType;
 import org.xhy.domain.tool.constant.UploadType;
 import org.xhy.domain.user.model.config.UserSettingsConfig;
 import org.xhy.infrastructure.converter.*;
@@ -51,6 +53,8 @@ public class MyBatisTypeHandlerConfig {
         typeHandlerRegistry.register(MessageType.class, new MessageTypeConverter());
         typeHandlerRegistry.register(ToolStatus.class, new ToolStatusConverter());
         typeHandlerRegistry.register(ToolType.class, new ToolTypeConverter());
+        typeHandlerRegistry.register(ToolRuntimeType.class, new ToolRuntimeTypeConverter());
+        typeHandlerRegistry.register(ToolAuthType.class, new ToolAuthTypeConverter());
         typeHandlerRegistry.register(UploadType.class, new UploadTypeConverter());
 
         // 定时任务相关的TypeHandler

@@ -221,65 +221,6 @@ comment on column public.auth_settings.created_at is '创建时间';
 comment on column public.auth_settings.updated_at is '更新时间';
 comment on column public.auth_settings.deleted_at is '逻辑删除时间';
 
-create table public.container_templates (
-                                            id character varying(36) primary key not null, -- 模板ID
-                                            name character varying(100) not null, -- 模板名称
-                                            description text, -- 模板描述
-                                            type character varying(50) not null, -- 模板类型(mcp-gateway等)
-                                            image character varying(200) not null, -- 容器镜像名称
-                                            image_tag character varying(50), -- 镜像版本标签
-                                            internal_port integer not null, -- 容器内部端口
-                                            cpu_limit numeric(4,2) not null, -- CPU限制(核数)
-                                            memory_limit integer not null, -- 内存限制(MB)
-                                            environment text, -- 环境变量配置(JSON格式)
-                                            volume_mount_path character varying(500), -- 数据卷挂载路径
-                                            command text, -- 启动命令(JSON数组格式)
-                                            network_mode character varying(50), -- 网络模式
-                                            restart_policy character varying(50), -- 重启策略
-                                            health_check text, -- 健康检查配置(JSON格式)
-                                            resource_config text, -- 资源配置(JSON格式)
-                                            enabled boolean not null default true, -- 是否启用
-                                            is_default boolean not null default false, -- 是否为默认模板
-                                            created_by character varying(36), -- 创建者用户ID
-                                            sort_order integer not null default 0, -- 排序权重
-                                            created_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 创建时间
-                                            updated_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 更新时间
-                                            deleted_at timestamp without time zone -- 删除时间
-);
-create unique index container_templates_name_key on container_templates using btree (name);
-create index idx_container_templates_type on container_templates using btree (type);
-create index idx_container_templates_enabled on container_templates using btree (enabled);
-create index idx_container_templates_is_default on container_templates using btree (is_default);
-create index idx_container_templates_created_by on container_templates using btree (created_by);
-create index idx_container_templates_sort_order on container_templates using btree (sort_order);
-create index idx_container_templates_created_at on container_templates using btree (created_at);
-create index idx_container_templates_type_enabled_default on container_templates using btree (type, enabled, is_default);
-create unique index idx_container_templates_unique_default on container_templates using btree (type) WHERE (is_default = true);
-comment on table public.container_templates is '容器模板表';
-comment on column public.container_templates.id is '模板ID';
-comment on column public.container_templates.name is '模板名称';
-comment on column public.container_templates.description is '模板描述';
-comment on column public.container_templates.type is '模板类型(mcp-gateway等)';
-comment on column public.container_templates.image is '容器镜像名称';
-comment on column public.container_templates.image_tag is '镜像版本标签';
-comment on column public.container_templates.internal_port is '容器内部端口';
-comment on column public.container_templates.cpu_limit is 'CPU限制(核数)';
-comment on column public.container_templates.memory_limit is '内存限制(MB)';
-comment on column public.container_templates.environment is '环境变量配置(JSON格式)';
-comment on column public.container_templates.volume_mount_path is '数据卷挂载路径';
-comment on column public.container_templates.command is '启动命令(JSON数组格式)';
-comment on column public.container_templates.network_mode is '网络模式';
-comment on column public.container_templates.restart_policy is '重启策略';
-comment on column public.container_templates.health_check is '健康检查配置(JSON格式)';
-comment on column public.container_templates.resource_config is '资源配置(JSON格式)';
-comment on column public.container_templates.enabled is '是否启用';
-comment on column public.container_templates.is_default is '是否为默认模板';
-comment on column public.container_templates.created_by is '创建者用户ID';
-comment on column public.container_templates.sort_order is '排序权重';
-comment on column public.container_templates.created_at is '创建时间';
-comment on column public.container_templates.updated_at is '更新时间';
-comment on column public.container_templates.deleted_at is '删除时间';
-
 create table public.context (
                                 id character varying(36) primary key not null, -- 上下文唯一ID
                                 session_id character varying(36) not null, -- 所属会话ID
@@ -741,6 +682,7 @@ create table public.tool_versions (
                                       tool_list jsonb, -- 工具列表，JSON数组格式
                                       labels jsonb, -- 标签列表，JSON数组格式
                                       mcp_server_name character varying(255),
+                                      runtime_type character varying(50), -- 工具运行方式：远程MCP或HTTP API
                                       is_office boolean default false, -- 是否官方工具
                                       public_status boolean default false, -- 公开状态
                                       created_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 创建时间
@@ -760,6 +702,8 @@ comment on column public.tool_versions.upload_type is '上传方式';
 comment on column public.tool_versions.upload_url is '上传URL';
 comment on column public.tool_versions.tool_list is '工具列表，JSON数组格式';
 comment on column public.tool_versions.labels is '标签列表，JSON数组格式';
+comment on column public.tool_versions.mcp_server_name is 'MCP服务器名称';
+comment on column public.tool_versions.runtime_type is '工具运行方式：远程MCP或HTTP API';
 comment on column public.tool_versions.is_office is '是否官方工具';
 comment on column public.tool_versions.public_status is '公开状态';
 comment on column public.tool_versions.created_at is '创建时间';
@@ -782,12 +726,13 @@ create table public.tools (
                               reject_reason text,
                               failed_step_status character varying(20),
                               mcp_server_name character varying(255),
+                              runtime_type character varying(50), -- 工具运行方式：远程MCP或HTTP API
                               status character varying(20) not null, -- 审核状态
                               is_office boolean default false, -- 是否官方工具
                               created_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 创建时间
                               updated_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 更新时间
                               deleted_at timestamp without time zone, -- 逻辑删除时间
-                              is_global boolean not null default false -- 是否为全局工具（true=全局工具，在系统级别部署；false=用户工具，需要在用户容器中部署）
+                              is_global boolean not null default false -- 是否为全局工具（true=平台级可用；false=用户安装后使用）
 );
 create index idx_tools_user_id on tools using btree (user_id);
 comment on table public.tools is '工具实体类';
@@ -803,12 +748,54 @@ comment on column public.tools.upload_type is '上传方式';
 comment on column public.tools.upload_url is '上传URL';
 comment on column public.tools.install_command is '安装命令，JSON格式';
 comment on column public.tools.tool_list is '工具列表，JSON数组格式';
+comment on column public.tools.mcp_server_name is 'MCP服务器名称';
+comment on column public.tools.runtime_type is '工具运行方式：远程MCP或HTTP API';
 comment on column public.tools.status is '审核状态';
 comment on column public.tools.is_office is '是否官方工具';
 comment on column public.tools.created_at is '创建时间';
 comment on column public.tools.updated_at is '更新时间';
 comment on column public.tools.deleted_at is '逻辑删除时间';
-comment on column public.tools.is_global is '是否为全局工具（true=全局工具，在系统级别部署；false=用户工具，需要在用户容器中部署）';
+comment on column public.tools.is_global is '是否为全局工具（true=平台级可用；false=用户安装后使用）';
+
+create table public.tool_runtime_configs (
+                                             id character varying(36) primary key not null, -- 主键ID
+                                             tool_id character varying(36) not null, -- 工具ID
+                                             tool_version character varying(50), -- 工具版本号，空值表示当前工具配置
+                                             runtime_type character varying(50) not null, -- 工具运行方式：远程MCP或HTTP API
+                                             transport_type character varying(50), -- MCP传输方式
+                                             endpoint_url text, -- 远程端点地址
+                                             http_method character varying(20), -- HTTP请求方法
+                                             auth_type character varying(50) not null default 'NONE', -- 鉴权类型
+                                             auth_config_schema jsonb, -- 用户凭据配置结构
+                                             default_headers jsonb, -- 默认请求头
+                                             request_schema jsonb, -- HTTP请求结构
+                                             response_schema jsonb, -- HTTP响应结构
+                                             tool_definitions jsonb, -- 探测得到的工具定义
+                                             mcp_server_name character varying(255), -- MCP服务名称
+                                             timeout_ms integer not null default 30000, -- 调用超时时间
+                                             enabled boolean not null default true, -- 是否启用
+                                             created_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 创建时间
+                                             updated_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 更新时间
+                                             deleted_at timestamp without time zone -- 逻辑删除时间
+);
+create index idx_tool_runtime_configs_tool_id on public.tool_runtime_configs using btree (tool_id);
+create index idx_tool_runtime_configs_tool_version on public.tool_runtime_configs using btree (tool_id, tool_version);
+comment on table public.tool_runtime_configs is '工具远程运行配置表';
+
+create table public.user_tool_credentials (
+                                              id character varying(36) primary key not null, -- 主键ID
+                                              user_tool_id character varying(36) not null, -- 用户安装工具ID
+                                              user_id character varying(36) not null, -- 用户ID
+                                              tool_id character varying(36) not null, -- 工具ID
+                                              auth_values jsonb, -- 用户私有鉴权参数
+                                              created_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 创建时间
+                                              updated_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 更新时间
+                                              deleted_at timestamp without time zone -- 逻辑删除时间
+);
+create unique index uk_user_tool_credentials_user_tool
+    on public.user_tool_credentials using btree (user_tool_id)
+    where deleted_at is null;
+comment on table public.user_tool_credentials is '用户工具私有凭据表';
 
 create table public.usage_records (
                                       id character varying(64) primary key not null,
@@ -839,48 +826,6 @@ comment on column public.usage_records.service_type is '服务类型（如：模
 comment on column public.usage_records.service_description is '服务描述';
 comment on column public.usage_records.pricing_rule is '定价规则说明（如：输入 ¥0.002/1K tokens，输出 ¥0.006/1K tokens）';
 comment on column public.usage_records.related_entity_name is '关联实体名称（如：具体的模型名称或Agent名称）';
-
-create table public.user_containers (
-                                        id character varying(36) primary key not null, -- 容器ID
-                                        name character varying(100) not null, -- 容器名称
-                                        user_id character varying(36) not null, -- 用户ID
-                                        type character varying(255) not null,
-                                        status integer not null, -- 容器状态: 1-创建中, 2-运行中, 3-已停止, 4-错误状态, 5-删除中, 6-已删除
-                                        docker_container_id character varying(100), -- Docker容器ID
-                                        image character varying(200) not null, -- 容器镜像
-                                        internal_port integer not null, -- 内部端口
-                                        external_port integer, -- 外部映射端口
-                                        ip_address character varying(45), -- 容器IP地址
-                                        cpu_usage numeric(5,2), -- CPU使用率(%)
-                                        memory_usage numeric(5,2), -- 内存使用率(%)
-                                        volume_path character varying(500), -- 数据卷路径
-                                        env_config text, -- 环境变量配置(JSON)
-                                        container_config text, -- 容器配置(JSON)
-                                        error_message text, -- 错误信息
-                                        created_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 创建时间
-                                        updated_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 更新时间
-                                        deleted_at timestamp without time zone,
-                                        last_accessed_at timestamp without time zone not null default CURRENT_TIMESTAMP -- 最后访问时间，用于自动清理判断
-);
-comment on table public.user_containers is '用户容器表';
-comment on column public.user_containers.id is '容器ID';
-comment on column public.user_containers.name is '容器名称';
-comment on column public.user_containers.user_id is '用户ID';
-comment on column public.user_containers.status is '容器状态: 1-创建中, 2-运行中, 3-已停止, 4-错误状态, 5-删除中, 6-已删除';
-comment on column public.user_containers.docker_container_id is 'Docker容器ID';
-comment on column public.user_containers.image is '容器镜像';
-comment on column public.user_containers.internal_port is '内部端口';
-comment on column public.user_containers.external_port is '外部映射端口';
-comment on column public.user_containers.ip_address is '容器IP地址';
-comment on column public.user_containers.cpu_usage is 'CPU使用率(%)';
-comment on column public.user_containers.memory_usage is '内存使用率(%)';
-comment on column public.user_containers.volume_path is '数据卷路径';
-comment on column public.user_containers.env_config is '环境变量配置(JSON)';
-comment on column public.user_containers.container_config is '容器配置(JSON)';
-comment on column public.user_containers.error_message is '错误信息';
-comment on column public.user_containers.created_at is '创建时间';
-comment on column public.user_containers.updated_at is '更新时间';
-comment on column public.user_containers.last_accessed_at is '最后访问时间，用于自动清理判断';
 
 create table public.user_rag_documents (
                                            id character varying(36) primary key not null, -- 主键ID
@@ -992,6 +937,9 @@ create table public.user_tools (
                                    is_office boolean default false, -- 是否官方工具
                                    public_state boolean default false, -- 公开状态
                                    mcp_server_name character varying(255), -- MCP服务器名称
+                                   runtime_type character varying(50), -- 工具运行方式：远程MCP或HTTP API
+                                   credential_required boolean not null default false, -- 是否需要用户配置私有凭据
+                                   credential_configured boolean not null default false, -- 用户是否已配置私有凭据
                                    created_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 创建时间
                                    updated_at timestamp without time zone not null default CURRENT_TIMESTAMP, -- 更新时间
                                    deleted_at timestamp without time zone, -- 逻辑删除时间
@@ -1011,6 +959,9 @@ comment on column public.user_tools.labels is '标签列表，JSON数组格式';
 comment on column public.user_tools.is_office is '是否官方工具';
 comment on column public.user_tools.public_state is '公开状态';
 comment on column public.user_tools.mcp_server_name is 'MCP服务器名称';
+comment on column public.user_tools.runtime_type is '工具运行方式：远程MCP或HTTP API';
+comment on column public.user_tools.credential_required is '是否需要用户配置私有凭据';
+comment on column public.user_tools.credential_configured is '用户是否已配置私有凭据';
 comment on column public.user_tools.created_at is '创建时间';
 comment on column public.user_tools.updated_at is '更新时间';
 comment on column public.user_tools.deleted_at is '逻辑删除时间';

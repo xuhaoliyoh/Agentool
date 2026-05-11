@@ -12,7 +12,6 @@ import {
   Settings,
   Home,
   Shield,
-  Container,
   CreditCard,
   BookOpen,
   Database,
@@ -76,11 +75,6 @@ export function AdminSidebar() {
       href: "/admin/providers",
       icon: Server,
       label: "服务商管理",
-    },
-    {
-      href: "/admin/containers",
-      icon: Container,
-      label: "容器管理",
     },
     {
       href: "/admin/products",

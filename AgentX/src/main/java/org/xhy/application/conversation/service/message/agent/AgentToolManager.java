@@ -1,18 +1,19 @@
 package org.xhy.application.conversation.service.message.agent;
 
 import dev.langchain4j.mcp.McpToolProvider;
-import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
-import dev.langchain4j.mcp.client.transport.McpTransport;
 import dev.langchain4j.mcp.client.transport.PresetParameter;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
+import dev.langchain4j.service.tool.ToolProviderResult;
 import dev.langchain4j.service.tool.ToolProvider;
 import org.springframework.stereotype.Component;
 import org.xhy.application.conversation.service.handler.context.ChatContext;
-import org.xhy.application.conversation.service.McpUrlProviderService;
+import org.xhy.application.conversation.service.message.agent.runtime.DirectToolRuntime;
+import org.xhy.application.conversation.service.message.agent.runtime.DirectToolRuntimeResolver;
+import org.xhy.application.conversation.service.message.agent.runtime.HttpApiToolProviderFactory;
+import org.xhy.application.conversation.service.message.agent.runtime.RemoteMcpToolProviderFactory;
+import org.xhy.domain.tool.constant.ToolRuntimeType;
 import org.xhy.infrastructure.utils.JsonUtils;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,16 @@ import java.util.Map;
 @Component
 public class AgentToolManager {
 
-    private final McpUrlProviderService mcpUrlProviderService;
+    private final DirectToolRuntimeResolver directToolRuntimeResolver;
+    private final RemoteMcpToolProviderFactory remoteMcpToolProviderFactory;
+    private final HttpApiToolProviderFactory httpApiToolProviderFactory;
 
-    public AgentToolManager(McpUrlProviderService mcpUrlProviderService) {
-        this.mcpUrlProviderService = mcpUrlProviderService;
+    public AgentToolManager(DirectToolRuntimeResolver directToolRuntimeResolver,
+            RemoteMcpToolProviderFactory remoteMcpToolProviderFactory,
+            HttpApiToolProviderFactory httpApiToolProviderFactory) {
+        this.directToolRuntimeResolver = directToolRuntimeResolver;
+        this.remoteMcpToolProviderFactory = remoteMcpToolProviderFactory;
+        this.httpApiToolProviderFactory = httpApiToolProviderFactory;
     }
 
     /** 创建工具提供者（支持全局/用户隔离工具自动识别）
@@ -40,29 +47,31 @@ public class AgentToolManager {
         }
 
         List<McpClient> mcpClients = new ArrayList<>();
+        ToolProviderResult.Builder httpToolBuilder = ToolProviderResult.builder();
 
         for (String mcpServerName : mcpServerNames) {
-            String sseUrl = mcpUrlProviderService.getMcpToolUrl(mcpServerName, userId);
-            McpTransport transport = new HttpMcpTransport.Builder().sseUrl(sseUrl).logRequests(true).logResponses(true)
-                    .timeout(Duration.ofHours(1)).build();
-
-            McpClient mcpClient = new DefaultMcpClient.Builder().transport(transport).build();
-
-            /** 预先设置参数 */
-            if (toolPresetParams != null && toolPresetParams.containsKey(mcpServerName)) {
-                List<PresetParameter> presetParameters = new ArrayList<>();
-                for (String key : toolPresetParams.keySet()) {
-
-                    toolPresetParams.get(key).forEach((k, v) -> {
-                        presetParameters.add(new PresetParameter(k, JsonUtils.toJsonString(v)));
-                    });
-                }
-                mcpClient.presetParameters(presetParameters);
+            DirectToolRuntime runtime = directToolRuntimeResolver.resolve(mcpServerName, userId);
+            if (runtime.getRuntimeConfig().getRuntimeType() == ToolRuntimeType.HTTP_API) {
+                httpToolBuilder.addAll(httpApiToolProviderFactory.createTools(runtime));
+                continue;
             }
-            mcpClients.add(mcpClient);
+            if (runtime.getRuntimeConfig().getRuntimeType() == ToolRuntimeType.REMOTE_MCP_SSE) {
+                McpClient mcpClient = remoteMcpToolProviderFactory.createClient(runtime);
+                presetToolParameters(mcpClient, mcpServerName, toolPresetParams);
+                mcpClients.add(mcpClient);
+            }
         }
 
-        return McpToolProvider.builder().mcpClients(mcpClients).build();
+        ToolProvider mcpToolProvider = mcpClients.isEmpty() ? null : McpToolProvider.builder().mcpClients(mcpClients).build();
+
+        return request -> {
+            ToolProviderResult.Builder resultBuilder = ToolProviderResult.builder();
+            resultBuilder.addAll(httpToolBuilder.build().tools());
+            if (mcpToolProvider != null) {
+                resultBuilder.addAll(mcpToolProvider.provideTools(request).tools());
+            }
+            return resultBuilder.build();
+        };
     }
 
     /** 获取可用的工具列表
@@ -70,5 +79,17 @@ public class AgentToolManager {
      * @return 工具URL列表 */
     public List<String> getAvailableTools(ChatContext chatContext) {
         return chatContext.getMcpServerNames();
+    }
+
+    private void presetToolParameters(McpClient mcpClient, String mcpServerName,
+            Map<String, Map<String, Map<String, String>>> toolPresetParams) {
+        if (toolPresetParams == null || !toolPresetParams.containsKey(mcpServerName)) {
+            return;
+        }
+        List<PresetParameter> presetParameters = new ArrayList<>();
+        toolPresetParams.get(mcpServerName).forEach((toolName, params) -> {
+            presetParameters.add(new PresetParameter(toolName, JsonUtils.toJsonString(params)));
+        });
+        mcpClient.presetParameters(presetParameters);
     }
 }

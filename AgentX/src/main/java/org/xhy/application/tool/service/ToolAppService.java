@@ -15,13 +15,20 @@ import org.springframework.transaction.annotation.Transactional;
 import org.xhy.application.tool.assembler.ToolAssembler;
 import org.xhy.application.tool.dto.ToolDTO;
 import org.xhy.application.tool.dto.ToolVersionDTO;
+import org.xhy.application.tool.service.runtime.ToolEndpointProbeResult;
+import org.xhy.application.tool.service.runtime.ToolEndpointProbeService;
+import org.xhy.domain.tool.constant.ToolAuthType;
 import org.xhy.domain.tool.constant.ToolStatus;
 import org.xhy.domain.tool.model.ToolEntity;
 import org.xhy.domain.tool.model.ToolOperationResult;
+import org.xhy.domain.tool.model.ToolRuntimeConfigEntity;
 import org.xhy.domain.tool.model.ToolVersionEntity;
+import org.xhy.domain.tool.model.UserToolCredentialEntity;
 import org.xhy.domain.tool.model.UserToolEntity;
 import org.xhy.domain.tool.service.ToolDomainService;
+import org.xhy.domain.tool.service.ToolRuntimeConfigDomainService;
 import org.xhy.domain.tool.service.ToolVersionDomainService;
+import org.xhy.domain.tool.service.UserToolCredentialDomainService;
 import org.xhy.domain.tool.service.UserToolDomainService;
 import org.xhy.domain.user.model.UserEntity;
 import org.xhy.domain.user.service.UserDomainService;
@@ -30,7 +37,9 @@ import org.xhy.infrastructure.exception.ParamValidationException;
 import org.xhy.interfaces.dto.tool.request.CreateToolRequest;
 import org.xhy.interfaces.dto.tool.request.MarketToolRequest;
 import org.xhy.interfaces.dto.tool.request.QueryToolRequest;
+import org.xhy.interfaces.dto.tool.request.ToolRuntimeConfigRequest;
 import org.xhy.interfaces.dto.tool.request.UpdateToolRequest;
+import org.xhy.interfaces.dto.tool.request.UserToolCredentialRequest;
 
 /** 工具应用服务 */
 @Service
@@ -46,16 +55,24 @@ public class ToolAppService {
 
     private final UserDomainService userDomainService;
 
-    private final ToolStateStateMachineAppService toolStateStateMachine;
+    private final ToolEndpointProbeService toolEndpointProbeService;
+
+    private final ToolRuntimeConfigDomainService toolRuntimeConfigDomainService;
+
+    private final UserToolCredentialDomainService userToolCredentialDomainService;
 
     public ToolAppService(ToolDomainService toolDomainService, UserToolDomainService userToolDomainService,
             ToolVersionDomainService toolVersionDomainService, UserDomainService userDomainService,
-            ToolStateStateMachineAppService toolStateStateMachine) {
+            ToolEndpointProbeService toolEndpointProbeService,
+            ToolRuntimeConfigDomainService toolRuntimeConfigDomainService,
+            UserToolCredentialDomainService userToolCredentialDomainService) {
         this.toolDomainService = toolDomainService;
         this.userToolDomainService = userToolDomainService;
         this.toolVersionDomainService = toolVersionDomainService;
         this.userDomainService = userDomainService;
-        this.toolStateStateMachine = toolStateStateMachine;
+        this.toolEndpointProbeService = toolEndpointProbeService;
+        this.toolRuntimeConfigDomainService = toolRuntimeConfigDomainService;
+        this.userToolCredentialDomainService = userToolCredentialDomainService;
     }
 
     /** 上传工具
@@ -67,17 +84,19 @@ public class ToolAppService {
      * @return 创建的工具DTO */
     @Transactional
     public ToolDTO uploadTool(CreateToolRequest request, String userId) {
+        ToolEndpointProbeResult probeResult = toolEndpointProbeService.probe(request.getRuntimeConfig(),
+                request.getName(), request.getDescription());
+
         // 将请求转换为实体
         ToolEntity toolEntity = ToolAssembler.toEntity(request, userId);
-
-        toolEntity.setStatus(ToolStatus.WAITING_REVIEW);
+        toolEntity.setStatus(ToolStatus.MANUAL_REVIEW);
+        toolEntity.setRuntimeType(request.getRuntimeConfig().getRuntimeType());
+        toolEntity.setMcpServerName(probeResult.getMcpServerName());
         // 调用领域服务创建工具
         ToolOperationResult result = toolDomainService.createTool(toolEntity);
 
-        // 检查是否需要状态转换
-        if (result.needStateTransition()) {
-            toolStateStateMachine.submitToolForProcessing(result.getTool());
-        }
+        toolRuntimeConfigDomainService
+                .saveCurrentConfig(buildRuntimeConfig(request.getRuntimeConfig(), result.getTool().getId(), probeResult));
 
         // 将实体转换为DTO返回
         return ToolAssembler.toDTO(result.getTool());
@@ -87,7 +106,16 @@ public class ToolAppService {
         ToolEntity toolEntity = toolDomainService.getTool(toolId, userId);
 
         ToolDTO toolDTO = ToolAssembler.toDTO(toolEntity);
+        ToolRuntimeConfigEntity runtimeConfig = toolRuntimeConfigDomainService.findCurrentByToolId(toolId);
+        if (runtimeConfig != null) {
+            toolDTO.setRuntimeConfig(toRuntimeConfigRequest(runtimeConfig));
+        }
         return toolDTO;
+    }
+
+    public ToolEndpointProbeResult probeRuntimeConfig(ToolRuntimeConfigRequest request, String toolName,
+            String description) {
+        return toolEndpointProbeService.probe(request, toolName, description);
     }
 
     public List<ToolDTO> getUserTools(String userId) {
@@ -96,20 +124,25 @@ public class ToolAppService {
     }
 
     public ToolDTO updateTool(String toolId, UpdateToolRequest request, String userId) {
+        ToolEndpointProbeResult probeResult = toolEndpointProbeService.probe(request.getRuntimeConfig(),
+                request.getName(), request.getDescription());
+
         ToolEntity toolEntity = ToolAssembler.toEntity(request, userId);
         toolEntity.setId(toolId);
+        toolEntity.setStatus(ToolStatus.MANUAL_REVIEW);
+        toolEntity.setRuntimeType(request.getRuntimeConfig().getRuntimeType());
+        toolEntity.setMcpServerName(probeResult.getMcpServerName());
         ToolOperationResult result = toolDomainService.updateTool(toolEntity);
 
-        // 检查是否需要状态转换
-        if (result.needStateTransition()) {
-            toolStateStateMachine.submitToolForProcessing(result.getTool());
-        }
+        toolRuntimeConfigDomainService
+                .saveCurrentConfig(buildRuntimeConfig(request.getRuntimeConfig(), result.getTool().getId(), probeResult));
 
         return ToolAssembler.toDTO(result.getTool());
     }
 
     public void deleteTool(String toolId, String userId) {
         toolDomainService.deleteTool(toolId, userId);
+        toolRuntimeConfigDomainService.deleteByToolId(toolId);
     }
 
     public void marketTool(MarketToolRequest marketToolRequest, String userId) {
@@ -139,8 +172,10 @@ public class ToolAppService {
         toolVersionEntity.setPublicStatus(true);
         toolVersionEntity.setId(null);
         toolVersionEntity.setMcpServerName(toolEntity.getMcpServerName());
+        toolVersionEntity.setRuntimeType(toolEntity.getRuntimeType());
         toolVersionEntity.setCreatedAt(LocalDateTime.now());
         toolVersionDomainService.addToolVersion(toolVersionEntity);
+        toolRuntimeConfigDomainService.snapshotVersion(toolId, version);
     }
 
     public Page<ToolVersionDTO> marketTools(QueryToolRequest queryToolRequest) {
@@ -203,6 +238,13 @@ public class ToolAppService {
         userToolEntity.setVersion(toolVersionEntity.getVersion());
         userToolEntity.setId(userToolId);
         userToolEntity.setMcpServerName(toolVersionEntity.getMcpServerName());
+        userToolEntity.setRuntimeType(toolVersionEntity.getRuntimeType());
+        ToolRuntimeConfigEntity runtimeConfig = toolRuntimeConfigDomainService.findByToolIdAndVersion(toolId, version);
+        boolean credentialRequired = runtimeConfig != null && runtimeConfig.getAuthType() != null
+                && runtimeConfig.getAuthType() != ToolAuthType.NONE;
+        userToolEntity.setCredentialRequired(credentialRequired);
+        userToolEntity.setCredentialConfigured(!credentialRequired
+                || (userToolEntity.getCredentialConfigured() != null && userToolEntity.getCredentialConfigured()));
         if (userToolEntity.getId() == null) {
             userToolDomainService.add(userToolEntity);
         } else {
@@ -256,6 +298,23 @@ public class ToolAppService {
 
         // 执行正常的卸载流程
         userToolDomainService.delete(toolId, userId);
+    }
+
+    public void saveUserToolCredential(String userToolId, UserToolCredentialRequest request, String userId) {
+        UserToolEntity userTool = userToolDomainService.findByIdAndUserId(userToolId, userId);
+        if (userTool == null) {
+            throw new BusinessException("用户工具不存在: " + userToolId);
+        }
+
+        UserToolCredentialEntity credential = new UserToolCredentialEntity();
+        credential.setUserToolId(userToolId);
+        credential.setUserId(userId);
+        credential.setToolId(userTool.getToolId());
+        credential.setAuthValues(request.getAuthValues());
+        userToolCredentialDomainService.save(credential);
+
+        userTool.setCredentialConfigured(true);
+        userToolDomainService.update(userTool);
     }
 
     public List<ToolVersionDTO> getRecommendTools() {
@@ -332,6 +391,7 @@ public class ToolAppService {
             baseVersion.setPublicStatus(false); // 非公开
             // baseVersion.setInstallCommand(tool.getInstallCommand()); // 如果ToolVersionEntity需要此字段且ToolEntity有，则复制
             baseVersion.setMcpServerName(tool.getMcpServerName());
+            baseVersion.setRuntimeType(tool.getRuntimeType());
 
             // 持久化这个内部基础版本
             toolVersionDomainService.addToolVersion(baseVersion);
@@ -348,5 +408,41 @@ public class ToolAppService {
     public ToolVersionDTO getLatestToolVersion(String toolId, String userId) {
         ToolVersionEntity toolVersionEntity = toolVersionDomainService.findLatestToolVersion(toolId, userId);
         return ToolAssembler.toDTO(toolVersionEntity);
+    }
+
+    private ToolRuntimeConfigEntity buildRuntimeConfig(ToolRuntimeConfigRequest request, String toolId,
+            ToolEndpointProbeResult probeResult) {
+        ToolRuntimeConfigEntity config = new ToolRuntimeConfigEntity();
+        config.setToolId(toolId);
+        config.setRuntimeType(request.getRuntimeType());
+        config.setTransportType(request.getTransportType());
+        config.setEndpointUrl(request.getEndpointUrl());
+        config.setHttpMethod(request.getHttpMethod());
+        config.setAuthType(request.getAuthType());
+        config.setAuthConfigSchema(request.getAuthConfigSchema());
+        config.setDefaultHeaders(request.getDefaultHeaders());
+        config.setRequestSchema(request.getRequestSchema());
+        config.setResponseSchema(request.getResponseSchema());
+        config.setMcpServerName(probeResult.getMcpServerName());
+        config.setToolDefinitions(probeResult.getToolDefinitions());
+        config.setTimeoutMs(request.getTimeoutMs());
+        config.setEnabled(true);
+        return config;
+    }
+
+    private ToolRuntimeConfigRequest toRuntimeConfigRequest(ToolRuntimeConfigEntity config) {
+        ToolRuntimeConfigRequest request = new ToolRuntimeConfigRequest();
+        request.setRuntimeType(config.getRuntimeType());
+        request.setTransportType(config.getTransportType());
+        request.setEndpointUrl(config.getEndpointUrl());
+        request.setMcpServerName(config.getMcpServerName());
+        request.setHttpMethod(config.getHttpMethod());
+        request.setAuthType(config.getAuthType());
+        request.setAuthConfigSchema(config.getAuthConfigSchema());
+        request.setDefaultHeaders(config.getDefaultHeaders());
+        request.setRequestSchema(config.getRequestSchema());
+        request.setResponseSchema(config.getResponseSchema());
+        request.setTimeoutMs(config.getTimeoutMs());
+        return request;
     }
 }

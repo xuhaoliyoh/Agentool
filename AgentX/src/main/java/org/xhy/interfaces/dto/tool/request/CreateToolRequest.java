@@ -28,16 +28,18 @@ public class CreateToolRequest {
     @NotEmpty(message = "标签不可为空")
     private List<String> labels;
 
-    /** 上传地址 */
-    @NotEmpty(message = "上传地址不可为空")
+    /** 上传地址：旧 MCP Gateway 链路字段，保留兼容，不再作为必填 */
     private String uploadUrl;
 
-    /** 安装命令 */
-    @NotNull(message = "安装命令不可为空")
+    /** 安装命令：旧 MCP Gateway 链路字段，保留兼容，不再执行 */
     private Map<String, Object> installCommand;
 
     /** 是否为全局工具，默认为false */
     private Boolean isGlobal = false;
+
+    /** 新工具运行配置 */
+    @NotNull(message = "工具运行配置不可为空")
+    private ToolRuntimeConfigRequest runtimeConfig;
 
     // 构造方法
     public CreateToolRequest() {
@@ -106,5 +108,13 @@ public class CreateToolRequest {
 
     public void setIsGlobal(Boolean isGlobal) {
         this.isGlobal = isGlobal;
+    }
+
+    public ToolRuntimeConfigRequest getRuntimeConfig() {
+        return runtimeConfig;
+    }
+
+    public void setRuntimeConfig(ToolRuntimeConfigRequest runtimeConfig) {
+        this.runtimeConfig = runtimeConfig;
     }
 }

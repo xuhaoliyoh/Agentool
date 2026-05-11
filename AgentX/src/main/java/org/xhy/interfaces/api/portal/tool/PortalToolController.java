@@ -8,13 +8,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.xhy.application.tool.dto.ToolDTO;
 import org.xhy.application.tool.dto.ToolVersionDTO;
+import org.xhy.application.tool.service.runtime.ToolEndpointProbeResult;
 import org.xhy.application.tool.service.ToolAppService;
 import org.xhy.infrastructure.auth.UserContext;
 import org.xhy.interfaces.api.common.Result;
 import org.xhy.interfaces.dto.tool.request.CreateToolRequest;
 import org.xhy.interfaces.dto.tool.request.MarketToolRequest;
 import org.xhy.interfaces.dto.tool.request.QueryToolRequest;
+import org.xhy.interfaces.dto.tool.request.ToolRuntimeConfigRequest;
 import org.xhy.interfaces.dto.tool.request.UpdateToolRequest;
+import org.xhy.interfaces.dto.tool.request.UserToolCredentialRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -38,6 +41,12 @@ public class PortalToolController {
         String userId = UserContext.getCurrentUserId();
         ToolDTO tool = toolAppService.uploadTool(request, userId);
         return Result.success(tool);
+    }
+
+    @PostMapping("/runtime/probe")
+    public Result<ToolEndpointProbeResult> probeRuntimeConfig(@RequestBody @Validated ToolRuntimeConfigRequest request,
+            @RequestParam(required = false) String toolName, @RequestParam(required = false) String description) {
+        return Result.success(toolAppService.probeRuntimeConfig(request, toolName, description));
     }
 
     /** 获取用户的工具详情
@@ -145,6 +154,14 @@ public class PortalToolController {
     public Result<Page<ToolVersionDTO>> getInstalledTools(QueryToolRequest queryToolRequest) {
         String userId = UserContext.getCurrentUserId();
         return Result.success(toolAppService.getInstalledTools(userId, queryToolRequest));
+    }
+
+    @PutMapping("/installed/{userToolId}/credential")
+    public Result<Void> saveUserToolCredential(@PathVariable String userToolId,
+            @RequestBody @Validated UserToolCredentialRequest request) {
+        String userId = UserContext.getCurrentUserId();
+        toolAppService.saveUserToolCredential(userToolId, request, userId);
+        return Result.success();
     }
 
     /** 获取工具已发布的所有版本

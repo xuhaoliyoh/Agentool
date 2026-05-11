@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.xhy.domain.tool.constant.UploadType;
+import org.xhy.domain.tool.constant.ToolRuntimeType;
 import org.xhy.domain.tool.model.config.ToolDefinition;
 import org.xhy.infrastructure.converter.ListStringConverter;
 import org.xhy.infrastructure.converter.ToolDefinitionListConverter;
+import org.xhy.infrastructure.converter.ToolRuntimeTypeConverter;
 import org.xhy.infrastructure.converter.UploadTypeConverter;
 import org.xhy.infrastructure.entity.BaseEntity;
 
@@ -72,6 +74,15 @@ public class UserToolEntity extends BaseEntity {
     /** 是否为全局工具 */
     @TableField("is_global")
     private Boolean isGlobal;
+
+    @TableField(value = "runtime_type", typeHandler = ToolRuntimeTypeConverter.class)
+    private ToolRuntimeType runtimeType;
+
+    @TableField("credential_required")
+    private Boolean credentialRequired;
+
+    @TableField("credential_configured")
+    private Boolean credentialConfigured;
 
     public String getId() {
         return id;
@@ -191,5 +202,29 @@ public class UserToolEntity extends BaseEntity {
 
     public void setIsGlobal(Boolean isGlobal) {
         this.isGlobal = isGlobal;
+    }
+
+    public ToolRuntimeType getRuntimeType() {
+        return runtimeType;
+    }
+
+    public void setRuntimeType(ToolRuntimeType runtimeType) {
+        this.runtimeType = runtimeType;
+    }
+
+    public Boolean getCredentialRequired() {
+        return credentialRequired;
+    }
+
+    public void setCredentialRequired(Boolean credentialRequired) {
+        this.credentialRequired = credentialRequired;
+    }
+
+    public Boolean getCredentialConfigured() {
+        return credentialConfigured;
+    }
+
+    public void setCredentialConfigured(Boolean credentialConfigured) {
+        this.credentialConfigured = credentialConfigured;
     }
 }

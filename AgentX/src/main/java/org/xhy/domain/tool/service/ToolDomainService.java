@@ -53,8 +53,10 @@ public class ToolDomainService {
      * @param toolEntity 工具实体
      * @return 工具操作结果 */
     public ToolOperationResult createTool(ToolEntity toolEntity) {
-        // 设置初始状态
-        toolEntity.setStatus(ToolStatus.WAITING_REVIEW);
+        // 直连工具发布不再进入 Gateway 自动处理，探测成功后直接等待人工审核
+        if (toolEntity.getStatus() == null) {
+            toolEntity.setStatus(ToolStatus.MANUAL_REVIEW);
+        }
 
         String mcpServerName = this.getMcpServerName(toolEntity);
         toolEntity.setMcpServerName(mcpServerName);
@@ -65,8 +67,7 @@ public class ToolDomainService {
         // 保存工具
         toolRepository.checkInsert(toolEntity);
 
-        // 返回需要状态转换的结果
-        return ToolOperationResult.withTransition(toolEntity);
+        return ToolOperationResult.withoutTransition(toolEntity);
     }
 
     public ToolEntity getTool(String toolId, String userId) {
@@ -94,30 +95,17 @@ public class ToolDomainService {
     }
 
     public ToolOperationResult updateTool(ToolEntity toolEntity) {
-        /** 修改 name/description/icon/labels只触发人工审核状态 修改 upload_url/upload_command触发整个状态扭转 */
+        /** 直连 MCP/HTTP 工具修改后统一回到人工审核，不再触发 Gateway 状态机 */
         // 获取原工具信息
         ToolEntity oldTool = toolRepository.selectById(toolEntity.getId());
         if (oldTool == null) {
             throw new BusinessException("工具不存在: " + toolEntity.getId());
         }
 
-        // 检查是否修改了URL或安装命令
-        boolean needStateTransition = false;
-        if ((toolEntity.getUploadUrl() != null && !toolEntity.getUploadUrl().equals(oldTool.getUploadUrl()))
-                || (toolEntity.getInstallCommand() != null
-                        && !toolEntity.getInstallCommand().equals(oldTool.getInstallCommand()))) {
-            needStateTransition = true;
-            String mcpServerName = this.getMcpServerName(toolEntity);
-            toolEntity.setMcpServerName(mcpServerName);
-
-            // 校验更新后的MCP名称不能与用户其他工具重复
-            this.validateMcpServerNameUnique(mcpServerName, toolEntity.getUserId(), toolEntity.getId());
-
-            toolEntity.setStatus(ToolStatus.WAITING_REVIEW);
-        } else {
-            // 只修改了信息，设置为人工审核状态
-            toolEntity.setStatus(ToolStatus.MANUAL_REVIEW);
-        }
+        String mcpServerName = this.getMcpServerName(toolEntity);
+        toolEntity.setMcpServerName(mcpServerName);
+        this.validateMcpServerNameUnique(mcpServerName, toolEntity.getUserId(), toolEntity.getId());
+        toolEntity.setStatus(ToolStatus.MANUAL_REVIEW);
 
         // 更新工具
         LambdaUpdateWrapper<ToolEntity> wrapper = Wrappers.<ToolEntity>lambdaUpdate()
@@ -126,7 +114,7 @@ public class ToolDomainService {
         toolRepository.update(toolEntity, wrapper);
 
         // 返回操作结果
-        return ToolOperationResult.of(toolEntity, needStateTransition);
+        return ToolOperationResult.withoutTransition(toolEntity);
     }
 
     public void deleteTool(String toolId, String userId) {
@@ -222,20 +210,22 @@ public class ToolDomainService {
         if (tool == null) {
             return null;
         }
+        if (StringUtils.isNotBlank(tool.getMcpServerName())) {
+            return tool.getMcpServerName().trim();
+        }
+
         Map<String, Object> installCommand = tool.getInstallCommand();
-
-        @SuppressWarnings("unchecked")
-        Map<String, Object> mcpServers = (Map<String, Object>) installCommand.get("mcpServers");
-        if (mcpServers == null || mcpServers.isEmpty()) {
-            throw new BusinessException("工具ID: " + tool.getId() + " 安装命令中mcpServers为空。");
+        if (installCommand != null) {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> mcpServers = (Map<String, Object>) installCommand.get("mcpServers");
+            if (mcpServers != null && !mcpServers.isEmpty()) {
+                String toolName = mcpServers.keySet().iterator().next();
+                if (StringUtils.isNotBlank(toolName)) {
+                    return toolName;
+                }
+            }
         }
-
-        // 获取第一个key作为工具名称
-        String toolName = mcpServers.keySet().iterator().next();
-        if (toolName == null || toolName.isEmpty()) {
-            throw new BusinessException("工具ID: " + tool.getId() + " 无法从安装命令中获取工具名称。");
-        }
-        return toolName;
+        throw new BusinessException("工具ID: " + tool.getId() + " 缺少 MCP 服务器名称。");
     }
 
     public List<ToolEntity> getByIds(List<String> toolIds) {
@@ -389,7 +379,8 @@ public class ToolDomainService {
         LambdaQueryWrapper<UserToolEntity> wrapper = Wrappers.<UserToolEntity>lambdaQuery()
                 .eq(UserToolEntity::getMcpServerName, serverName).eq(UserToolEntity::getUserId, userId);
 
-        return userToolRepository.selectList(wrapper).get(0);
+        List<UserToolEntity> installedTools = userToolRepository.selectList(wrapper);
+        return installedTools.isEmpty() ? null : installedTools.get(0);
     }
 
     /** 根据MCP服务器名称获取用户已安装的工具对应的原始工具

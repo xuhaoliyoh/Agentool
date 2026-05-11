@@ -3,15 +3,12 @@ package org.xhy.application.admin.tool.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.xhy.application.tool.assembler.ToolAssembler;
 import org.xhy.application.tool.service.ToolAppService;
 import org.xhy.application.tool.dto.ToolWithUserDTO;
 import org.xhy.application.tool.dto.ToolStatisticsDTO;
 import org.xhy.domain.tool.constant.ToolStatus;
 import org.xhy.domain.tool.model.ToolEntity;
-import org.xhy.domain.tool.model.ToolOperationResult;
 import org.xhy.domain.tool.service.ToolDomainService;
-import org.xhy.application.tool.service.ToolStateStateMachineAppService;
 import org.xhy.interfaces.dto.tool.request.CreateToolRequest;
 import org.xhy.interfaces.dto.tool.request.QueryToolRequest;
 import org.xhy.infrastructure.exception.BusinessException;
@@ -24,13 +21,10 @@ public class AdminToolAppService {
     private static final Logger logger = LoggerFactory.getLogger(AdminToolAppService.class);
 
     private final ToolDomainService toolDomainService;
-    private final ToolStateStateMachineAppService toolStateStateMachine;
     private final ToolAppService toolAppService;
 
-    public AdminToolAppService(ToolDomainService toolDomainService,
-            ToolStateStateMachineAppService toolStateStateMachine, ToolAppService toolAppService) {
+    public AdminToolAppService(ToolDomainService toolDomainService, ToolAppService toolAppService) {
         this.toolDomainService = toolDomainService;
-        this.toolStateStateMachine = toolStateStateMachine;
         this.toolAppService = toolAppService;
     }
 
@@ -43,12 +37,10 @@ public class AdminToolAppService {
     public String createOfficialTool(CreateToolRequest request, String userId) {
         logger.info("管理员创建官方工具: userId={}, toolName={}", userId, request.getName());
 
-        ToolEntity entity = ToolAssembler.toEntity(request, userId);
+        String toolId = toolAppService.uploadTool(request, userId).getId();
+        ToolEntity entity = toolDomainService.getTool(toolId);
         entity.setIsOffice(true);
-
-        // 保存工具
-        ToolOperationResult tool = toolDomainService.createTool(entity);
-        String toolId = tool.getTool().getId();
+        toolDomainService.updateToolEntity(entity);
 
         logger.info("官方工具创建成功: toolId={}", toolId);
         return toolId;
@@ -64,8 +56,7 @@ public class AdminToolAppService {
         ToolEntity tool = toolDomainService.getTool(toolId);
 
         if (tool.getStatus() == ToolStatus.MANUAL_REVIEW && status == ToolStatus.APPROVED) {
-            // 人工审核通过，调用应用层状态机处理
-            String approvedToolId = toolStateStateMachine.manualReviewComplete(tool, true);
+            String approvedToolId = toolDomainService.manualReviewComplete(tool, true);
             // 审核通过后，手动触发自动安装
             toolAppService.autoInstallApprovedTool(approvedToolId);
         } else if (status == ToolStatus.FAILED) {

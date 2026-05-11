@@ -1,9 +1,11 @@
 package org.xhy.application.tool.dto;
 
 import org.xhy.domain.tool.constant.ToolStatus;
+import org.xhy.domain.tool.constant.ToolRuntimeType;
 import org.xhy.domain.tool.constant.ToolType;
 import org.xhy.domain.tool.constant.UploadType;
 import org.xhy.domain.tool.model.config.ToolDefinition;
+import org.xhy.interfaces.dto.tool.request.ToolRuntimeConfigRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +35,10 @@ public class ToolDTO {
     private ToolStatus failedStepStatus;
     private String mcpServerName;
     private Boolean isGlobal;
+    private ToolRuntimeType runtimeType;
+    private Boolean credentialRequired;
+    private Boolean credentialConfigured;
+    private ToolRuntimeConfigRequest runtimeConfig;
 
     // 构造方法
     public ToolDTO() {
@@ -229,5 +235,37 @@ public class ToolDTO {
 
     public void setIsGlobal(Boolean isGlobal) {
         this.isGlobal = isGlobal;
+    }
+
+    public ToolRuntimeType getRuntimeType() {
+        return runtimeType;
+    }
+
+    public void setRuntimeType(ToolRuntimeType runtimeType) {
+        this.runtimeType = runtimeType;
+    }
+
+    public Boolean getCredentialRequired() {
+        return credentialRequired;
+    }
+
+    public void setCredentialRequired(Boolean credentialRequired) {
+        this.credentialRequired = credentialRequired;
+    }
+
+    public Boolean getCredentialConfigured() {
+        return credentialConfigured;
+    }
+
+    public void setCredentialConfigured(Boolean credentialConfigured) {
+        this.credentialConfigured = credentialConfigured;
+    }
+
+    public ToolRuntimeConfigRequest getRuntimeConfig() {
+        return runtimeConfig;
+    }
+
+    public void setRuntimeConfig(ToolRuntimeConfigRequest runtimeConfig) {
+        this.runtimeConfig = runtimeConfig;
     }
 }

@@ -1,6 +1,7 @@
 package org.xhy.application.tool.dto;
 
 import org.xhy.domain.tool.constant.ToolStatus;
+import org.xhy.domain.tool.constant.ToolRuntimeType;
 import org.xhy.domain.tool.constant.ToolType;
 import org.xhy.domain.tool.constant.UploadType;
 import org.xhy.domain.tool.model.config.ToolDefinition;
@@ -34,6 +35,9 @@ public class ToolWithUserDTO {
     private ToolStatus failedStepStatus;
     private String mcpServerName;
     private Boolean isGlobal;
+    private ToolRuntimeType runtimeType;
+    private Boolean credentialRequired;
+    private Boolean credentialConfigured;
 
     // 用户信息字段
     private String userNickname;
@@ -238,5 +242,29 @@ public class ToolWithUserDTO {
 
     public void setIsGlobal(Boolean isGlobal) {
         this.isGlobal = isGlobal;
+    }
+
+    public ToolRuntimeType getRuntimeType() {
+        return runtimeType;
+    }
+
+    public void setRuntimeType(ToolRuntimeType runtimeType) {
+        this.runtimeType = runtimeType;
+    }
+
+    public Boolean getCredentialRequired() {
+        return credentialRequired;
+    }
+
+    public void setCredentialRequired(Boolean credentialRequired) {
+        this.credentialRequired = credentialRequired;
+    }
+
+    public Boolean getCredentialConfigured() {
+        return credentialConfigured;
+    }
+
+    public void setCredentialConfigured(Boolean credentialConfigured) {
+        this.credentialConfigured = credentialConfigured;
     }
 }

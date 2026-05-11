@@ -43,6 +43,10 @@ export interface UserTool {
   upload_type?: string;    // 兼容旧字段
   uploadUrl?: string;      // 后端返回的uploadUrl
   upload_url?: string;     // 兼容旧字段
+  runtimeType?: ToolRuntimeType;
+  runtimeConfig?: ToolRuntimeConfig;
+  credentialRequired?: boolean;
+  credentialConfigured?: boolean;
   toolList?: ToolFunction[]; // 后端返回的toolList
   tool_list?: ToolFunction[]; // 兼容旧字段
   status: ToolStatus;
@@ -85,14 +89,29 @@ export interface ToolFunction {
 // 工具状态枚举
 export enum ToolStatus {
   WAITING_REVIEW = 'WAITING_REVIEW', // 等待审核
-  GITHUB_URL_VALIDATE = 'GITHUB_URL_VALIDATE', // GitHub URL验证
-  DEPLOYING = 'DEPLOYING',           // 部署中
-  FETCHING_TOOLS = 'FETCHING_TOOLS', // 获取工具列表
   MANUAL_REVIEW = 'MANUAL_REVIEW',   // 人工审核
   APPROVED = 'APPROVED',             // 已通过
   FAILED = 'FAILED',                 // 失败
   PENDING = 'PENDING',               // 兼容旧状态
   REJECTED = 'REJECTED'              // 兼容旧状态
+}
+
+export enum ToolRuntimeType {
+  REMOTE_MCP_SSE = 'REMOTE_MCP_SSE',
+  HTTP_API = 'HTTP_API'
+}
+
+export interface ToolRuntimeConfig {
+  runtimeType: ToolRuntimeType;
+  endpointUrl: string;
+  mcpServerName: string;
+  httpMethod?: 'GET' | 'POST' | 'PUT' | 'PATCH';
+  authType?: 'NONE' | 'BEARER_TOKEN' | 'API_KEY_HEADER' | 'API_KEY_QUERY' | 'BASIC';
+  authConfigSchema?: Record<string, any>;
+  defaultHeaders?: Record<string, any>;
+  requestSchema?: Record<string, any>;
+  responseSchema?: Record<string, any>;
+  timeoutMs?: number;
 }
 
 // 弹窗状态类型

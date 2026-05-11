@@ -1,5 +1,5 @@
 # AgentX后端生产环境Dockerfile
-FROM eclipse-temurin:17-jdk-alpine as builder
+FROM eclipse-temurin:17-jdk-jammy AS builder
 
 # 设置工作目录
 WORKDIR /app
@@ -22,13 +22,16 @@ COPY AgentX/src src
 RUN ./mvnw clean package -DskipTests -B
 
 # 运行时镜像
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre-jammy
 
 # 安装必要的系统工具
-RUN apk add --no-cache curl
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl && \
+    rm -rf /var/lib/apt/lists/*
 
 # 创建应用用户
-RUN addgroup -g 1000 agentx && adduser -D -s /bin/sh -u 1000 -G agentx agentx
+RUN groupadd -g 1000 agentx && \
+    useradd -u 1000 -g agentx -m -s /bin/sh agentx
 
 # 设置工作目录
 WORKDIR /app
@@ -45,10 +48,10 @@ USER agentx
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:8080/api/health || exit 1
+    CMD curl -f http://localhost:8088/api/health || exit 1
 
 # 暴露端口
-EXPOSE 8080
+EXPOSE 8088
 
 # JVM优化参数
 ENV JAVA_OPTS="-Xms512m -Xmx1024m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"

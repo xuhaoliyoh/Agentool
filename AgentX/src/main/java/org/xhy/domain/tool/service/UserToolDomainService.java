@@ -41,6 +41,12 @@ public class UserToolDomainService {
         return userToolRepository.selectOne(wrapper);
     }
 
+    public UserToolEntity findByIdAndUserId(String userToolId, String userId) {
+        LambdaQueryWrapper<UserToolEntity> wrapper = Wrappers.<UserToolEntity>lambdaQuery()
+                .eq(UserToolEntity::getId, userToolId).eq(UserToolEntity::getUserId, userId);
+        return userToolRepository.selectOne(wrapper);
+    }
+
     public void update(UserToolEntity userToolEntity) {
 
         userToolRepository.checkedUpdateById(userToolEntity);

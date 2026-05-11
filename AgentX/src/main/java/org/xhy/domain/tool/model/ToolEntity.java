@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.xhy.domain.tool.constant.ToolStatus;
+import org.xhy.domain.tool.constant.ToolRuntimeType;
 import org.xhy.domain.tool.constant.ToolType;
 import org.xhy.domain.tool.constant.UploadType;
 import org.xhy.domain.tool.model.config.ToolDefinition;
@@ -12,6 +13,7 @@ import org.xhy.infrastructure.converter.ListStringConverter;
 import org.xhy.infrastructure.converter.MapConverter;
 import org.xhy.infrastructure.converter.ToolDefinitionListConverter;
 import org.xhy.infrastructure.converter.ToolStatusConverter;
+import org.xhy.infrastructure.converter.ToolRuntimeTypeConverter;
 import org.xhy.infrastructure.converter.ToolTypeConverter;
 import org.xhy.infrastructure.converter.UploadTypeConverter;
 import org.xhy.infrastructure.entity.BaseEntity;
@@ -93,6 +95,10 @@ public class ToolEntity extends BaseEntity {
     /** 是否为全局工具 */
     @TableField("is_global")
     private Boolean isGlobal;
+
+    /** 工具运行类型 */
+    @TableField(value = "runtime_type", typeHandler = ToolRuntimeTypeConverter.class)
+    private ToolRuntimeType runtimeType;
 
     public String getId() {
         return id;
@@ -244,6 +250,14 @@ public class ToolEntity extends BaseEntity {
 
     public void setIsGlobal(Boolean isGlobal) {
         this.isGlobal = isGlobal;
+    }
+
+    public ToolRuntimeType getRuntimeType() {
+        return runtimeType;
+    }
+
+    public void setRuntimeType(ToolRuntimeType runtimeType) {
+        this.runtimeType = runtimeType;
     }
 
     /** 是否为全局工具 */

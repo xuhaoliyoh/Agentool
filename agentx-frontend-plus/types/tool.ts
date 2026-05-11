@@ -19,6 +19,10 @@ export interface Tool {
   current_version?: string // 当前版本号
   mcpServerName?: string // MCP服务器名称，用于预设参数
   isGlobal?: boolean // 是否为全局工具
+  runtimeType?: ToolRuntimeType
+  runtimeConfig?: ToolRuntimeConfig
+  credentialRequired?: boolean
+  credentialConfigured?: boolean
   createdAt: string
   updatedAt: string
 }
@@ -41,6 +45,9 @@ export interface ToolVersion {
   createdAt: string
   updatedAt: string
   author: string // 作者名称（前端展示用）
+  runtimeType?: ToolRuntimeType
+  credentialRequired?: boolean
+  credentialConfigured?: boolean
 }
 
 export interface ToolItem {
@@ -73,11 +80,36 @@ export interface StdioPluginConfig {
 
 export enum ToolStatus {
   PENDING = "等待审核",
-  DEPLOYING = "部署中",
-  FETCHING_TOOLS = "获取工具列表",
   MANUAL_REVIEW = "人工审核",
   APPROVED = "通过",
   FAILED = "失败"
+}
+
+export enum ToolRuntimeType {
+  REMOTE_MCP_SSE = "REMOTE_MCP_SSE",
+  HTTP_API = "HTTP_API"
+}
+
+export enum ToolAuthType {
+  NONE = "NONE",
+  BEARER_TOKEN = "BEARER_TOKEN",
+  API_KEY_HEADER = "API_KEY_HEADER",
+  API_KEY_QUERY = "API_KEY_QUERY",
+  BASIC = "BASIC"
+}
+
+export interface ToolRuntimeConfig {
+  runtimeType: ToolRuntimeType
+  transportType?: string
+  endpointUrl: string
+  mcpServerName: string
+  httpMethod?: "GET" | "POST" | "PUT" | "PATCH"
+  authType?: ToolAuthType
+  authConfigSchema?: Record<string, any>
+  defaultHeaders?: Record<string, any>
+  requestSchema?: Record<string, any>
+  responseSchema?: Record<string, any>
+  timeoutMs?: number
 }
 
 // API响应基本结构

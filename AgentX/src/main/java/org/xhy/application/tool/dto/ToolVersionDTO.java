@@ -1,6 +1,7 @@
 package org.xhy.application.tool.dto;
 
 import org.xhy.domain.tool.model.config.ToolDefinition;
+import org.xhy.domain.tool.constant.ToolRuntimeType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -50,6 +51,12 @@ public class ToolVersionDTO {
     private String mcpServerName;
 
     private Boolean isDelete;
+
+    private ToolRuntimeType runtimeType;
+
+    private Boolean credentialRequired;
+
+    private Boolean credentialConfigured;
 
     public void setOffice(Boolean office) {
         isOffice = office;
@@ -229,5 +236,29 @@ public class ToolVersionDTO {
 
     public void setMcpServerName(String mcpServerName) {
         this.mcpServerName = mcpServerName;
+    }
+
+    public ToolRuntimeType getRuntimeType() {
+        return runtimeType;
+    }
+
+    public void setRuntimeType(ToolRuntimeType runtimeType) {
+        this.runtimeType = runtimeType;
+    }
+
+    public Boolean getCredentialRequired() {
+        return credentialRequired;
+    }
+
+    public void setCredentialRequired(Boolean credentialRequired) {
+        this.credentialRequired = credentialRequired;
+    }
+
+    public Boolean getCredentialConfigured() {
+        return credentialConfigured;
+    }
+
+    public void setCredentialConfigured(Boolean credentialConfigured) {
+        this.credentialConfigured = credentialConfigured;
     }
 }

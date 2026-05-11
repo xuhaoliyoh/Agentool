@@ -5,6 +5,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+COMPOSE_FILE="$SCRIPT_DIR/docker-compose.yml"
+ENV_PATH="$SCRIPT_DIR/.env"
+
 # 颜色定义
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -40,7 +44,7 @@ check_docker() {
 # 设置开发模式配置
 set_development_mode() {
     MODE="dev"
-    ENV_FILE=".env.local.example"
+    ENV_FILE="$SCRIPT_DIR/.env.local.example"
     
     echo -e "${GREEN}🔥 启动开发模式${NC}"
     echo "  - 内置数据库 + 消息队列"
@@ -52,13 +56,24 @@ set_development_mode() {
 
 # 准备环境配置
 prepare_env() {
-    if [ ! -f ".env" ]; then
+    if [ ! -f "$ENV_PATH" ]; then
         echo -e "${YELLOW}创建环境配置文件...${NC}"
-        cp "$ENV_FILE" ".env"
+        cp "$ENV_FILE" "$ENV_PATH"
         echo -e "${GREEN}✅ 已创建 .env 文件，基于模板: $ENV_FILE${NC}"
         
     else
-        echo -e "${GREEN}✅ 使用现有 .env 配置文件${NC}"
+        echo -e "${GREEN}✅ 使用现有 .env 配置文件: $ENV_PATH${NC}"
+    fi
+}
+
+cleanup_legacy_mcp_containers() {
+    echo -e "${BLUE}清理旧 MCP Gateway 容器...${NC}"
+    LEGACY_CONTAINERS=$(docker ps -aq --filter "name=mcp-gateway" || true)
+    if [ -n "$LEGACY_CONTAINERS" ]; then
+        docker rm -f $LEGACY_CONTAINERS >/dev/null
+        echo -e "${GREEN}✅ 已关闭并移除旧 MCP Gateway 容器${NC}"
+    else
+        echo -e "${GREEN}✅ 未发现旧 MCP Gateway 容器${NC}"
     fi
 }
 
@@ -72,14 +87,14 @@ start_services() {
     export DOCKERFILE_SUFFIX=".dev"
 
     # 启动开发环境服务 (使用local和dev profile)
-    docker compose --profile local --profile dev up -d --build
+    docker compose -f "$COMPOSE_FILE" --env-file "$ENV_PATH" --profile local --profile dev up -d --build --remove-orphans
 
     echo
     echo -e "${GREEN}🎉 AgentX启动完成！${NC}"
     echo
     echo -e "${BLUE}服务访问地址:${NC}"
     echo "  前端: http://localhost:3000"
-    echo "  后端API: http://localhost:8080"
+    echo "  后端API: http://localhost:8088"
     echo "  API网关: http://localhost:8081"
     
     if [ "$MODE" = "dev" ]; then
@@ -96,10 +111,10 @@ start_services() {
     
     echo
     echo -e "${YELLOW}常用命令:${NC}"
-    echo "  查看日志: docker compose logs -f"
-    echo "  停止服务: docker compose down"
-    echo "  重启服务: docker compose restart"
-    echo "  查看状态: docker compose ps"
+    echo "  查看日志: docker compose -f deploy/docker-compose.yml --env-file deploy/.env logs -f"
+    echo "  停止服务: docker compose -f deploy/docker-compose.yml --env-file deploy/.env down"
+    echo "  重启服务: docker compose -f deploy/docker-compose.yml --env-file deploy/.env restart"
+    echo "  查看状态: docker compose -f deploy/docker-compose.yml --env-file deploy/.env ps"
 }
 
 # 主程序
@@ -113,6 +128,7 @@ main() {
     
     set_development_mode
     prepare_env
+    cleanup_legacy_mcp_containers
     start_services
 }
 

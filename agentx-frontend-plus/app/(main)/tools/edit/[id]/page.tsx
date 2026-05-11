@@ -34,9 +34,16 @@ const formSchema = z.object({
   name: z.string().min(2, "工具名称至少需要2个字符").max(50, "工具名称最多50个字符"),
   subtitle: z.string().min(2, "副标题至少需要2个字符").max(100, "副标题最多100个字符"),
   description: z.string().min(10, "描述至少需要10个字符"),
-  uploadUrl: z.string().url("请输入有效的URL"),
   labels: z.array(z.string()).min(1, "请输入至少一个标签").max(5, "最多5个标签"),
-  installCommand: z.string().min(1, "请输入安装命令"),
+  runtimeType: z.enum(["REMOTE_MCP_SSE", "HTTP_API"]),
+  endpointUrl: z.string().url("请输入有效的工具端点URL"),
+  mcpServerName: z.string().min(1, "请输入工具服务名"),
+  httpMethod: z.enum(["GET", "POST", "PUT", "PATCH"]),
+  authType: z.enum(["NONE", "BEARER_TOKEN", "API_KEY_HEADER", "API_KEY_QUERY", "BASIC"]),
+  authConfigSchema: z.string().default("{}"),
+  defaultHeaders: z.string().default("{}"),
+  requestSchema: z.string().default("{}"),
+  responseSchema: z.string().default("{}"),
   icon: z.string().optional() // 改为字符串URL类型
 });
 
@@ -66,11 +73,19 @@ export default function EditToolPage() {
       name: "",
       subtitle: "",
       description: "",
-      uploadUrl: "",
       labels: [],
-      installCommand: ""
+      runtimeType: "REMOTE_MCP_SSE",
+      endpointUrl: "",
+      mcpServerName: "",
+      httpMethod: "POST",
+      authType: "NONE",
+      authConfigSchema: "{}",
+      defaultHeaders: "{}",
+      requestSchema: "{\n  \"type\": \"object\",\n  \"properties\": {},\n  \"required\": []\n}",
+      responseSchema: "{}"
     }
   });
+  const runtimeType = form.watch("runtimeType");
 
   // 获取工具详情数据
   useEffect(() => {
@@ -88,11 +103,16 @@ export default function EditToolPage() {
             name: tool.name || "",
             subtitle: tool.subtitle || "",
             description: tool.description || "",
-            uploadUrl: (tool as any).uploadUrl || "", 
             labels: tool.labels || [],
-            installCommand: typeof (tool as any).installCommand === 'object' 
-              ? JSON.stringify((tool as any).installCommand, null, 2) 
-              : ((tool as any).installCommand || ""),
+            runtimeType: ((tool as any).runtimeConfig?.runtimeType || (tool as any).runtimeType || "REMOTE_MCP_SSE") as any,
+            endpointUrl: (tool as any).runtimeConfig?.endpointUrl || "",
+            mcpServerName: (tool as any).runtimeConfig?.mcpServerName || (tool as any).mcpServerName || "",
+            httpMethod: ((tool as any).runtimeConfig?.httpMethod || "POST") as any,
+            authType: ((tool as any).runtimeConfig?.authType || "NONE") as any,
+            authConfigSchema: JSON.stringify((tool as any).runtimeConfig?.authConfigSchema || {}, null, 2),
+            defaultHeaders: JSON.stringify((tool as any).runtimeConfig?.defaultHeaders || {}, null, 2),
+            requestSchema: JSON.stringify((tool as any).runtimeConfig?.requestSchema || { type: "object", properties: {}, required: [] }, null, 2),
+            responseSchema: JSON.stringify((tool as any).runtimeConfig?.responseSchema || {}, null, 2),
           });
           
           // 如果有图标，设置图标预览
@@ -176,23 +196,42 @@ export default function EditToolPage() {
     try {
       setIsSubmitting(true);
       
-      // 准备更新数据
-      let installCommandData;
+      let authConfigSchema;
+      let defaultHeaders;
+      let requestSchema;
+      let responseSchema;
       try {
-        // 尝试解析为JSON对象
-        installCommandData = JSON.parse(values.installCommand);
+        authConfigSchema = JSON.parse(values.authConfigSchema || "{}");
+        defaultHeaders = JSON.parse(values.defaultHeaders || "{}");
+        requestSchema = JSON.parse(values.requestSchema || "{}");
+        responseSchema = JSON.parse(values.responseSchema || "{}");
       } catch (e) {
-        // 如果无法解析，直接使用原始字符串
-        installCommandData = values.installCommand;
+        toast({
+          title: "运行配置格式错误",
+          description: "鉴权配置、请求头、请求参数和响应结构必须是合法 JSON",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
       }
       
       const updateData = {
         name: values.name,
         subtitle: values.subtitle,
         description: values.description,
-        uploadUrl: values.uploadUrl,
         labels: values.labels,
-        installCommand: installCommandData,
+        runtimeConfig: {
+          runtimeType: values.runtimeType,
+          endpointUrl: values.endpointUrl,
+          mcpServerName: values.mcpServerName,
+          httpMethod: values.runtimeType === "HTTP_API" ? values.httpMethod : undefined,
+          authType: values.authType,
+          authConfigSchema,
+          defaultHeaders,
+          requestSchema,
+          responseSchema,
+          timeoutMs: 30000
+        },
         icon: values.icon,
       };
       
@@ -441,49 +480,136 @@ export default function EditToolPage() {
                     
                     <Separator />
                     
-                    <h2 className="text-xl font-semibold">GitHub仓库</h2>
+                    <h2 className="text-xl font-semibold">运行配置</h2>
                     <FormField
                       control={form.control}
-                      name="uploadUrl"
+                      name="runtimeType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            GitHub仓库URL <span className="text-red-500">*</span>
-                          </FormLabel>
+                          <FormLabel>工具类型 <span className="text-red-500">*</span></FormLabel>
                           <FormControl>
-                            <Input 
-                              placeholder="https://github.com/username/repo" 
-                              {...field} 
-                            />
+                            <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" {...field}>
+                              <option value="REMOTE_MCP_SSE">远程 MCP SSE</option>
+                              <option value="HTTP_API">HTTP API</option>
+                            </select>
                           </FormControl>
-                          <FormDescription>
-                            您的GitHub仓库需要包含工具定义文件
-                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
-                      name="installCommand"
+                      name="endpointUrl"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>安装命令：mcp server 的 stdio 或者 sse 格式</FormLabel>
+                          <FormLabel>工具端点 URL <span className="text-red-500">*</span></FormLabel>
                           <FormControl>
-                            <textarea
-                              className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                              placeholder="输入安装命令..."
-                              {...field}
-                            />
+                            <Input placeholder={runtimeType === "HTTP_API" ? "https://api.example.com/search" : "https://mcp.example.com/sse"} {...field} />
                           </FormControl>
-                          <FormDescription>
-                            命令将在安装时执行，请确保命令格式正确
-                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
+
+                    <FormField
+                      control={form.control}
+                      name="mcpServerName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>工具服务名 <span className="text-red-500">*</span></FormLabel>
+                          <FormControl>
+                            <Input placeholder="例如 web_search" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {runtimeType === "HTTP_API" && (
+                      <FormField
+                        control={form.control}
+                        name="httpMethod"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>HTTP 方法</FormLabel>
+                            <FormControl>
+                              <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" {...field}>
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="PATCH">PATCH</option>
+                              </select>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+
+                    <FormField
+                      control={form.control}
+                      name="authType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>鉴权方式</FormLabel>
+                          <FormControl>
+                            <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" {...field}>
+                              <option value="NONE">无需鉴权</option>
+                              <option value="BEARER_TOKEN">Bearer Token</option>
+                              <option value="API_KEY_HEADER">API Key Header</option>
+                              <option value="API_KEY_QUERY">API Key Query</option>
+                              <option value="BASIC">Basic Auth</option>
+                            </select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="defaultHeaders"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>默认请求头 JSON</FormLabel>
+                          <FormControl>
+                            <textarea className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="authConfigSchema"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>鉴权参数说明 JSON</FormLabel>
+                          <FormControl>
+                            <textarea className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder='{"headerName":"X-API-Key"}' {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {runtimeType === "HTTP_API" && (
+                      <FormField
+                        control={form.control}
+                        name="requestSchema"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>请求参数 Schema JSON</FormLabel>
+                            <FormControl>
+                              <textarea className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
                     
                     <FormField
                       control={form.control}

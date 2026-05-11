@@ -5,9 +5,6 @@ import { ApiResponse } from "@/types/api";
 // 工具状态枚举
 export enum ToolStatus {
   WAITING_REVIEW = "WAITING_REVIEW",
-  GITHUB_URL_VALIDATE = "GITHUB_URL_VALIDATE", 
-  DEPLOYING = "DEPLOYING",
-  FETCHING_TOOLS = "FETCHING_TOOLS",
   MANUAL_REVIEW = "MANUAL_REVIEW",
   APPROVED = "APPROVED",
   FAILED = "FAILED"
@@ -38,8 +35,12 @@ export interface Tool {
   labels: string[];
   toolType: ToolType;
   uploadType: UploadType;
-  uploadUrl: string;
+  uploadUrl?: string;
   installCommand?: any;
+  runtimeType?: "REMOTE_MCP_SSE" | "HTTP_API";
+  runtimeConfig?: ToolRuntimeConfig;
+  credentialRequired?: boolean;
+  credentialConfigured?: boolean;
   toolList?: any[];
   status: ToolStatus;
   isOffice: boolean;
@@ -88,8 +89,22 @@ export interface CreateToolRequest {
   subtitle: string;             // 副标题
   description: string;          // 工具描述
   labels: string[];             // 标签
-  uploadUrl: string;            // 上传地址
-  installCommand: Record<string, any>; // 安装命令
+  uploadUrl?: string;           // 兼容旧字段
+  installCommand?: Record<string, any>; // 兼容旧字段
+  runtimeConfig: ToolRuntimeConfig;
+}
+
+export interface ToolRuntimeConfig {
+  runtimeType: "REMOTE_MCP_SSE" | "HTTP_API";
+  endpointUrl: string;
+  mcpServerName: string;
+  httpMethod?: "GET" | "POST" | "PUT" | "PATCH";
+  authType?: "NONE" | "BEARER_TOKEN" | "API_KEY_HEADER" | "API_KEY_QUERY" | "BASIC";
+  authConfigSchema?: Record<string, any>;
+  defaultHeaders?: Record<string, any>;
+  requestSchema?: Record<string, any>;
+  responseSchema?: Record<string, any>;
+  timeoutMs?: number;
 }
 
 /**
@@ -168,9 +183,8 @@ export class AdminToolService {
         name: data.name,
         subtitle: data.subtitle,
         description: data.description,
-        uploadUrl: data.uploadUrl,
         labels: data.labels,
-        installCommand: data.installCommand,
+        runtimeConfig: data.runtimeConfig,
         icon: data.icon
       };
       return await httpClient.post("/admin/tools/official", toolData);
@@ -237,12 +251,6 @@ export function getToolStatusText(status: ToolStatus): string {
   switch (status) {
     case ToolStatus.WAITING_REVIEW:
       return "等待审核";
-    case ToolStatus.GITHUB_URL_VALIDATE:
-      return "URL验证中";
-    case ToolStatus.DEPLOYING:
-      return "部署中";
-    case ToolStatus.FETCHING_TOOLS:
-      return "获取工具中";
     case ToolStatus.MANUAL_REVIEW:
       return "人工审核";
     case ToolStatus.APPROVED:
@@ -260,9 +268,6 @@ export function getToolStatusText(status: ToolStatus): string {
 export function getToolStatusColor(status: ToolStatus): string {
   switch (status) {
     case ToolStatus.WAITING_REVIEW:
-    case ToolStatus.GITHUB_URL_VALIDATE:
-    case ToolStatus.DEPLOYING:
-    case ToolStatus.FETCHING_TOOLS:
       return "bg-blue-100 text-blue-800";
     case ToolStatus.MANUAL_REVIEW:
       return "bg-yellow-100 text-yellow-800";

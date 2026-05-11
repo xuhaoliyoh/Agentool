@@ -82,12 +82,6 @@ mail:
     template: ${MAIL_VERIFICATION_TEMPLATE:您的验证码是:%s，有效期10分钟，请勿泄露给他人。}
     subject: ${MAIL_VERIFICATION_SUBJECT:AgentX - 邮箱验证码}
 
-github:
-  target:
-    repo-name: ${GITHUB_REPO_NAME:agent-mcp-community}
-    username: ${GITHUB_USERNAME:xuhaoliyoh}
-    token: ${GITHUB_TOKEN:your_github_token}
-
 # 高可用网关配置
 high-availability:
   enabled: ${HIGH_AVAILABILITY_ENABLED:false} # 是否启用高可用功能
@@ -169,15 +163,3 @@ payment:
     secret-key: ${STRIPE_SECRET_KEY:your_stripe_secret_key}
     publishable-key: ${STRIPE_PUBLISHABLE_KEY:your_stripe_publishable_key}
     webhook-secret: ${STRIPE_WEBHOOK_SECRET:your_stripe_webhook_secret}
-
-# 容器管理配置
-agentx:
-  container:
-    docker-host: ${AGENTX_CONTAINER_DOCKER_HOST:unix:///var/run/docker.sock}
-    user-volume-base-path: ${AGENTX_CONTAINER_USER_VOLUME_PATH:/docker/users}
-    default-mcp-gateway-image: ${AGENTX_CONTAINER_DEFAULT_MCP_IMAGE:ghcr.io/lucky-aeon/mcp-gateway:latest}
-    monitor-interval: ${AGENTX_CONTAINER_MONITOR_INTERVAL:300000}
-    stats-update-interval: ${AGENTX_CONTAINER_STATS_INTERVAL:120000}
-mcp:
-  gateway:
-    connect-timeout: ${MCP_GATEWAY_CONNECT_TIMEOUT:60000}
