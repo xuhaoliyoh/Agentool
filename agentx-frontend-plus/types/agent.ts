@@ -3,7 +3,6 @@ export interface ModelConfig {
   temperature?: number
   topP?: number
   maxTokens?: number
-  loadMemory?: boolean
   systemMessage?: string
 }
 
@@ -179,4 +178,3 @@ export enum PublishStatus {
   REJECTED = 3,
   REMOVED = 4,
 }
-

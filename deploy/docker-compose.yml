@@ -155,14 +155,6 @@ services:
       HIGH_AVAILABILITY_GATEWAY_URL: ${HIGH_AVAILABILITY_GATEWAY_URL:-http://api-gateway:8081}
       HIGH_AVAILABILITY_API_KEY: ${HIGH_AVAILABILITY_API_KEY:-default-api-key}
       
-      # 支付配置
-      ALIPAY_APP_ID: ${ALIPAY_APP_ID:-your_alipay_app_id}
-      ALIPAY_PRIVATE_KEY: ${ALIPAY_PRIVATE_KEY:-your_alipay_private_key}
-      ALIPAY_PUBLIC_KEY: ${ALIPAY_PUBLIC_KEY:-your_alipay_public_key}
-      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-your_stripe_secret_key}
-      STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-your_stripe_publishable_key}
-      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-your_stripe_webhook_secret}
-      
       # S3对象存储配置（本地默认使用 MinIO）
       S3_SECRET_ID: ${S3_SECRET_ID:-agentx_minio}
       S3_SECRET_KEY: ${S3_SECRET_KEY:-agentx_minio_password}
