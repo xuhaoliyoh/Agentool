@@ -7,8 +7,8 @@ WORKDIR /app
 # 复制package文件
 COPY agentx-frontend-plus/package*.json ./
 
-# 安装依赖（使用legacy-peer-deps）
-RUN npm ci --legacy-peer-deps --only=production
+# 构建阶段需要 TypeScript、PostCSS、Tailwind 等 devDependencies
+RUN npm ci --legacy-peer-deps
 
 # 复制源代码
 COPY agentx-frontend-plus/ .

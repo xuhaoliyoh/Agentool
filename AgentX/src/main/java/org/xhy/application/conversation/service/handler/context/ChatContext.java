@@ -65,12 +65,6 @@ public class ChatContext {
     /** 是否流式响应 */
     private boolean streaming = true;
 
-    /** 是否为公开访问（嵌入模式） */
-    private boolean publicAccess = false;
-
-    /** 公开访问ID（嵌入模式使用） */
-    private String publicId;
-
     public String getSessionId() {
         return sessionId;
     }
@@ -189,22 +183,6 @@ public class ChatContext {
 
     public void setStreaming(boolean streaming) {
         this.streaming = streaming;
-    }
-
-    public boolean isPublicAccess() {
-        return publicAccess;
-    }
-
-    public void setPublicAccess(boolean publicAccess) {
-        this.publicAccess = publicAccess;
-    }
-
-    public String getPublicId() {
-        return publicId;
-    }
-
-    public void setPublicId(String publicId) {
-        this.publicId = publicId;
     }
 
 }

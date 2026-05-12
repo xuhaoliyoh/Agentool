@@ -266,12 +266,6 @@ export default function StudioPage() {
                           编辑
                         </Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link href={`/studio/${agent.id}/widgets`}>
-                          <Bot className="mr-2 h-4 w-4" />
-                          嵌入组件
-                        </Link>
-                      </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => handleToggleStatus(agent)}>
                         {isTogglingStatus === agent.id ? (
                           <>
@@ -334,4 +328,3 @@ export default function StudioPage() {
     </div>
   )
 }
-

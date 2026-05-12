@@ -2,12 +2,9 @@
 
 import { Toaster } from "@/components/ui/toaster"
 import { useEffect } from "react"
-import { usePathname } from "next/navigation"
 import { getCookie } from "@/lib/utils"
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  
   useEffect(() => {
     // 页面加载时，从cookie中恢复token到localStorage
     const tokenFromCookie = getCookie("token")
@@ -18,18 +15,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       }
     }
   }, [])
-
-  // 如果是Widget路由，不加载认证相关的Provider
-  const isWidgetRoute = pathname?.startsWith('/widget')
-  
-  if (isWidgetRoute) {
-    return (
-      <>
-        {children}
-        <Toaster />
-      </>
-    )
-  }
 
   return (
     <>
