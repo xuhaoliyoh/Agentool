@@ -49,6 +49,8 @@ public abstract class AbstractMessageHandler {
     /** 日志记录器 */
     private static final Logger logger = LoggerFactory.getLogger(AbstractMessageHandler.class);
 
+    private static final String EMPTY_RESPONSE_FALLBACK = "本次没有生成有效回复。可能是工具返回结果异常或模型连续调用工具后没有整理出最终答案，请稍后重试或换一个更明确的问题。";
+
     /** 连接超时时间（毫秒） */
     protected static final long CONNECTION_TIMEOUT = 3000000L;
 
@@ -277,6 +279,10 @@ public abstract class AbstractMessageHandler {
         tokenStream.onCompleteResponse(chatResponse -> {
 
             this.setMessageTokenCount(chatContext.getMessageHistory(), userEntity, llmEntity, chatResponse);
+            boolean emptyResponse = StringUtils.isBlank(llmEntity.getContent());
+            if (emptyResponse) {
+                llmEntity.setContent(EMPTY_RESPONSE_FALLBACK);
+            }
 
             // 按仅用户抽取策略，不记录AI文本
 
@@ -286,7 +292,12 @@ public abstract class AbstractMessageHandler {
                     chatContext.getContextEntity());
 
             // 发送结束消息
-            transport.sendEndMessage(connection, AgentChatResponse.buildEndMessage(MessageType.TEXT));
+            if (emptyResponse) {
+                transport.sendEndMessage(connection,
+                        AgentChatResponse.buildEndMessage(EMPTY_RESPONSE_FALLBACK, MessageType.TEXT));
+            } else {
+                transport.sendEndMessage(connection, AgentChatResponse.buildEndMessage(MessageType.TEXT));
+            }
 
             // 上报调用成功结果
             long latency = System.currentTimeMillis() - startTime;
