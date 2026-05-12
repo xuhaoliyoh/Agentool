@@ -66,17 +66,6 @@ prepare_env() {
     fi
 }
 
-cleanup_legacy_mcp_containers() {
-    echo -e "${BLUE}清理旧 MCP Gateway 容器...${NC}"
-    LEGACY_CONTAINERS=$(docker ps -aq --filter "name=mcp-gateway" || true)
-    if [ -n "$LEGACY_CONTAINERS" ]; then
-        docker rm -f $LEGACY_CONTAINERS >/dev/null
-        echo -e "${GREEN}✅ 已关闭并移除旧 MCP Gateway 容器${NC}"
-    else
-        echo -e "${GREEN}✅ 未发现旧 MCP Gateway 容器${NC}"
-    fi
-}
-
 # 启动服务
 start_services() {
     echo -e "${BLUE}启动AgentX服务...${NC}"
@@ -128,7 +117,6 @@ main() {
     
     set_development_mode
     prepare_env
-    cleanup_legacy_mcp_containers
     start_services
 }
 
