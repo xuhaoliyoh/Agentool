@@ -14,7 +14,6 @@ import org.xhy.domain.conversation.model.ContextEntity;
 import org.xhy.domain.conversation.model.MessageEntity;
 import org.xhy.domain.llm.model.ModelEntity;
 import org.xhy.domain.llm.model.ProviderEntity;
-import org.xhy.domain.trace.model.TraceContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +64,6 @@ public class ChatContext {
 
     /** 是否流式响应 */
     private boolean streaming = true;
-
-    /** 追踪上下文 */
-    private TraceContext traceContext;
 
     /** 是否为公开访问（嵌入模式） */
     private boolean publicAccess = false;
@@ -193,14 +189,6 @@ public class ChatContext {
 
     public void setStreaming(boolean streaming) {
         this.streaming = streaming;
-    }
-
-    public TraceContext getTraceContext() {
-        return traceContext;
-    }
-
-    public void setTraceContext(TraceContext traceContext) {
-        this.traceContext = traceContext;
     }
 
     public boolean isPublicAccess() {

@@ -12,10 +12,7 @@ import {
   Settings,
   Home,
   Shield,
-  CreditCard,
-  BookOpen,
-  Database,
-  Package
+  Database
 } from "lucide-react";
 
 interface MenuItemProps {
@@ -75,21 +72,6 @@ export function AdminSidebar() {
       href: "/admin/providers",
       icon: Server,
       label: "服务商管理",
-    },
-    {
-      href: "/admin/products",
-      icon: CreditCard,
-      label: "商品管理",
-    },
-    {
-      href: "/admin/orders",
-      icon: Package,
-      label: "订单管理",
-    },
-    {
-      href: "/admin/rules",
-      icon: BookOpen,
-      label: "规则管理",
     },
     {
       href: "/admin/auth-settings",

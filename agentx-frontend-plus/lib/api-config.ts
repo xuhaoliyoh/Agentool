@@ -63,8 +63,8 @@ export const API_ENDPOINTS = {
   WIDGET_DETAIL: (agentId: string, widgetId: string) => `/agents/${agentId}/widgets/${widgetId}`, // Widget详情
   UPDATE_WIDGET: (agentId: string, widgetId: string) => `/agents/${agentId}/widgets/${widgetId}`, // 更新Widget
   DELETE_WIDGET: (agentId: string, widgetId: string) => `/agents/${agentId}/widgets/${widgetId}`, // 删除Widget
-  TOGGLE_WIDGET_STATUS: (agentId: string, widgetId: string) => `/agents/${agentId}/widgets/${widgetId}/toggle-status`, // 切换Widget状态
-  USER_WIDGETS: "/widgets/user", // 获取用户的所有Widget
+  TOGGLE_WIDGET_STATUS: (agentId: string, widgetId: string) => `/agents/${agentId}/widgets/${widgetId}/status`, // 切换Widget状态
+  USER_WIDGETS: "/user/widgets", // 获取用户的所有Widget
   WIDGET_INFO: (publicId: string) => `/widget/${publicId}/info`, // 获取Widget公开信息
   WIDGET_CHAT: (publicId: string) => `/widget/${publicId}/chat`, // Widget聊天接口
   
@@ -111,12 +111,6 @@ export const API_ENDPOINTS = {
   ADMIN_USERS: "/admin/users", // 管理员获取用户列表
   ADMIN_AGENTS: "/admin/agents", // 管理员获取Agent列表
   ADMIN_AGENT_STATISTICS: "/admin/agents/statistics", // 管理员获取Agent统计
-  ADMIN_ORDERS: "/admin/orders", // 管理员获取订单列表
-  ADMIN_ORDER_DETAIL: (id: string) => `/admin/orders/${id}`, // 管理员获取订单详情
-  
-  // 订单相关
-  ORDERS: "/orders", // 用户获取订单列表
-  ORDER_DETAIL: (id: string) => `/orders/${id}`, // 用户获取订单详情
   
   // API Key 相关
   API_KEYS: "/api-keys", // 获取用户API密钥列表
@@ -156,11 +150,6 @@ export const API_ENDPOINTS = {
   // RAG 文件详情相关
   RAG_FILE_DETAIL: "/rag/files/detail", // 获取文件详情
   RAG_FILE_CONTENT: "/rag/files/content", // 获取文件内容
-
-  // 用户记忆管理
-  MEMORY_ITEMS: "/portal/memory/items", // 分页查询记忆
-  CREATE_MEMORY: "/portal/memory/items", // 新增记忆
-  DELETE_MEMORY: (itemId: string) => `/portal/memory/items/${itemId}`, // 删除记忆
 }
 
 // 构建完整的API URL

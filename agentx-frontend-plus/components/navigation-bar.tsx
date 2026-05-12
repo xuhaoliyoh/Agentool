@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Database, FileText, Home, Menu, Search, Settings, PenToolIcon as Tool, UploadCloud, LogOut, Wrench, Activity,Package,Tag } from "lucide-react"
+import { Database, FileText, Home, Menu, Search, Settings, LogOut, Wrench } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 
 import { cn } from "@/lib/utils"
@@ -206,46 +206,15 @@ export function NavigationBar() {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/settings/billing">
-                    <Settings className="mr-2 h-4 w-4" />
-                    账户与计费
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/settings/pricing">
-                    <Tag className="mr-2 h-4 w-4" />
-                    价格说明
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
                   <Link href="/settings/api-keys">
                     <Settings className="mr-2 h-4 w-4" />
                     API 密钥管理
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/settings/memory">
-                    <Settings className="mr-2 h-4 w-4" />
-                    记忆管理
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
                   <Link href="/settings/providers">
                     <Settings className="mr-2 h-4 w-4" />
                     服务提供商
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href="/settings/orders">
-                    <Package className="mr-2 h-4 w-4" />
-                    我的订单
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/traces">
-                    <Activity className="mr-2 h-4 w-4" />
-                    执行追踪
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

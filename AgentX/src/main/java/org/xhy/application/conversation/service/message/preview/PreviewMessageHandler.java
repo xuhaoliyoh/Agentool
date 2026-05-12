@@ -19,8 +19,6 @@ import org.xhy.domain.llm.service.LLMDomainService;
 import org.xhy.domain.user.service.UserSettingsDomainService;
 import org.xhy.infrastructure.llm.LLMServiceFactory;
 import org.xhy.infrastructure.transport.MessageTransport;
-import org.xhy.application.billing.service.BillingService;
-import org.xhy.domain.user.service.AccountDomainService;
 
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicReference;
@@ -34,12 +32,10 @@ public class PreviewMessageHandler extends AbstractMessageHandler {
     public PreviewMessageHandler(LLMServiceFactory llmServiceFactory, MessageDomainService messageDomainService,
             HighAvailabilityDomainService highAvailabilityDomainService, SessionDomainService sessionDomainService,
             UserSettingsDomainService userSettingsDomainService, LLMDomainService llmDomainService,
-            BuiltInToolRegistry builtInToolRegistry, BillingService billingService,
-            AccountDomainService accountDomainService, ChatSessionManager chatSessionManager,
+            BuiltInToolRegistry builtInToolRegistry, ChatSessionManager chatSessionManager,
             AgentToolManager agentToolManager) {
         super(llmServiceFactory, messageDomainService, highAvailabilityDomainService, sessionDomainService,
-                userSettingsDomainService, llmDomainService, builtInToolRegistry, billingService, accountDomainService,
-                chatSessionManager);
+                userSettingsDomainService, llmDomainService, builtInToolRegistry, chatSessionManager);
         this.agentToolManager = agentToolManager;
     }
 
@@ -77,10 +73,6 @@ public class PreviewMessageHandler extends AbstractMessageHandler {
         tokenStream.onCompleteResponse(chatResponse -> {
             // 发送结束消息
             transport.sendEndMessage(connection, AgentChatResponse.buildEndMessage(MessageType.TEXT));
-
-            // 执行模型调用计费
-            performBillingWithErrorHandling(chatContext, chatResponse.tokenUsage().inputTokenCount(),
-                    chatResponse.tokenUsage().outputTokenCount(), transport, connection);
         });
 
         // 工具执行处理

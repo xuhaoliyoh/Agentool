@@ -112,7 +112,7 @@ export async function updateWidget(agentId: string, widgetId: string, request: U
  */
 export async function toggleWidgetStatus(agentId: string, widgetId: string): Promise<ApiResponse<Widget>> {
   try {
-    return await httpClient.post<ApiResponse<Widget>>(`${API_BASE}/${agentId}/widgets/${widgetId}/toggle-status`);
+    return await httpClient.post<ApiResponse<Widget>>(`${API_BASE}/${agentId}/widgets/${widgetId}/status`);
   } catch (error) {
     return {
       code: 500,
@@ -144,7 +144,7 @@ export async function deleteWidget(agentId: string, widgetId: string): Promise<A
  */
 export async function getUserWidgets(): Promise<ApiResponse<Widget[]>> {
   try {
-    return await httpClient.get<ApiResponse<Widget[]>>('/widgets/user');
+    return await httpClient.get<ApiResponse<Widget[]>>('/user/widgets');
   } catch (error) {
     return {
       code: 500,

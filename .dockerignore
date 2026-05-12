@@ -1,0 +1,17 @@
+.git
+.idea
+.DS_Store
+
+**/target
+**/build
+**/dist
+**/.next
+**/node_modules
+**/.turbo
+
+deploy/logs
+logs
+*.log
+
+.env
+deploy/.env

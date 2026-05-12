@@ -7,7 +7,6 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.xhy.application.agent.service.AgentWidgetAppService;
 import org.xhy.application.conversation.dto.ChatResponse;
 import org.xhy.application.conversation.service.ConversationAppService;
-import org.xhy.interfaces.dto.agent.request.WidgetChatRequest;
 import org.xhy.domain.agent.model.AgentWidgetEntity;
 import org.xhy.infrastructure.exception.BusinessException;
 import org.xhy.interfaces.api.common.Result;

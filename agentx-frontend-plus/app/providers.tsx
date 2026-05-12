@@ -4,7 +4,6 @@ import { Toaster } from "@/components/ui/toaster"
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { getCookie } from "@/lib/utils"
-import { AccountProvider } from "@/contexts/account-context"
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -33,9 +32,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AccountProvider>
+    <>
       {children}
       <Toaster />
-    </AccountProvider>
+    </>
   )
-} 
+}

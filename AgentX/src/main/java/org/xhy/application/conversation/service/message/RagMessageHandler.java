@@ -24,10 +24,8 @@ import org.xhy.domain.conversation.service.SessionDomainService;
 import org.xhy.domain.llm.service.HighAvailabilityDomainService;
 import org.xhy.domain.llm.service.LLMDomainService;
 import org.xhy.domain.user.service.UserSettingsDomainService;
-import org.xhy.domain.user.service.AccountDomainService;
 import org.xhy.infrastructure.llm.LLMServiceFactory;
 import org.xhy.infrastructure.transport.MessageTransport;
-import org.xhy.application.billing.service.BillingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,12 +60,10 @@ public class RagMessageHandler extends AbstractMessageHandler {
     public RagMessageHandler(LLMServiceFactory llmServiceFactory, MessageDomainService messageDomainService,
             HighAvailabilityDomainService highAvailabilityDomainService, SessionDomainService sessionDomainService,
             UserSettingsDomainService userSettingsDomainService, LLMDomainService llmDomainService,
-            BuiltInToolRegistry builtInToolRegistry, BillingService billingService,
-            AccountDomainService accountDomainService, ChatSessionManager chatSessionManager,
+            BuiltInToolRegistry builtInToolRegistry, ChatSessionManager chatSessionManager,
             RAGSearchAppService ragSearchAppService, ObjectMapper objectMapper) {
         super(llmServiceFactory, messageDomainService, highAvailabilityDomainService, sessionDomainService,
-                userSettingsDomainService, llmDomainService, builtInToolRegistry, billingService, accountDomainService,
-                chatSessionManager);
+                userSettingsDomainService, llmDomainService, builtInToolRegistry, chatSessionManager);
         this.ragSearchAppService = ragSearchAppService;
         this.objectMapper = objectMapper;
     }
@@ -260,10 +256,6 @@ public class RagMessageHandler extends AbstractMessageHandler {
             long latency = System.currentTimeMillis() - startTime;
             highAvailabilityDomainService.reportCallResult(ragContext.getInstanceId(), ragContext.getModel().getId(),
                     true, latency, null);
-
-            // 执行模型调用计费
-            performBillingWithErrorHandling(ragContext, chatResponse.tokenUsage().inputTokenCount(),
-                    chatResponse.tokenUsage().outputTokenCount(), transport, connection);
 
             smartRenameSession(ragContext);
         });
