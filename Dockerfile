@@ -1,4 +1,4 @@
-# AgentX 一体化镜像
+# agentool 一体化镜像
 # 包含前端、后端、数据库、消息队列的完整系统
 
 # 第一阶段：构建后端
@@ -6,17 +6,17 @@ FROM maven:3.9.6-eclipse-temurin-17 AS backend-builder
 WORKDIR /build
 
 # 复制后端代码
-COPY AgentX/pom.xml ./
+COPY agentool-backend/pom.xml ./
 RUN mvn dependency:go-offline -B
-COPY AgentX/src ./src
+COPY agentool-backend/src ./src
 RUN mvn clean package -DskipTests
 
 # 第二阶段：构建前端
 FROM node:18-alpine AS frontend-builder
 WORKDIR /build
-COPY agentx-frontend-plus/package*.json ./
+COPY agentool-frontend/package*.json ./
 RUN npm install --legacy-peer-deps
-COPY agentx-frontend-plus/ .
+COPY agentool-frontend/ .
 RUN npm run build
 
 # 第三阶段：运行时镜像 - 基于pgvector镜像
@@ -55,14 +55,14 @@ COPY --from=frontend-builder /build/package.json /app/frontend/
 COPY --from=frontend-builder /build/node_modules /app/frontend/node_modules
 
 # 复制配置文件和SQL初始化脚本
-COPY AgentX/src/main/resources/application.yml /app/application.yml
+COPY agentool-backend/src/main/resources/application.yml /app/application.yml
 COPY docs/sql/01_init.sql /app/init.sql
 
 # API网关已移除 - 用户可选择独立部署
 # 如需API网关功能，请运行：docker run -d -p 8081:8081 ghcr.io/lucky-aeon/api-premium-gateway:latest
 
 # 准备前端源码（用于构建过程中的文件复制）
-COPY agentx-frontend-plus/ /app/frontend-src
+COPY agentool-frontend/ /app/frontend-src
 
 # 创建数据库初始化脚本
 RUN echo '#!/bin/bash\n\
@@ -158,7 +158,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
 RUN echo '#!/bin/bash\n\
 set -e\n\
 \n\
-echo "🚀 AgentX智能启动脚本"\n\
+echo "🚀 agentool智能启动脚本"\n\
 echo "================================"\n\
 \n\
 # 检测外部服务配置\n\

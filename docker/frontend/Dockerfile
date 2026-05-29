@@ -1,17 +1,17 @@
-# AgentX前端生产环境Dockerfile
+# agentool前端生产环境Dockerfile
 FROM node:18-alpine as builder
 
 # 设置工作目录
 WORKDIR /app
 
 # 复制package文件
-COPY agentx-frontend-plus/package*.json ./
+COPY agentool-frontend/package*.json ./
 
 # 构建阶段需要 TypeScript、PostCSS、Tailwind 等 devDependencies
 RUN npm ci --legacy-peer-deps
 
 # 复制源代码
-COPY agentx-frontend-plus/ .
+COPY agentool-frontend/ .
 
 # 构建应用
 RUN npm run build

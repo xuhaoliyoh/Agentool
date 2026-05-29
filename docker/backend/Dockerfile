@@ -1,13 +1,13 @@
-# AgentX后端生产环境Dockerfile
+# agentool后端生产环境Dockerfile
 FROM eclipse-temurin:17-jdk-jammy AS builder
 
 # 设置工作目录
 WORKDIR /app
 
 # 复制Maven配置文件
-COPY AgentX/pom.xml .
-COPY AgentX/mvnw .
-COPY AgentX/.mvn .mvn
+COPY agentool-backend/pom.xml .
+COPY agentool-backend/mvnw .
+COPY agentool-backend/.mvn .mvn
 
 # 修复mvnw执行权限（Windows兼容）
 RUN chmod +x ./mvnw
@@ -16,7 +16,7 @@ RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline -B
 
 # 复制源代码
-COPY AgentX/src src
+COPY agentool-backend/src src
 
 # 构建应用
 RUN ./mvnw clean package -DskipTests -B
@@ -30,8 +30,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # 创建应用用户
-RUN groupadd -g 1000 agentx && \
-    useradd -u 1000 -g agentx -m -s /bin/sh agentx
+RUN groupadd -g 1000 agentool && \
+    useradd -u 1000 -g agentool -m -s /bin/sh agentool
 
 # 设置工作目录
 WORKDIR /app
@@ -41,10 +41,10 @@ COPY --from=builder /app/target/*.jar app.jar
 
 # 创建日志和存储目录
 RUN mkdir -p logs storage && \
-    chown -R agentx:agentx /app
+    chown -R agentool:agentool /app
 
 # 切换到非root用户
-USER agentx
+USER agentool
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \

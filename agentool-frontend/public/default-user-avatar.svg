@@ -1,0 +1,35 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="18" y1="12" x2="110" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FCE7F3"/>
+      <stop offset="0.52" stop-color="#FBCFE8"/>
+      <stop offset="1" stop-color="#E9D5FF"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="36" y1="86" x2="92" y2="122" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EC4899"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+    <filter id="softShadow" x="12" y="10" width="104" height="116" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#DB2777" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <circle cx="64" cy="64" r="62" fill="url(#bg)"/>
+  <path d="M15 70C32 58 46 61 62 72C78 83 95 84 113 71" stroke="#F9A8D4" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+  <g filter="url(#softShadow)">
+    <path d="M36 116C38 96 48 86 64 86C80 86 90 96 92 116H36Z" fill="url(#shirt)"/>
+    <circle cx="35" cy="60" r="13" fill="#FFD7C2" stroke="#8A3A4D" stroke-width="3"/>
+    <circle cx="93" cy="60" r="13" fill="#FFD7C2" stroke="#8A3A4D" stroke-width="3"/>
+    <circle cx="35" cy="60" r="6" fill="#FFC6B2" opacity="0.9"/>
+    <circle cx="93" cy="60" r="6" fill="#FFC6B2" opacity="0.9"/>
+    <path d="M38 40C42 23 54 16 68 18C84 20 94 32 93 51L91 66C89 83 78 94 64 94C50 94 39 83 37 66L35 51C35 47 36 43 38 40Z" fill="#FFDCC8" stroke="#8A3A4D" stroke-width="3"/>
+    <path d="M36 45C41 25 55 16 72 20C84 23 92 34 94 48C81 47 70 42 62 34C57 42 47 47 36 45Z" fill="#5B2A34"/>
+    <path d="M45 43C54 46 72 45 88 38" stroke="#7A3643" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="53" cy="62" r="3.8" fill="#5B2A34"/>
+    <circle cx="75" cy="62" r="3.8" fill="#5B2A34"/>
+    <circle cx="47" cy="70" r="5" fill="#F9A8D4" opacity="0.55"/>
+    <circle cx="81" cy="70" r="5" fill="#F9A8D4" opacity="0.55"/>
+    <path d="M59 76C62 79 66 79 69 76" stroke="#9F3156" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <path d="M100 30L106 21L110 32L121 35L111 41L112 52L103 45L92 49L97 39L90 31L100 30Z" fill="#F472B6" opacity="0.9"/>
+  <path d="M20 31L25 24L28 32L36 35L28 39L27 48L21 42L12 43L17 36L14 28L20 31Z" fill="#A855F7" opacity="0.45"/>
+</svg>

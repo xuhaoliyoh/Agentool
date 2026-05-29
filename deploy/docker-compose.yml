@@ -1,4 +1,4 @@
-# AgentX统一Docker Compose配置
+# agentool统一Docker Compose配置
 # 支持通过环境变量控制不同部署模式：local/production/external
 
 name: agentx
@@ -110,7 +110,7 @@ services:
       - minio
     restart: "no"
 
-  # AgentX后端服务
+  # agentool后端服务
   agentx-backend:
     build:
       context: ..
@@ -130,12 +130,12 @@ services:
       SHOW_SQL: ${SHOW_SQL:-true}
       
       # 默认用户配置
-      AGENTX_ADMIN_EMAIL: ${AGENTX_ADMIN_EMAIL:-admin@agentx.ai}
-      AGENTX_ADMIN_PASSWORD: ${AGENTX_ADMIN_PASSWORD:-admin123}
-      AGENTX_ADMIN_NICKNAME: ${AGENTX_ADMIN_NICKNAME:-AgentX管理员}
-      AGENTX_TEST_ENABLED: ${AGENTX_TEST_ENABLED:-true}
-      AGENTX_TEST_EMAIL: ${AGENTX_TEST_EMAIL:-test@agentx.ai}
-      AGENTX_TEST_PASSWORD: ${AGENTX_TEST_PASSWORD:-test123}
+      AGENTOOL_ADMIN_EMAIL: ${AGENTOOL_ADMIN_EMAIL:-admin@agentool.ai}
+      AGENTOOL_ADMIN_PASSWORD: ${AGENTOOL_ADMIN_PASSWORD:-admin123}
+      AGENTOOL_ADMIN_NICKNAME: ${AGENTOOL_ADMIN_NICKNAME:-agentool管理员}
+      AGENTOOL_TEST_ENABLED: ${AGENTOOL_TEST_ENABLED:-true}
+      AGENTOOL_TEST_EMAIL: ${AGENTOOL_TEST_EMAIL:-test@agentool.ai}
+      AGENTOOL_TEST_PASSWORD: ${AGENTOOL_TEST_PASSWORD:-test123}
       
       # 消息队列配置
       RABBITMQ_HOST: ${RABBITMQ_HOST:-rabbitmq}
@@ -190,7 +190,7 @@ services:
     #   retries: 5
     #   start_period: 60s
 
-  # AgentX前端服务
+  # agentool前端服务
   agentx-frontend:
     build:
       context: ..

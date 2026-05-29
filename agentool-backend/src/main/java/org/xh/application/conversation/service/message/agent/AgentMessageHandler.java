@@ -1,0 +1,42 @@
+package org.xh.application.conversation.service.message.agent;
+
+import dev.langchain4j.service.tool.ToolProvider;
+import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xh.application.conversation.service.handler.context.ChatContext;
+import org.xh.application.conversation.service.message.AbstractMessageHandler;
+import org.xh.application.conversation.service.message.builtin.BuiltInToolRegistry;
+import org.xh.application.conversation.service.ChatSessionManager;
+import org.xh.domain.conversation.service.MessageDomainService;
+import org.xh.domain.conversation.service.SessionDomainService;
+import org.xh.domain.llm.service.HighAvailabilityDomainService;
+import org.xh.domain.llm.service.LLMDomainService;
+import org.xh.domain.user.service.UserSettingsDomainService;
+import org.xh.infrastructure.llm.LLMServiceFactory;
+
+/** Agent消息处理器 用于支持工具调用的对话模式 实现任务拆分、执行和结果汇总的工作流 使用事件驱动架构进行状态转换 */
+@Component(value = "agentMessageHandler")
+public class AgentMessageHandler extends AbstractMessageHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(AgentMessageHandler.class);
+    private AgentToolManager agentToolManager;
+
+    public AgentMessageHandler(LLMServiceFactory llmServiceFactory, MessageDomainService messageDomainService,
+            HighAvailabilityDomainService highAvailabilityDomainService, SessionDomainService sessionDomainService,
+            UserSettingsDomainService userSettingsDomainService, LLMDomainService llmDomainService,
+            BuiltInToolRegistry builtInToolRegistry, ChatSessionManager chatSessionManager,
+            AgentToolManager agentToolManager) {
+        super(llmServiceFactory, messageDomainService, highAvailabilityDomainService, sessionDomainService,
+                userSettingsDomainService, llmDomainService, builtInToolRegistry, chatSessionManager);
+        this.agentToolManager = agentToolManager;
+    }
+
+    @Override
+    protected ToolProvider provideTools(ChatContext chatContext) {
+        // 关键改造：传递用户ID给工具管理器
+        return agentToolManager.createToolProvider(agentToolManager.getAvailableTools(chatContext),
+                chatContext.getAgent().getToolPresetParams(), chatContext.getUserId() // 新增：传递用户ID
+        );
+    }
+}

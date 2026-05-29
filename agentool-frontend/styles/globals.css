@@ -1,0 +1,573 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  .dark {
+    --background: 326 100% 98%;
+    --foreground: 332 34% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 332 34% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 332 34% 18%;
+
+    --primary: 329 88% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 322 86% 94%;
+    --secondary-foreground: 329 64% 30%;
+
+    --muted: 322 54% 95%;
+    --muted-foreground: 334 20% 46%;
+
+    --accent: 284 78% 94%;
+    --accent-foreground: 292 52% 34%;
+
+    --destructive: 0 72% 47%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 326 58% 86%;
+    --input: 326 58% 86%;
+    --ring: 329 88% 58%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+    background:
+      linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 12% 0%, rgba(244, 114, 182, 0.25), transparent 32rem),
+      radial-gradient(circle at 88% 6%, rgba(168, 85, 247, 0.18), transparent 34rem),
+      linear-gradient(180deg, #fff7fb 0%, #fdf2ff 48%, #ffffff 100%);
+    background-size: 40px 40px, 40px 40px, auto, auto, auto;
+    color: hsl(var(--foreground));
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  body::before {
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.72), transparent 22%, transparent 78%, rgba(236,72,153,0.08)),
+      repeating-linear-gradient(0deg, rgba(236,72,153,0.035) 0 1px, transparent 1px 7px);
+    opacity: 0.36;
+  }
+
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@layer components {
+  .dark header,
+  .dark [class*="bg-background"] {
+    background-color: rgba(255, 247, 252, 0.88) !important;
+    border-color: rgba(236, 72, 153, 0.2) !important;
+  }
+
+  .dark [class*="bg-white"],
+  .dark [class*="bg-gray-50"],
+  .dark [class*="bg-gray-100"],
+  .dark [class*="bg-gray-200"],
+  .dark [class*="bg-slate-50"],
+  .dark [class*="bg-slate-100"],
+  .dark [class*="bg-muted"],
+  .dark [class*="bg-card"] {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .dark [class*="border-gray"],
+  .dark [class*="border-slate"],
+  .dark [class*="border-blue"],
+  .dark [class*="border-input"],
+  .dark [class*="border-border"] {
+    border-color: rgba(236, 72, 153, 0.22) !important;
+  }
+
+  .dark [class*="text-gray-900"],
+  .dark [class*="text-gray-800"],
+  .dark [class*="text-slate-900"],
+  .dark [class*="text-slate-800"] {
+    color: rgb(71, 24, 48) !important;
+  }
+
+  .dark [class*="text-gray-700"],
+  .dark [class*="text-gray-600"],
+  .dark [class*="text-gray-500"],
+  .dark [class*="text-slate-700"],
+  .dark [class*="text-slate-600"],
+  .dark [class*="text-slate-500"] {
+    color: rgb(128, 83, 106) !important;
+  }
+
+  .dark [class*="text-blue-"],
+  .dark [class*="text-sky-"],
+  .dark [class*="text-cyan-"] {
+    color: rgb(219, 39, 119) !important;
+  }
+
+  .dark [class*="bg-blue-50"],
+  .dark [class*="bg-blue-100"],
+  .dark [class*="bg-blue-400"],
+  .dark [class*="bg-blue-500"],
+  .dark [class*="bg-blue-600"] {
+    background-color: rgba(236, 72, 153, 0.16) !important;
+    border-color: rgba(236, 72, 153, 0.32) !important;
+  }
+
+  .dark [class*="hover:bg-gray-50"]:hover,
+  .dark [class*="hover:bg-gray-100"]:hover,
+  .dark [class*="hover:bg-accent"]:hover {
+    background-color: rgba(236, 72, 153, 0.14) !important;
+  }
+
+  .dark .shadow-sm,
+  .dark .shadow,
+  .dark .shadow-lg,
+  .dark .shadow-xl {
+    box-shadow: 0 18px 44px rgba(219, 39, 119, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+  }
+
+  .dark input,
+  .dark textarea,
+  .dark select,
+  .dark [role="combobox"] {
+    background-color: rgba(255, 255, 255, 0.88) !important;
+    border-color: rgba(236, 72, 153, 0.26) !important;
+    color: rgb(71, 24, 48) !important;
+  }
+
+  .dark pre,
+  .dark code {
+    background-color: rgba(253, 242, 248, 0.92) !important;
+    color: rgb(157, 23, 77) !important;
+  }
+
+  .dark button:not(:disabled),
+  .dark [role="button"]:not([aria-disabled="true"]) {
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .dark button:not(:disabled):hover,
+  .dark [role="button"]:not([aria-disabled="true"]):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(236, 72, 153, 0.2);
+  }
+
+  .dark button:not(:disabled):active,
+  .dark [role="button"]:not([aria-disabled="true"]):active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.18);
+  }
+
+  .dark button:focus-visible,
+  .dark [role="button"]:focus-visible {
+    outline: 2px solid rgba(236, 72, 153, 0.56);
+    outline-offset: 2px;
+  }
+
+  .admin-tech-shell {
+    background:
+      linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+      linear-gradient(180deg, #fff7fb 0%, #fdf2ff 46%, #ffffff 100%) !important;
+    background-size: 36px 36px, 36px 36px, auto;
+    color: rgb(71, 24, 48);
+  }
+
+  .admin-tech-header {
+    backdrop-filter: blur(18px);
+    box-shadow: inset 0 -1px 0 rgba(236, 72, 153, 0.18), 0 18px 42px rgba(219, 39, 119, 0.12) !important;
+  }
+
+  .admin-tech-main {
+    background:
+      linear-gradient(135deg, rgba(236, 72, 153, 0.1), transparent 34%),
+      linear-gradient(315deg, rgba(168, 85, 247, 0.1), transparent 38%) !important;
+  }
+
+  .admin-tech-shell h1,
+  .admin-tech-shell h2,
+  .admin-tech-shell h3,
+  .admin-tech-shell h4 {
+    color: rgb(71, 24, 48) !important;
+  }
+
+  .admin-tech-shell p,
+  .admin-tech-shell label,
+  .admin-tech-shell span,
+  .admin-tech-shell td,
+  .admin-tech-shell th {
+    border-color: rgba(236, 72, 153, 0.18);
+  }
+
+  .admin-tech-shell [class*="rounded-lg"][class*="border"],
+  .admin-tech-shell [class*="rounded-md"][class*="border"],
+  .admin-tech-shell [class*="bg-card"],
+  .admin-tech-shell [class*="bg-white"],
+  .admin-tech-shell [class*="bg-gray-50"],
+  .admin-tech-shell [class*="bg-gray-100"] {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(236, 72, 153, 0.2) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86), 0 18px 44px rgba(219, 39, 119, 0.12) !important;
+  }
+
+  .admin-tech-shell table,
+  .admin-tech-shell thead,
+  .admin-tech-shell tbody,
+  .admin-tech-shell tr {
+    border-color: rgba(236, 72, 153, 0.16) !important;
+  }
+
+  .admin-tech-shell tr:hover {
+    background-color: rgba(236, 72, 153, 0.08) !important;
+  }
+
+  .admin-tech-shell [class*="text-blue-"],
+  .admin-tech-shell [class*="text-cyan-"] {
+    color: rgb(219, 39, 119) !important;
+  }
+
+  .admin-tech-shell [class*="bg-blue-50"],
+  .admin-tech-shell [class*="bg-blue-100"] {
+    background-color: rgba(236, 72, 153, 0.12) !important;
+    color: rgb(157, 23, 77) !important;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Markdown 样式，添加自动换行配置 */
+.react-markdown {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  hyphens: auto;
+}
+
+.react-markdown p,
+.react-markdown li,
+.react-markdown h1,
+.react-markdown h2,
+.react-markdown h3,
+.react-markdown h4,
+.react-markdown h5,
+.react-markdown h6,
+.react-markdown blockquote {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* 优化Markdown内容间距 - 使用更紧凑的间距 */
+.react-markdown {
+  line-height: 1.2 !important; /* 进一步缩短行间距 */
+}
+
+.react-markdown p {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important; /* 大幅缩短段落间距 */
+  line-height: 1.2 !important;
+}
+
+.react-markdown h1,
+.react-markdown h2,
+.react-markdown h3,
+.react-markdown h4,
+.react-markdown h5,
+.react-markdown h6 {
+  margin-top: 0.5rem !important;   /* 进一步缩短标题上方间距 */
+  margin-bottom: 0.25rem !important; /* 进一步缩短标题下方间距 */
+  line-height: 1.1 !important;      /* 标题使用最紧凑的行间距 */
+}
+
+/* 代码块间距优化 */
+.react-markdown pre {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.2 !important;
+}
+
+/* 整体容器的行高优化 - 使用最紧凑设置 */
+.prose, .prose-sm, .react-markdown {
+  line-height: 1.2 !important;
+}
+
+.prose *, .prose-sm *, .react-markdown * {
+  line-height: 1.2 !important;
+}
+
+/* 代码块容器样式 */
+.code-block-container {
+  max-width: 100%;
+  position: relative;
+}
+
+/* 增强代码块内容换行规则 */
+.code-block-container pre {
+  white-space: pre-wrap; /* 改为pre-wrap以支持自动换行 */
+  word-wrap: break-word;
+  word-break: break-all; /* 使用break-all处理非空格处的断行 */
+  overflow-x: auto;
+}
+
+/* 处理长字符串如路径、URL等 */
+.react-markdown pre span,
+.react-markdown code span,
+.react-markdown :not(pre) > code {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all; /* 使用break-all处理长路径等 */
+  max-width: 100%;
+}
+
+/* 表格样式 */
+.react-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.react-markdown table th,
+.react-markdown table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: nowrap; /* 防止文本换行，让表格能水平滚动 */
+}
+
+.react-markdown table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* 列表样式 */
+.react-markdown ul,
+.react-markdown ol {
+  padding-left: 2rem;
+  margin-bottom: 0.5rem; /* 缩短列表间距 */
+}
+
+.react-markdown li {
+  margin-bottom: 0.25rem; /* 缩短列表项间距 */
+}
+
+/* 优化Prose样式的间距 - 使用更激进的紧凑间距 */
+.prose, .prose-sm {
+  --tw-prose-body: theme('colors.gray.700');
+  --tw-prose-headings: theme('colors.gray.900');
+  line-height: 1.2 !important;
+}
+
+.prose p, .prose-sm p {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.2 !important;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6,
+.prose-sm h1, .prose-sm h2, .prose-sm h3, .prose-sm h4, .prose-sm h5, .prose-sm h6 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.1 !important;
+}
+
+.prose ul, .prose ol, .prose-sm ul, .prose-sm ol {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.2 !important;
+}
+
+.prose li, .prose-sm li {
+  margin-top: 0.1rem !important;
+  margin-bottom: 0.1rem !important;
+  line-height: 1.2 !important;
+}
+
+.prose blockquote, .prose-sm blockquote {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.2 !important;
+}
+
+/* 强制覆盖所有 prose 元素的行间距 */
+.prose > *, .prose-sm > * {
+  line-height: 1.2 !important;
+}
+
+/* 最终的通用行间距覆盖 - 确保所有文本都使用紧凑间距 */
+.prose p, .prose-sm p,
+.prose li, .prose-sm li,
+.prose h1, .prose-sm h1,
+.prose h2, .prose-sm h2,
+.prose h3, .prose-sm h3,
+.prose h4, .prose-sm h4,
+.prose h5, .prose-sm h5,
+.prose h6, .prose-sm h6,
+.prose blockquote, .prose-sm blockquote,
+.prose pre, .prose-sm pre,
+.react-markdown p,
+.react-markdown li,
+.react-markdown h1,
+.react-markdown h2,
+.react-markdown h3,
+.react-markdown h4,
+.react-markdown h5,
+.react-markdown h6,
+.react-markdown blockquote,
+.react-markdown pre {
+  line-height: 1.2 !important;
+}
+
+/* 确保段落和其他块级元素的紧凑间距 */
+.prose p + p, .prose-sm p + p,
+.react-markdown p + p {
+  margin-top: 0.25rem !important;
+}
+
+/* 引用块样式 */
+.react-markdown blockquote,
+.prose blockquote, .prose-sm blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  color: #666;
+  line-height: 1.4 !important;
+}
+
+/* 链接样式 */
+.react-markdown a {
+  color: #0077cc;
+  text-decoration: underline;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all; /* 为长URL添加断行 */
+}
+
+/* 图片样式 */
+.react-markdown img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 行内代码样式 */
+.react-markdown :not(pre) > code {
+  background-color: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+  white-space: normal; /* 确保行内代码可以换行 */
+}
+
+@layer base {
+  :root {
+    --background: 326 100% 98%;
+    --foreground: 332 34% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 332 34% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 332 34% 18%;
+    --primary: 329 88% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 322 86% 94%;
+    --secondary-foreground: 329 64% 30%;
+    --muted: 322 54% 95%;
+    --muted-foreground: 334 20% 46%;
+    --accent: 284 78% 94%;
+    --accent-foreground: 292 52% 34%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 326 58% 86%;
+    --input: 326 58% 86%;
+    --ring: 329 88% 58%;
+    --chart-1: 329 88% 58%;
+    --chart-2: 284 76% 64%;
+    --chart-3: 199 89% 58%;
+    --chart-4: 37 92% 58%;
+    --chart-5: 160 72% 45%;
+    --radius: 0.5rem;
+    --sidebar-background: 327 85% 96%;
+    --sidebar-foreground: 332 34% 18%;
+    --sidebar-primary: 329 88% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 284 78% 94%;
+    --sidebar-accent-foreground: 292 52% 34%;
+    --sidebar-border: 326 58% 86%;
+    --sidebar-ring: 329 88% 58%;
+  }
+  .dark {
+    --background: 326 100% 98%;
+    --foreground: 332 34% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 332 34% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 332 34% 18%;
+    --primary: 329 88% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 322 86% 94%;
+    --secondary-foreground: 329 64% 30%;
+    --muted: 322 54% 95%;
+    --muted-foreground: 334 20% 46%;
+    --accent: 284 78% 94%;
+    --accent-foreground: 292 52% 34%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 326 58% 86%;
+    --input: 326 58% 86%;
+    --ring: 329 88% 58%;
+    --chart-1: 329 88% 58%;
+    --chart-2: 284 76% 64%;
+    --chart-3: 199 89% 58%;
+    --chart-4: 37 92% 58%;
+    --chart-5: 160 72% 45%;
+    --sidebar-background: 327 85% 96%;
+    --sidebar-foreground: 332 34% 18%;
+    --sidebar-primary: 329 88% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 284 78% 94%;
+    --sidebar-accent-foreground: 292 52% 34%;
+    --sidebar-border: 326 58% 86%;
+    --sidebar-ring: 329 88% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}

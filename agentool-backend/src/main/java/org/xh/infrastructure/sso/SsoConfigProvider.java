@@ -1,0 +1,115 @@
+package org.xh.infrastructure.sso;
+
+import org.springframework.stereotype.Component;
+import org.xh.domain.auth.constant.AuthFeatureKey;
+import org.xh.domain.auth.model.AuthSettingEntity;
+import org.xh.domain.auth.service.AuthSettingDomainService;
+
+import java.util.Map;
+
+/** SSO配置提供者 */
+@Component
+public class SsoConfigProvider {
+
+    private final AuthSettingDomainService authSettingDomainService;
+
+    public SsoConfigProvider(AuthSettingDomainService authSettingDomainService) {
+        this.authSettingDomainService = authSettingDomainService;
+    }
+
+    /** 获取GitHub SSO配置
+     * 
+     * @return GitHub配置 */
+    public GitHubSsoConfig getGitHubConfig() {
+        AuthSettingEntity entity = authSettingDomainService.getByFeatureKey(AuthFeatureKey.GITHUB_LOGIN);
+        if (entity == null || entity.getConfigData() == null) {
+            return new GitHubSsoConfig();
+        }
+
+        try {
+            Map<String, Object> configMap = entity.getConfigData();
+
+            GitHubSsoConfig config = new GitHubSsoConfig();
+            config.setClientId((String) configMap.get("clientId"));
+            config.setClientSecret((String) configMap.get("clientSecret"));
+            config.setRedirectUri((String) configMap.get("redirectUri"));
+            // GitHub API端点使用固定值，不需要配置
+            config.setAuthorizeUrl("https://github.com/login/oauth/authorize");
+            config.setTokenUrl("https://github.com/login/oauth/access_token");
+            config.setUserInfoUrl("https://api.github.com/user");
+            config.setUserEmailUrl("https://api.github.com/user/emails");
+
+            return config;
+        } catch (Exception e) {
+            return new GitHubSsoConfig();
+        }
+    }
+
+    /** GitHub SSO配置类 */
+    public static class GitHubSsoConfig {
+        private String clientId;
+        private String clientSecret;
+        private String redirectUri;
+        private String authorizeUrl = "https://github.com/login/oauth/authorize";
+        private String tokenUrl = "https://github.com/login/oauth/access_token";
+        private String userInfoUrl = "https://api.github.com/user";
+        private String userEmailUrl = "https://api.github.com/user/emails";
+
+        public String getClientId() {
+            return clientId;
+        }
+
+        public void setClientId(String clientId) {
+            this.clientId = clientId;
+        }
+
+        public String getClientSecret() {
+            return clientSecret;
+        }
+
+        public void setClientSecret(String clientSecret) {
+            this.clientSecret = clientSecret;
+        }
+
+        public String getRedirectUri() {
+            return redirectUri;
+        }
+
+        public void setRedirectUri(String redirectUri) {
+            this.redirectUri = redirectUri;
+        }
+
+        public String getAuthorizeUrl() {
+            return authorizeUrl;
+        }
+
+        public void setAuthorizeUrl(String authorizeUrl) {
+            this.authorizeUrl = authorizeUrl;
+        }
+
+        public String getTokenUrl() {
+            return tokenUrl;
+        }
+
+        public void setTokenUrl(String tokenUrl) {
+            this.tokenUrl = tokenUrl;
+        }
+
+        public String getUserInfoUrl() {
+            return userInfoUrl;
+        }
+
+        public void setUserInfoUrl(String userInfoUrl) {
+            this.userInfoUrl = userInfoUrl;
+        }
+
+        public String getUserEmailUrl() {
+            return userEmailUrl;
+        }
+
+        public void setUserEmailUrl(String userEmailUrl) {
+            this.userEmailUrl = userEmailUrl;
+        }
+    }
+
+}
