@@ -118,7 +118,7 @@ function getIconByType(type: string) {
     case "工具":
       return <Zap className="h-8 w-8 text-red-500" />
     case "教育":
-      return <Book className="h-8 w-8 text-cyan-500" />
+      return <Book className="h-8 w-8 text-pink-500" />
     case "客服":
       return <Zap className="h-8 w-8 text-pink-500" />
     default:
@@ -138,7 +138,7 @@ export function DiscoverContent() {
   return (
     <div className="container py-6 px-4">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-blue-600">探索 AgentX 的应用</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-pink-600">探索 agentool 的应用</h1>
         <p className="text-muted-foreground mt-1">使用这些模板应用程序，或根据模板自定义您自己的应用程序。</p>
       </div>
 
@@ -149,12 +149,6 @@ export function DiscoverContent() {
               <Sparkles className="h-4 w-4" />
               推荐
             </TabsTrigger>
-            <TabsTrigger value="Agent">Agent</TabsTrigger>
-            <TabsTrigger value="助手">助手</TabsTrigger>
-            <TabsTrigger value="DeepSeek">DeepSeek</TabsTrigger>
-            <TabsTrigger value="媒体">媒体</TabsTrigger>
-            <TabsTrigger value="工作流">工作流</TabsTrigger>
-            <TabsTrigger value="写作">写作</TabsTrigger>
           </TabsList>
 
           <div className="relative">
@@ -184,40 +178,14 @@ export function DiscoverContent() {
                   <p className="text-sm text-muted-foreground line-clamp-3">{app.description}</p>
                 </CardContent>
                 <div className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity pb-4">
-                  <Button className="bg-blue-500 hover:bg-blue-600 text-white w-[90%]">添加到工作区</Button>
+                  <Button className="bg-pink-500 hover:bg-pink-600 text-white w-[90%]">添加到工作区</Button>
                 </div>
               </Card>
             ))}
           </div>
         </TabsContent>
 
-        {["Agent", "助手", "DeepSeek", "媒体", "工作流", "写作"].map((tab) => (
-          <TabsContent key={tab} value={tab} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredApps
-                .filter((app) => app.type === tab)
-                .map((app) => (
-                  <Card key={app.id} className="overflow-hidden group relative">
-                    <CardHeader className="p-4 pb-0 flex flex-row items-start gap-3">
-                      {getIconByType(app.type)}
-                      <div className="flex-1">
-                        <CardTitle className="text-base">{app.title}</CardTitle>
-                        <CardDescription className="text-xs mt-1">{app.category}</CardDescription>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-4 pt-3">
-                      <p className="text-sm text-muted-foreground line-clamp-3">{app.description}</p>
-                    </CardContent>
-                    <div className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity pb-4">
-                      <Button className="bg-blue-500 hover:bg-blue-600 text-white w-[90%]">添加到工作区</Button>
-                    </div>
-                  </Card>
-                ))}
-            </div>
-          </TabsContent>
-        ))}
       </Tabs>
     </div>
   )
 }
-

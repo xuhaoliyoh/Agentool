@@ -112,7 +112,7 @@ export default function ExplorePage() {
       <div className="flex-1 overflow-auto">
         <div className="container py-6 px-4">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold tracking-tight text-blue-600">探索 AgentX 的应用</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-pink-600">探索 agentool 的应用</h1>
             <p className="text-muted-foreground mt-1">使用这些模板应用程序，或根据模板自定义您自己的应用程序。</p>
           </div>
 
@@ -122,24 +122,6 @@ export default function ExplorePage() {
                 <TabsTrigger value="推荐" className="flex items-center gap-1 whitespace-nowrap">
                   <Search className="h-4 w-4" />
                   推荐
-                </TabsTrigger>
-                <TabsTrigger value="Agent" className="whitespace-nowrap">
-                  Agent
-                </TabsTrigger>
-                <TabsTrigger value="助手" className="whitespace-nowrap">
-                  助手
-                </TabsTrigger>
-                <TabsTrigger value="DeepSeek" className="whitespace-nowrap">
-                  DeepSeek
-                </TabsTrigger>
-                <TabsTrigger value="媒体" className="whitespace-nowrap">
-                  媒体
-                </TabsTrigger>
-                <TabsTrigger value="工作流" className="whitespace-nowrap">
-                  工作流
-                </TabsTrigger>
-                <TabsTrigger value="写作" className="whitespace-nowrap">
-                  写作
                 </TabsTrigger>
               </TabsList>
 
@@ -155,7 +137,7 @@ export default function ExplorePage() {
               </div>
             </div>
 
-            {["推荐", "Agent", "助手", "DeepSeek", "媒体", "工作流", "写作"].map((tab) => (
+            {["推荐"].map((tab) => (
               <TabsContent key={tab} value={tab} className="space-y-6">
                 {loading ? (
                   // 加载状态
@@ -229,7 +211,7 @@ export default function ExplorePage() {
                               </Button>
                             ) : (
                               <Button 
-                                className="w-full bg-blue-500 hover:bg-blue-600 text-white" 
+                                className="w-full bg-pink-500 hover:bg-pink-600 text-white"
                                 onClick={() => handleAddToWorkspace(agent.agentId)}
                                 disabled={addingAgentId === agent.agentId}
                               >
@@ -257,4 +239,3 @@ export default function ExplorePage() {
     </div>
   )
 }
-
