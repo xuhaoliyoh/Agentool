@@ -1,0 +1,30 @@
+18-slide plan with varied macro-layouts:
+1 cover with identity rail
+2 agenda roadmap
+3 research background problem split
+4 research objective and contribution matrix
+5 requirement analysis by user/admin/nonfunctional
+6 technical stack map
+7 overall architecture diagram
+8 functional module design map
+9 core data model map
+10 conversation and streaming workflow
+11 model configuration workflow
+12 MCP/HTTP tool access workflow
+13 RAG pipeline and hybrid retrieval
+14 session and context governance
+15 backend governance and runtime support
+16 testing evidence
+17 conclusion and future work
+18 Q&A closing
+
+Distinct layout families:
+- cover identity composition
+- vertical agenda timeline
+- comparison/problem matrix
+- three-column requirements map
+- architecture/dependency map
+- process sequence flow
+- entity relationship map
+- test evidence table
+- conclusion split summary

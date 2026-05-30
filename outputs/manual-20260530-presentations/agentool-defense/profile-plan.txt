@@ -1,0 +1,22 @@
+task mode: create
+primary deck-profile: engineering-platform
+secondary gates: undergraduate thesis defense, source-faithful academic presentation
+required proof objects:
+- overall architecture map
+- functional module map
+- database/entity relationship map
+- conversation, MCP tool, RAG and context workflows
+- testing evidence from black-box and white-box cases
+source requirements:
+- primary source is /Users/liyoh/Downloads/论文-徐昊-20222241361 (4).doc extracted to source/thesis.txt
+- local agentool repository is used only to confirm project naming, stack, modules, and implementation boundaries
+brand/authenticity constraints:
+- no external logos or invented metrics
+- use thesis terminology: large language model, agent platform, DDD layered architecture, MCP tool integration, RAG, streaming response, context governance
+QA gates:
+- 15 to 20 slides
+- concise defense-oriented pages
+- technical diagrams remain legible at thumbnail scale
+- speaker script is around 3000 Chinese characters and follows the deck order
+known missing inputs:
+- no school PPT template was supplied, so the deck uses a clean original academic-technical visual system
