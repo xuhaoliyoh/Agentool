@@ -1,2 +1,0 @@
-import { renderSlide } from "./shared.mjs";
-export async function slide10(presentation, ctx) { return renderSlide(presentation, ctx, 10); }
