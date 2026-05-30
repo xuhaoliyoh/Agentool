@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/md88y3",
-    "id": "md88y3",
+    "aid": "sl/b8uojf",
+    "id": "b8uojf",
     "slide": 12,
-    "layoutId": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+    "layoutId": "79891f45-d097-46e8-bddb-68fe971b49e3",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+    "masterLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
     "masterLayoutName": "Master",
     "frame": {
       "left": 0,
@@ -38,21 +38,22 @@
       "folHlink": "#96607D"
     },
     "typefaces": [
+      "Aptos Mono",
       "Microsoft YaHei"
     ]
   },
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+      "id": "79891f45-d097-46e8-bddb-68fe971b49e3",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "parentLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "id": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -63,7 +64,7 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/psfil0rq",
+      "aid": "sh/gbq1oryt",
       "id": "1",
       "bbox": [
         0,
@@ -80,7 +81,7 @@
       "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/e1w7mp0b",
+      "aid": "sh/nuxc3ylc",
       "id": "2",
       "bbox": [
         0,
@@ -97,7 +98,7 @@
       "order": 3,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/7mp0bi9s",
+      "aid": "sh/y90je9cv",
       "id": "3",
       "bbox": [
         0,
@@ -114,21 +115,21 @@
       "order": 4,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/wval87ed",
+      "aid": "sh/58z25kb6",
       "id": "4",
       "bbox": [
-        1118,
-        56,
+        1120,
+        54,
         80,
-        40
+        36
       ],
       "geometry": "rect",
       "text": "12",
       "textPreview": "12",
-      "resolvedFontSize": 30,
+      "resolvedFontSize": 28,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 28,
         "typeface": "Microsoft YaHei",
         "color": "#D8D3C7",
         "bold": true,
@@ -155,7 +156,7 @@
           "index": 1,
           "text": "12",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 28,
             "typeface": "Microsoft YaHei",
             "color": "#D8D3C7",
             "bold": true,
@@ -165,7 +166,7 @@
             {
               "index": 1,
               "text": "12",
-              "fontSize": 30,
+              "fontSize": 28,
               "typeface": "Microsoft YaHei",
               "color": "#D8D3C7",
               "bold": true
@@ -181,21 +182,21 @@
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/pg3ex0nu",
+      "aid": "sh/gn29gr2p",
       "id": "5",
       "bbox": [
         70,
-        54,
-        780,
-        48
+        48,
+        900,
+        60
       ],
       "geometry": "rect",
-      "text": "MCP 工具接入：远程端点探测与直连调用",
-      "textPreview": "MCP 工具接入：远程端点探测与直连调用",
-      "resolvedFontSize": 30,
+      "text": "工具调用总览：AgentToolManager 把已安装工具交给 LangChain4j",
+      "textPreview": "工具调用总览：AgentToolManager 把已安装工具交给 LangChain4j",
+      "resolvedFontSize": 26,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 26,
         "typeface": "Microsoft YaHei",
         "color": "#172026",
         "bold": true,
@@ -213,16 +214,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "MCP 工具接入：远程端点探测与直连调用"
+            "text": "工具调用总览：AgentToolManager 把已安装工具交给 LangChain4j"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "MCP 工具接入：远程端点探测与直连调用",
+          "text": "工具调用总览：AgentToolManager 把已安装工具交给 LangChain4j",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 26,
             "typeface": "Microsoft YaHei",
             "color": "#172026",
             "bold": true,
@@ -231,8 +232,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "MCP 工具接入：远程端点探测与直连调用",
-              "fontSize": 30,
+              "text": "工具调用总览：AgentToolManager 把已安装工具交给 LangChain4j",
+              "fontSize": 26,
               "typeface": "Microsoft YaHei",
               "color": "#172026",
               "bold": true
@@ -248,17 +249,17 @@
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/epkzupwb",
+      "aid": "sh/n29gr2p8",
       "id": "6",
       "bbox": [
         72,
-        103,
-        880,
-        26
+        110,
+        940,
+        28
       ],
       "geometry": "rect",
-      "text": "工具能力通过远程 MCP SSE / HTTP API 接入，并纳入发布、审核、安装和调用流程",
-      "textPreview": "工具能力通过远程 MCP SSE / HTTP API 接入，并纳入发布、审核、安装和调用流程",
+      "text": "工具不是写死在 Prompt 中，而是被转成 ToolProvider 供模型按需调用",
+      "textPreview": "工具不是写死在 Prompt 中，而是被转成 ToolProvider 供模型按需调用",
       "resolvedFontSize": 15,
       "resolvedTextStyle": {
         "anchor": 1,
@@ -279,14 +280,14 @@
         "lines": [
           {
             "index": 1,
-            "text": "工具能力通过远程 MCP SSE / HTTP API 接入，并纳入发布、审核、安装和调用流程"
+            "text": "工具不是写死在 Prompt 中，而是被转成 ToolProvider 供模型按需调用"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "工具能力通过远程 MCP SSE / HTTP API 接入，并纳入发布、审核、安装和调用流程",
+          "text": "工具不是写死在 Prompt 中，而是被转成 ToolProvider 供模型按需调用",
           "resolvedTextStyle": {
             "fontSize": 15,
             "typeface": "Microsoft YaHei",
@@ -296,7 +297,7 @@
           "runs": [
             {
               "index": 1,
-              "text": "工具能力通过远程 MCP SSE / HTTP API 接入，并纳入发布、审核、安装和调用流程",
+              "text": "工具不是写死在 Prompt 中，而是被转成 ToolProvider 供模型按需调用",
               "fontSize": 15,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
@@ -312,11 +313,11 @@
       "order": 7,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/7adsji5s",
+      "aid": "sh/yhgn29gr",
       "id": "7",
       "bbox": [
         70,
-        142,
+        150,
         1140,
         1.2
       ],
@@ -329,21 +330,21 @@
       "order": 8,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/wra5gbq1",
+      "aid": "sh/5kb6xkf6",
       "id": "8",
       "bbox": [
         72,
-        674,
-        930,
+        673,
+        1060,
         22
       ],
       "geometry": "rect",
-      "text": "依据论文 5.4",
-      "textPreview": "依据论文 5.4",
-      "resolvedFontSize": 12,
+      "text": "AgentMessageHandler.java / AgentToolManager.java",
+      "textPreview": "AgentMessageHandler.java / AgentToolManager.java",
+      "resolvedFontSize": 11,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 12,
+        "fontSize": 11,
         "typeface": "Microsoft YaHei",
         "color": "#5F6972",
         "alignment": "left",
@@ -360,16 +361,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "依据论文 5.4"
+            "text": "AgentMessageHandler.java / AgentToolManager.java"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "依据论文 5.4",
+          "text": "AgentMessageHandler.java / AgentToolManager.java",
           "resolvedTextStyle": {
-            "fontSize": 12,
+            "fontSize": 11,
             "typeface": "Microsoft YaHei",
             "color": "#5F6972",
             "alignment": "left"
@@ -377,8 +378,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "依据论文 5.4",
-              "fontSize": 12,
+              "text": "AgentMessageHandler.java / AgentToolManager.java",
+              "fontSize": 11,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
             }
@@ -393,40 +394,40 @@
       "order": 9,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/lc7u54zi",
+      "aid": "sh/czed8v6p",
       "id": "9",
       "bbox": [
-        86,
-        278,
-        138,
-        78
+        88,
+        208,
+        163.33,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
-      "lineColor": "#2B8A83",
+      "lineColor": "#2456A6",
       "lineWidth": 1
     },
     {
       "order": 10,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/9w3m94fu",
+      "aid": "sh/2hwfyxob",
       "id": "10",
       "bbox": [
         96,
-        299,
-        118,
-        34
+        224,
+        147.33,
+        42
       ],
       "geometry": "rect",
-      "text": "提交配置",
-      "textPreview": "提交配置",
-      "resolvedFontSize": 16,
+      "text": "Agent 工具 ID",
+      "textPreview": "Agent 工具 ID",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
-        "color": "#2B8A83",
+        "color": "#2456A6",
         "bold": true,
         "alignment": "center",
         "verticalAlignment": "top",
@@ -442,28 +443,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "提交配置"
+            "text": "Agent 工具 ID"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "提交配置",
+          "text": "Agent 工具 ID",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
-            "color": "#2B8A83",
+            "color": "#2456A6",
             "bold": true,
             "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "提交配置",
-              "fontSize": 16,
+              "text": "Agent 工具 ID",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
-              "color": "#2B8A83",
+              "color": "#2456A6",
               "bold": true
             }
           ],
@@ -477,12 +478,12 @@
       "order": 11,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/kb6xkf6d",
+      "aid": "sh/r2p8nqxs",
       "id": "11",
       "bbox": [
-        224,
-        316,
-        36,
+        251.33,
+        244,
+        22,
         2
       ],
       "geometry": "rect",
@@ -494,11 +495,11 @@
       "order": 12,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/rqd4vmtw",
+      "aid": "sh/kjm1cfa9",
       "id": "12",
       "bbox": [
-        252,
-        312,
+        265.33,
+        240,
         10,
         10
       ],
@@ -511,249 +512,13 @@
       "order": 13,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/25kb6xkf",
+      "aid": "sh/94fu18jq",
       "id": "13",
       "bbox": [
-        261,
-        278,
-        138,
-        78
-      ],
-      "geometry": "rect",
-      "fillColor": "#FFFFFF",
-      "lineColor": "#C9922A",
-      "lineWidth": 1
-    },
-    {
-      "order": 14,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/9knih4by",
-      "id": "14",
-      "bbox": [
-        271,
-        299,
-        118,
-        34
-      ],
-      "geometry": "rect",
-      "text": "端点探测",
-      "textPreview": "端点探测",
-      "resolvedFontSize": 16,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 16,
-        "typeface": "Microsoft YaHei",
-        "color": "#C9922A",
-        "bold": true,
-        "alignment": "center",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "端点探测"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "端点探测",
-          "resolvedTextStyle": {
-            "fontSize": 16,
-            "typeface": "Microsoft YaHei",
-            "color": "#C9922A",
-            "bold": true,
-            "alignment": "center"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "端点探测",
-              "fontSize": 16,
-              "typeface": "Microsoft YaHei",
-              "color": "#C9922A",
-              "bold": true
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 15,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/kzupwb2h",
-      "id": "15",
-      "bbox": [
-        399,
-        316,
-        36,
-        2
-      ],
-      "geometry": "rect",
-      "fillColor": "#5F6972",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 16,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/re1w7mp0",
-      "id": "16",
-      "bbox": [
-        427,
-        312,
-        10,
-        10
-      ],
-      "geometry": "triangle",
-      "fillColor": "#5F6972",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 17,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/2t83itgf",
-      "id": "17",
-      "bbox": [
-        436,
-        278,
-        138,
-        78
-      ],
-      "geometry": "rect",
-      "fillColor": "#FFFFFF",
-      "lineColor": "#B2473E",
-      "lineWidth": 1
-    },
-    {
-      "order": 18,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/9gr2p8nq",
-      "id": "18",
-      "bbox": [
-        446,
-        299,
-        118,
-        34
-      ],
-      "geometry": "rect",
-      "text": "能力解析",
-      "textPreview": "能力解析",
-      "resolvedFontSize": 16,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 16,
-        "typeface": "Microsoft YaHei",
-        "color": "#B2473E",
-        "bold": true,
-        "alignment": "center",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "能力解析"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "能力解析",
-          "resolvedTextStyle": {
-            "fontSize": 16,
-            "typeface": "Microsoft YaHei",
-            "color": "#B2473E",
-            "bold": true,
-            "alignment": "center"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "能力解析",
-              "fontSize": 16,
-              "typeface": "Microsoft YaHei",
-              "color": "#B2473E",
-              "bold": true
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 19,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/gvy90je9",
-      "id": "19",
-      "bbox": [
-        574,
-        316,
-        36,
-        2
-      ],
-      "geometry": "rect",
-      "fillColor": "#5F6972",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 20,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/wra5gbq1",
-      "id": "20",
-      "bbox": [
-        602,
-        312,
-        10,
-        10
-      ],
-      "geometry": "triangle",
-      "fillColor": "#5F6972",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 21,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/lc7u54zi",
-      "id": "21",
-      "bbox": [
-        611,
-        278,
-        138,
-        78
+        273.33,
+        208,
+        163.33,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -761,24 +526,24 @@
       "lineWidth": 1
     },
     {
-      "order": 22,
+      "order": 14,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/eloj2t83",
-      "id": "22",
+      "aid": "sh/2p8nqxs7",
+      "id": "14",
       "bbox": [
-        621,
-        299,
-        118,
-        34
+        281.33,
+        224,
+        147.33,
+        42
       ],
       "geometry": "rect",
-      "text": "审核发布",
-      "textPreview": "审核发布",
-      "resolvedFontSize": 16,
+      "text": "用户安装工具",
+      "textPreview": "用户安装工具",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#2B8A83",
         "bold": true,
@@ -796,16 +561,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "审核发布"
+            "text": "用户安装工具"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "审核发布",
+          "text": "用户安装工具",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#2B8A83",
             "bold": true,
@@ -814,8 +579,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "审核发布",
-              "fontSize": 16,
+              "text": "用户安装工具",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#2B8A83",
               "bold": true
@@ -828,15 +593,15 @@
       "lineWidth": 0
     },
     {
-      "order": 23,
+      "order": 15,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/36hcrmhk",
-      "id": "23",
+      "aid": "sh/ra5gbq1o",
+      "id": "15",
       "bbox": [
-        749,
-        316,
-        36,
+        436.67,
+        244,
+        22,
         2
       ],
       "geometry": "rect",
@@ -845,14 +610,14 @@
       "lineWidth": 0
     },
     {
-      "order": 24,
+      "order": 16,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/wfyxobm5",
-      "id": "24",
+      "aid": "sh/gvy90je9",
+      "id": "16",
       "bbox": [
-        777,
-        312,
+        450.67,
+        240,
         10,
         10
       ],
@@ -862,16 +627,16 @@
       "lineWidth": 0
     },
     {
-      "order": 25,
+      "order": 17,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/l0rqd4vm",
-      "id": "25",
+      "aid": "sh/9gr2p8nq",
+      "id": "17",
       "bbox": [
-        786,
-        278,
-        138,
-        78
+        458.67,
+        208,
+        163.33,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -879,24 +644,24 @@
       "lineWidth": 1
     },
     {
-      "order": 26,
+      "order": 18,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/ed8bat47",
-      "id": "26",
+      "aid": "sh/2t83itgf",
+      "id": "18",
       "bbox": [
-        796,
-        299,
-        118,
-        34
+        466.67,
+        224,
+        147.33,
+        42
       ],
       "geometry": "rect",
-      "text": "安装绑定",
-      "textPreview": "安装绑定",
-      "resolvedFontSize": 16,
+      "text": "mcpServerName",
+      "textPreview": "mcpServerName",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#C9922A",
         "bold": true,
@@ -914,16 +679,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "安装绑定"
+            "text": "mcpServerName"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "安装绑定",
+          "text": "mcpServerName",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#C9922A",
             "bold": true,
@@ -932,8 +697,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "安装绑定",
-              "fontSize": 16,
+              "text": "mcpServerName",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#C9922A",
               "bold": true
@@ -946,15 +711,15 @@
       "lineWidth": 0
     },
     {
-      "order": 27,
+      "order": 19,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/7u54zido",
-      "id": "27",
+      "aid": "sh/re1w7mp0",
+      "id": "19",
       "bbox": [
-        924,
-        316,
-        36,
+        622,
+        244,
+        22,
         2
       ],
       "geometry": "rect",
@@ -963,14 +728,14 @@
       "lineWidth": 0
     },
     {
-      "order": 28,
+      "order": 20,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/w7mp0bi9",
-      "id": "28",
+      "aid": "sh/nap4r65w",
+      "id": "20",
       "bbox": [
-        952,
-        312,
+        636,
+        240,
         10,
         10
       ],
@@ -980,16 +745,16 @@
       "lineWidth": 0
     },
     {
-      "order": 29,
+      "order": 21,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/psfil0rq",
-      "id": "29",
+      "aid": "sh/upwb2hwf",
+      "id": "21",
       "bbox": [
-        961,
-        278,
-        138,
-        78
+        644,
+        208,
+        163.33,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -997,24 +762,24 @@
       "lineWidth": 1
     },
     {
-      "order": 30,
+      "order": 22,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/fil0rqd4",
-      "id": "30",
+      "aid": "sh/5gbq1ory",
+      "id": "22",
       "bbox": [
-        971,
-        299,
-        118,
-        34
+        652,
+        224,
+        147.33,
+        42
       ],
       "geometry": "rect",
-      "text": "对话调用",
-      "textPreview": "对话调用",
-      "resolvedFontSize": 16,
+      "text": "DirectToolRuntime",
+      "textPreview": "DirectToolRuntime",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#B2473E",
         "bold": true,
@@ -1032,16 +797,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "对话调用"
+            "text": "DirectToolRuntime"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "对话调用",
+          "text": "DirectToolRuntime",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#B2473E",
             "bold": true,
@@ -1050,8 +815,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "对话调用",
-              "fontSize": 16,
+              "text": "DirectToolRuntime",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#B2473E",
               "bold": true
@@ -1064,26 +829,77 @@
       "lineWidth": 0
     },
     {
-      "order": 31,
+      "order": 23,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/qxs72x4n",
-      "id": "31",
+      "aid": "sh/cvixczed",
+      "id": "23",
       "bbox": [
-        146,
-        495,
-        970,
-        62
+        807.33,
+        244,
+        22,
+        2
       ],
       "geometry": "rect",
-      "text": "工具调用失败时返回清晰错误提示，并保持整轮会话连续性。",
-      "textPreview": "工具调用失败时返回清晰错误提示，并保持整轮会话连续性。",
-      "resolvedFontSize": 21,
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nyd0z610",
+      "id": "24",
+      "bbox": [
+        821.33,
+        240,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/udg7adsj",
+      "id": "25",
+      "bbox": [
+        829.33,
+        208,
+        163.33,
+        74
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#2456A6",
+      "lineWidth": 1
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/54zidony",
+      "id": "26",
+      "bbox": [
+        837.33,
+        224,
+        147.33,
+        42
+      ],
+      "geometry": "rect",
+      "text": "ToolProvider",
+      "textPreview": "ToolProvider",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 21,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "color": "#2456A6",
         "bold": true,
         "alignment": "center",
         "verticalAlignment": "top",
@@ -1099,29 +915,596 @@
         "lines": [
           {
             "index": 1,
-            "text": "工具调用失败时返回清晰错误提示，并保持整轮会话连续性。"
+            "text": "ToolProvider"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "工具调用失败时返回清晰错误提示，并保持整轮会话连续性。",
+          "text": "ToolProvider",
           "resolvedTextStyle": {
-            "fontSize": 21,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "color": "#2456A6",
             "bold": true,
             "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "工具调用失败时返回清晰错误提示，并保持整轮会话连续性。",
-              "fontSize": 21,
+              "text": "ToolProvider",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
-              "color": "#172026",
+              "color": "#2456A6",
               "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cj6tovah",
+      "id": "27",
+      "bbox": [
+        992.67,
+        244,
+        22,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/judg7ads",
+      "id": "28",
+      "bbox": [
+        1006.67,
+        240,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u9knih4b",
+      "id": "29",
+      "bbox": [
+        1014.67,
+        208,
+        163.33,
+        74
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#2B8A83",
+      "lineWidth": 1
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/83itgfml",
+      "id": "30",
+      "bbox": [
+        1022.67,
+        224,
+        147.33,
+        42
+      ],
+      "geometry": "rect",
+      "text": "AiServices",
+      "textPreview": "AiServices",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Microsoft YaHei",
+        "color": "#2B8A83",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AiServices"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AiServices",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Microsoft YaHei",
+            "color": "#2B8A83",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AiServices",
+              "fontSize": 14,
+              "typeface": "Microsoft YaHei",
+              "color": "#2B8A83",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xobm58z2",
+      "id": "31",
+      "bbox": [
+        160,
+        380,
+        450,
+        150
+      ],
+      "geometry": "rect",
+      "fillColor": "#FAFAF7",
+      "lineColor": "#B2473E",
+      "lineWidth": 1
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qxs72x4n",
+      "id": "32",
+      "bbox": [
+        160,
+        380,
+        8,
+        150
+      ],
+      "geometry": "rect",
+      "fillColor": "#B2473E",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fil0rqd4",
+      "id": "33",
+      "bbox": [
+        178,
+        394,
+        422,
+        128
+      ],
+      "geometry": "rect",
+      "text": "AgentMessageHandler.provideTools(context)\n  names = agentToolManager.getAvailableTools(context)\n  return agentToolManager.createToolProvider(\n    names, presetParams, userId\n  )",
+      "textPreview": "AgentMessageHandler.provideTools(context) |   names = agentToolManager.getAvailableTools(context) |   return agentToolManager.createToolP...",
+      "resolvedFontSize": 12.51,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12.51,
+        "typeface": "Aptos Mono",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AgentMessageHandler.provideTools(context)"
+          },
+          {
+            "index": 2,
+            "text": "  names = agentToolManager.getAvailableTools(context)"
+          },
+          {
+            "index": 3,
+            "text": "  return agentToolManager.createToolProvider("
+          },
+          {
+            "index": 4,
+            "text": "    names, presetParams, userId"
+          },
+          {
+            "index": 5,
+            "text": "  )"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AgentMessageHandler.provideTools(context)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AgentMessageHandler.provideTools(context)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "  names = agentToolManager.getAvailableTools(context)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  names = agentToolManager.getAvailableTools(context)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "  return agentToolManager.createToolProvider(",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  return agentToolManager.createToolProvider(",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "    names, presetParams, userId",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "    names, presetParams, userId",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "  )",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  )",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4fu18jqh",
+      "id": "34",
+      "bbox": [
+        680,
+        382,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B8A83",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 35,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x0nuxc3y",
+      "id": "35",
+      "bbox": [
+        698,
+        375,
+        402,
+        53
+      ],
+      "geometry": "rect",
+      "text": "工具不会直接拼到 Prompt 文本里，而是注册为 LangChain4j ToolProvider。",
+      "textPreview": "工具不会直接拼到 Prompt 文本里，而是注册为 LangChain4j ToolProvider。",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "工具不会直接拼到 Prompt 文本里，而是注册为"
+          },
+          {
+            "index": 2,
+            "text": "LangChain4j ToolProvider。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "工具不会直接拼到 Prompt 文本里，而是注册为 LangChain4j ToolProvider。",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "工具不会直接拼到 Prompt 文本里，而是注册为 LangChain4j ToolProvider。",
+              "fontSize": 17,
+              "typeface": "Microsoft YaHei",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 36,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m94fu18j",
+      "id": "36",
+      "bbox": [
+        680,
+        437,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B8A83",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 37,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fu18jqh0",
+      "id": "37",
+      "bbox": [
+        698,
+        430,
+        402,
+        53
+      ],
+      "geometry": "rect",
+      "text": "模型在推理过程中根据 ToolSpecification 决定是否调用。",
+      "textPreview": "模型在推理过程中根据 ToolSpecification 决定是否调用。",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "模型在推理过程中根据 ToolSpecification"
+          },
+          {
+            "index": 2,
+            "text": "决定是否调用。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "模型在推理过程中根据 ToolSpecification 决定是否调用。",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "模型在推理过程中根据 ToolSpecification 决定是否调用。",
+              "fontSize": 17,
+              "typeface": "Microsoft YaHei",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 38,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4r65wjud",
+      "id": "38",
+      "bbox": [
+        680,
+        492,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B8A83",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 39,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xc3ylc7u",
+      "id": "39",
+      "bbox": [
+        698,
+        485,
+        402,
+        53
+      ],
+      "geometry": "rect",
+      "text": "预设参数通过 presetToolParameters 注入，减少用户重复填写。",
+      "textPreview": "预设参数通过 presetToolParameters 注入，减少用户重复填写。",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "预设参数通过 presetToolParameters"
+          },
+          {
+            "index": 2,
+            "text": "注入，减少用户重复填写。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "预设参数通过 presetToolParameters 注入，减少用户重复填写。",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "预设参数通过 presetToolParameters 注入，减少用户重复填写。",
+              "fontSize": 17,
+              "typeface": "Microsoft YaHei",
+              "color": "#172026"
             }
           ],
           "marginLeft": 0

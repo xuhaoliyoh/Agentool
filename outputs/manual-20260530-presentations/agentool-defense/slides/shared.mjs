@@ -3,6 +3,7 @@ const H = 720;
 
 const C = {
   ink: "#172026",
+  slate: "#303B45",
   muted: "#5F6972",
   paper: "#F7F5EF",
   white: "#FFFFFF",
@@ -12,7 +13,7 @@ const C = {
   red: "#B2473E",
   gold: "#C9922A",
   green: "#4E8D54",
-  slate: "#303B45",
+  purple: "#6B4CA8",
 };
 
 const font = {
@@ -27,16 +28,16 @@ function bg(slide, ctx) {
   ctx.addShape(slide, { x: 0, y: H - 10, width: W, height: 10, fill: C.ink });
 }
 
-function t(slide, ctx, text, x, y, width, height, opts = {}) {
+function text(slide, ctx, value, x, y, width, height, opts = {}) {
   return ctx.addText(slide, {
-    text,
+    text: value,
     x,
     y,
     width,
     height,
-    fontSize: opts.size || 24,
+    fontSize: opts.size || 20,
     color: opts.color || C.ink,
-    bold: opts.bold || false,
+    bold: Boolean(opts.bold),
     typeface: opts.face || font.body,
     align: opts.align || "left",
     valign: opts.valign || "top",
@@ -47,15 +48,19 @@ function t(slide, ctx, text, x, y, width, height, opts = {}) {
 }
 
 function title(slide, ctx, main, sub, source) {
-  t(slide, ctx, main, 70, 54, 780, 48, { size: 30, bold: true, face: font.title });
-  if (sub) t(slide, ctx, sub, 72, 103, 880, 26, { size: 15, color: C.muted });
-  ctx.addShape(slide, { x: 70, y: 142, width: 1140, height: 1.2, fill: C.line });
-  if (source) t(slide, ctx, source, 72, 674, 930, 22, { size: 12, color: C.muted });
+  text(slide, ctx, main, 70, 48, 900, 60, { size: 26, bold: true, face: font.title });
+  if (sub) text(slide, ctx, sub, 72, 110, 940, 28, { size: 15, color: C.muted });
+  ctx.addShape(slide, { x: 70, y: 150, width: 1140, height: 1.2, fill: C.line });
+  if (source) text(slide, ctx, source, 72, 673, 1060, 22, { size: 11, color: C.muted });
 }
 
-function chip(slide, ctx, label, x, y, width, color = C.blue) {
-  ctx.addShape(slide, { x, y, width, height: 28, fill: color });
-  t(slide, ctx, label, x + 12, y + 5, width - 24, 18, { size: 12, color: C.white, bold: true });
+function slideNo(slide, ctx, n) {
+  text(slide, ctx, String(n).padStart(2, "0"), 1120, 54, 80, 36, {
+    size: 28,
+    bold: true,
+    color: C.line,
+    align: "right",
+  });
 }
 
 function box(slide, ctx, x, y, width, height, opts = {}) {
@@ -69,18 +74,31 @@ function box(slide, ctx, x, y, width, height, opts = {}) {
   });
 }
 
-function bulletList(slide, ctx, items, x, y, width, opts = {}) {
-  const gap = opts.gap || 48;
-  const dot = opts.dot || C.blue;
+function chip(slide, ctx, label, x, y, width, color = C.blue) {
+  ctx.addShape(slide, { x, y, width, height: 28, fill: color });
+  text(slide, ctx, label, x + 11, y + 5, width - 22, 18, {
+    size: 12,
+    color: C.white,
+    bold: true,
+  });
+}
+
+function bullets(slide, ctx, items, x, y, width, opts = {}) {
+  const gap = opts.gap || 44;
+  const color = opts.color || C.blue;
   items.forEach((item, i) => {
     const yy = y + i * gap;
-    ctx.addShape(slide, { x, y: yy + 7, width: 8, height: 8, fill: dot });
-    t(slide, ctx, item, x + 20, yy, width - 20, gap - 4, { size: opts.size || 19, color: opts.color || C.ink });
+    ctx.addShape(slide, { x, y: yy + 7, width: 8, height: 8, fill: color });
+    text(slide, ctx, item, x + 18, yy, width - 18, gap - 2, {
+      size: opts.size || 17,
+      color: opts.textColor || C.ink,
+      bold: opts.bold || false,
+    });
   });
 }
 
 function arrow(slide, ctx, x1, y1, x2, y2, color = C.muted) {
-  if (Math.abs(y2 - y1) < 4) {
+  if (Math.abs(y2 - y1) <= 4) {
     const x = Math.min(x1, x2);
     ctx.addShape(slide, { x, y: y1 - 1, width: Math.abs(x2 - x1), height: 2, fill: color });
     ctx.addShape(slide, { x: x2 - 8, y: y1 - 5, width: 10, height: 10, fill: color, geometry: "triangle" });
@@ -90,402 +108,624 @@ function arrow(slide, ctx, x1, y1, x2, y2, color = C.muted) {
   }
 }
 
-function stat(slide, ctx, value, label, x, y, color) {
-  t(slide, ctx, value, x, y, 170, 42, { size: 30, bold: true, color });
-  t(slide, ctx, label, x, y + 44, 180, 40, { size: 14, color: C.muted });
+function flow(slide, ctx, labels, x, y, width, colors = [C.blue, C.teal, C.gold, C.red]) {
+  const gap = 22;
+  const itemW = (width - gap * (labels.length - 1)) / labels.length;
+  labels.forEach((label, i) => {
+    const xx = x + i * (itemW + gap);
+    box(slide, ctx, xx, y, itemW, 74, { fill: C.white, line: colors[i % colors.length] });
+    text(slide, ctx, label, xx + 8, y + 16, itemW - 16, 42, {
+      size: 14,
+      bold: true,
+      color: colors[i % colors.length],
+      align: "center",
+    });
+    if (i < labels.length - 1) arrow(slide, ctx, xx + itemW, y + 37, xx + itemW + gap, y + 37, C.muted);
+  });
 }
 
-function sectionNumber(slide, ctx, n) {
-  t(slide, ctx, String(n).padStart(2, "0"), 1118, 56, 80, 40, { size: 30, bold: true, color: C.line, align: "right" });
+function codeBox(slide, ctx, lines, x, y, width, height, color = C.slate) {
+  box(slide, ctx, x, y, width, height, { fill: "#FAFAF7", line: color });
+  ctx.addShape(slide, { x, y, width: 8, height, fill: color });
+  text(slide, ctx, lines.join("\n"), x + 18, y + 14, width - 28, height - 22, {
+    size: 12.5,
+    color: C.ink,
+    face: font.mono,
+  });
+}
+
+function sourceTag(slide, ctx, path, x, y, width) {
+  text(slide, ctx, path, x, y, width, 20, { size: 10.5, color: C.muted, face: font.mono });
 }
 
 const slides = [
   {
-    title: "基于大模型的智能体生成工具的设计与实现",
-    subtitle: "本科毕业设计答辩 | 软件工程 | 徐昊 20222241361",
     kind: "cover",
+    title: "基于大模型的智能体生成工具的设计与实现",
+    subtitle: "代码链路讲解版答辩 PPT | 徐昊 20222241361",
   },
   {
-    title: "汇报主线",
-    subtitle: "按论文结构展开：背景、需求、设计、实现、测试、结论",
-    source: "依据论文目录与章节安排",
     kind: "agenda",
-    items: ["研究背景与目标", "需求分析与技术基础", "总体设计与数据库设计", "核心模块实现", "系统测试与总结"],
+    title: "本版汇报重点：从源码解释平台如何运行",
+    subtitle: "围绕四条代码主链路展开，不只做功能罗列",
+    source: "答辩重点来自论文第 5 章与 agentool 后端源码",
   },
   {
-    title: "研究背景：从模型调用走向智能体平台",
-    subtitle: "问题不只是“接入一个模型接口”，而是组织稳定的工程闭环",
-    source: "依据论文 1.1、1.2",
-    kind: "problem",
+    kind: "layers",
+    title: "工程主线：接口层、应用层、领域层、基础设施层分工",
+    subtitle: "后续四条链路都按这个调用方向讲解",
+    source: "源码包：interfaces / application / domain / infrastructure",
   },
   {
-    title: "研究目标与主要工作",
-    subtitle: "围绕智能体生成工具完成需求、设计、实现与测试",
-    source: "依据论文摘要、1.3",
-    kind: "goals",
+    kind: "loginFlow",
+    title: "登录链路：从账号密码到 JWT Token",
+    subtitle: "登录接口只负责接收请求，认证开关、密码校验、Token 生成分别下沉到服务层",
+    source: "LoginController.java / LoginAppService.java / UserDomainService.java / JwtUtils.java",
   },
   {
-    title: "需求分析：面向用户主链路与平台治理",
-    subtitle: "功能需求覆盖创建、运行、增强、管理；非功能需求覆盖安全与可扩展",
-    source: "依据论文第 3 章",
-    kind: "requirements",
+    kind: "jwtDetail",
+    title: "JWT 生成与校验：subject 保存 userId，过期时间 24 小时",
+    subtitle: "系统不在每次请求查登录态，而是通过签名 Token 恢复用户身份",
+    source: "JwtUtils.java",
   },
   {
-    title: "相关技术：围绕智能体运行闭环选型",
-    subtitle: "后端工程能力 + 大模型编排 + 向量检索 + 异步处理 + 前端交互",
-    source: "依据论文第 2 章",
-    kind: "stack",
+    kind: "authInterceptor",
+    title: "鉴权拦截器：请求进入业务前恢复 UserContext",
+    subtitle: "拦截器解析 Authorization: Bearer token，校验后写入 ThreadLocal，并在请求结束清理",
+    source: "UserAuthInterceptor.java / UserContext.java / WebMvcConfig.java",
   },
   {
-    title: "总体架构：DDD 分层组织复杂业务",
-    subtitle: "接口层接入请求，应用层编排用例，领域层承载规则，基础设施层连接外部能力",
-    source: "依据论文 4.2",
-    kind: "architecture",
+    kind: "dialogEntry",
+    title: "用户对话入口：Controller 不处理模型细节",
+    subtitle: "前端工作区发送消息后，后端进入统一 ConversationAppService.chat",
+    source: "PortalAgentSessionController.java / ConversationAppService.java",
   },
   {
-    title: "功能模块设计：智能体生命周期闭环",
-    subtitle: "从登录、配置、创建到对话、工具、知识库和后台治理",
-    source: "依据论文 4.3",
-    kind: "modules",
+    kind: "dialogEnv",
+    title: "对话环境装配：一次请求先拼出 ChatContext",
+    subtitle: "会话、Agent、工具、模型、服务商、上下文历史都会在调用模型前准备好",
+    source: "ConversationAppService.prepareEnvironmentWithModel",
   },
   {
-    title: "数据库设计：业务数据与向量检索共同支撑",
-    subtitle: "消息、上下文、工具、知识库和向量数据分别承担不同职责",
-    source: "依据论文 4.4",
-    kind: "data",
-  },
-  {
-    title: "对话主流程：环境装配、流式响应与状态回写",
-    subtitle: "用户请求不是直接发给模型，而是先完成会话、模型、上下文和增强能力装配",
-    source: "依据论文 5.2",
-    kind: "conversation",
-  },
-  {
-    title: "大模型调用：服务商、模型与用户凭据解耦",
-    subtitle: "运行时解析模型配置，避免平台绑定单一模型服务",
-    source: "依据论文 5.3",
-    kind: "model",
-  },
-  {
-    title: "MCP 工具接入：远程端点探测与直连调用",
-    subtitle: "工具能力通过远程 MCP SSE / HTTP API 接入，并纳入发布、审核、安装和调用流程",
-    source: "依据论文 5.4",
-    kind: "mcp",
-  },
-  {
-    title: "RAG 知识库：异步处理与混合检索",
-    subtitle: "上传、解析、切分、向量化、检索和引用返回构成知识增强闭环",
-    source: "依据论文 5.5、5.7",
-    kind: "rag",
-  },
-  {
-    title: "会话与上下文治理：控制多轮对话规模",
-    subtitle: "完整历史与运行时视图分离，必要时进行保留或摘要压缩",
-    source: "依据论文 5.6",
     kind: "context",
+    title: "上下文治理：消息历史不是无限拼接",
+    subtitle: "ContextEntity 维护 activeMessages；Token 策略决定保留、裁剪或摘要压缩",
+    source: "ConversationAppService.applyTokenOverflowStrategy",
   },
   {
-    title: "后台治理与运行支撑",
-    subtitle: "管理后台、异步任务和状态机保证平台能力可管理、可追踪",
-    source: "依据论文 5.7",
-    kind: "governance",
+    kind: "handler",
+    title: "对话模板方法：AbstractMessageHandler 串起整轮生成",
+    subtitle: "保存用户消息、构建内存、装配工具、流式输出、保存助手消息都在同一模板流程中完成",
+    source: "AbstractMessageHandler.chat / processChat",
   },
   {
-    title: "系统测试：黑盒场景 + 白盒路径",
-    subtitle: "验证核心功能闭环和关键后端分支处理是否符合预期",
-    source: "依据论文第 6 章",
-    kind: "testing",
+    kind: "stream",
+    title: "流式响应与持久化：边生成边发，结束后回写上下文",
+    subtitle: "SSE 负责前端增量展示；MessageDomainService 负责消息和上下文状态落库",
+    source: "SseMessageTransport.java / AbstractMessageHandler.processChat",
   },
   {
-    title: "结论与后续工作",
-    subtitle: "系统已形成较完整智能体平台闭环，后续继续完善测试、评估和监控",
-    source: "依据论文结论",
-    kind: "conclusion",
+    kind: "toolOverview",
+    title: "工具调用总览：AgentToolManager 把已安装工具交给 LangChain4j",
+    subtitle: "工具不是写死在 Prompt 中，而是被转成 ToolProvider 供模型按需调用",
+    source: "AgentMessageHandler.java / AgentToolManager.java",
   },
   {
-    title: "请各位老师批评指正",
-    subtitle: "Q&A",
-    kind: "thanks",
+    kind: "toolRuntime",
+    title: "工具运行时解析：serverName -> 用户安装记录 -> 运行配置 -> 凭据",
+    subtitle: "DirectToolRuntimeResolver 保证调用的工具属于当前用户并且有运行配置",
+    source: "DirectToolRuntimeResolver.java / DirectToolRuntime.java",
+  },
+  {
+    kind: "toolInvoke",
+    title: "远程工具调用：HTTP API 与 MCP SSE 两种执行路径",
+    subtitle: "HTTP 工具由 HttpApiToolExecutor 请求端点；MCP 工具创建远程 SSE Client",
+    source: "HttpApiToolExecutor.java / RemoteMcpToolProviderFactory.java / ToolAuthSupport.java",
+  },
+  {
+    kind: "ragIngest",
+    title: "RAG 入库链路：上传后异步 OCR/解析，再自动触发向量化",
+    subtitle: "文件处理不是前台同步完成，而是通过 RabbitMQ 和状态机推进",
+    source: "RagDocConsumer.java / RagDocStorageConsumer.java",
+  },
+  {
+    kind: "ragSplit",
+    title: "RAG 切分逻辑：Markdown 两阶段处理保留原文并生成向量片段",
+    subtitle: "第一阶段按结构保存原文 DocumentUnit，第二阶段翻译特殊节点、二次切分并发送向量化任务",
+    source: "MarkdownRagDocumentProcessing.java / DocumentVectorizationOrchestrator.java",
+  },
+  {
+    kind: "vector",
+    title: "向量化与元数据：向量内容和原文记录分离",
+    subtitle: "向量库存储 TextSegment 和 metadata，metadata 反向关联 fileId、datasetId、documentId",
+    source: "EmbeddingDomainService.syncStorage / buildMetadata",
+  },
+  {
+    kind: "ragSearch",
+    title: "RAG 检索：权限过滤后构建 HybridSearchConfig",
+    subtitle: "搜索前验证用户是否安装或创建知识库，再注入嵌入模型与聊天模型配置",
+    source: "RAGSearchAppService.ragSearch",
+  },
+  {
+    kind: "hybrid",
+    title: "混合检索：向量检索 + 关键词检索 + RRF 融合 + 重排序",
+    subtitle: "向量和关键词并行执行，RRF 解决不同检索结果的排序融合问题",
+    source: "HybridSearchDomainService.hybridSearch / fusionWithRRF",
+  },
+  {
+    kind: "ragTool",
+    title: "RAG 如何进入对话：作为内置工具 knowledge_search",
+    subtitle: "Agent 绑定知识库后，RAG 工具会被注册进 AiServices，模型需要资料时主动调用",
+    source: "RagBuiltInToolProvider.java / AbstractMessageHandler.buildStreamingAgent",
+  },
+  {
+    kind: "close",
+    title: "总结：系统价值体现在四条可运行的工程闭环",
+    subtitle: "登录身份闭环、对话状态闭环、RAG 知识闭环、工具调用闭环",
+    source: "结论依据：论文第 5、6 章和当前 agentool 源码",
   },
 ];
 
-async function renderCover(slide, ctx, s) {
+async function cover(slide, ctx, s) {
   ctx.addShape(slide, { x: 0, y: 0, width: W, height: H, fill: C.ink });
-  ctx.addShape(slide, { x: 0, y: 0, width: W * 0.58, height: H, fill: "#203244" });
-  ctx.addShape(slide, { x: 732, y: 0, width: 548, height: H, fill: C.paper });
-  t(slide, ctx, s.title, 78, 118, 610, 122, { size: 38, bold: true, color: C.white, face: font.title });
-  t(slide, ctx, "Design and Implementation of An Agent Generation Tool Based on Large Language Models", 82, 258, 560, 48, { size: 17, color: "#D9E2EA" });
-  chip(slide, ctx, "本科毕业设计答辩", 82, 342, 164, C.gold);
-  t(slide, ctx, "软件学院 · 软件工程\n学生：徐昊   学号：20222241361\n指导教师：梁文新", 82, 438, 470, 96, { size: 20, color: C.white });
-  const rail = [
-    ["智能体配置", C.blue],
-    ["MCP 工具接入", C.teal],
-    ["RAG 知识增强", C.green],
-    ["上下文治理", C.red],
+  ctx.addShape(slide, { x: 0, y: 0, width: 720, height: H, fill: "#203244" });
+  ctx.addShape(slide, { x: 720, y: 0, width: 560, height: H, fill: C.paper });
+  text(slide, ctx, s.title, 78, 116, 590, 120, { size: 38, bold: true, color: C.white, face: font.title });
+  text(slide, ctx, s.subtitle, 82, 262, 560, 36, { size: 18, color: "#D9E2EA" });
+  chip(slide, ctx, "本科毕业设计答辩", 82, 340, 164, C.gold);
+  text(slide, ctx, "本版重点：核心代码逻辑讲解\n登录 JWT | 用户对话 | RAG 切分检索 | 工具调用", 82, 430, 520, 80, {
+    size: 22,
+    color: C.white,
+    bold: true,
+  });
+  const items = [
+    ["LoginAppService", C.blue],
+    ["ConversationAppService", C.teal],
+    ["HybridSearchDomainService", C.green],
+    ["AgentToolManager", C.red],
   ];
-  rail.forEach((r, i) => {
-    box(slide, ctx, 790, 142 + i * 102, 344, 70, { fill: C.white, line: C.line });
-    ctx.addShape(slide, { x: 790, y: 142 + i * 102, width: 9, height: 70, fill: r[1] });
-    t(slide, ctx, r[0], 820, 162 + i * 102, 260, 28, { size: 22, bold: true });
+  items.forEach((item, i) => {
+    box(slide, ctx, 790, 132 + i * 104, 350, 72, { fill: C.white, line: item[1] });
+    ctx.addShape(slide, { x: 790, y: 132 + i * 104, width: 9, height: 72, fill: item[1] });
+    text(slide, ctx, item[0], 820, 154 + i * 104, 280, 26, { size: 20, bold: true, color: item[1] });
   });
 }
 
-async function renderAgenda(slide, ctx, s) {
+async function agenda(slide, ctx, s) {
   title(slide, ctx, s.title, s.subtitle, s.source);
-  const colors = [C.blue, C.teal, C.gold, C.red, C.green];
-  s.items.forEach((item, i) => {
-    const y = 190 + i * 78;
-    t(slide, ctx, `0${i + 1}`, 98, y - 4, 58, 38, { size: 27, bold: true, color: colors[i] });
-    ctx.addShape(slide, { x: 170, y: y + 15, width: 845, height: 2, fill: colors[i] });
-    t(slide, ctx, item, 1008, y - 2, 184, 44, { size: 17, bold: true, align: "right" });
+  const items = [
+    ["01", "登录 JWT", "认证开关、密码校验、Token 签发、拦截器恢复用户上下文", C.blue],
+    ["02", "用户对话", "会话校验、Agent/模型/工具装配、上下文策略、SSE 流式响应", C.teal],
+    ["03", "RAG", "文件异步解析、层次化切分、向量化、混合检索和内置工具", C.green],
+    ["04", "工具调用", "用户安装工具、运行配置解析、HTTP API 与远程 MCP SSE 执行", C.red],
+  ];
+  items.forEach((item, i) => {
+    const y = 185 + i * 95;
+    text(slide, ctx, item[0], 92, y + 8, 60, 34, { size: 26, bold: true, color: item[3] });
+    ctx.addShape(slide, { x: 168, y: y + 25, width: 230, height: 2, fill: item[3] });
+    text(slide, ctx, item[1], 430, y + 2, 170, 32, { size: 22, bold: true, color: item[3] });
+    text(slide, ctx, item[2], 625, y - 2, 500, 50, { size: 16.5 });
   });
 }
 
-async function renderProblem(slide, ctx, s) {
+async function layers(slide, ctx, s) {
   title(slide, ctx, s.title, s.subtitle, s.source);
-  const left = ["单轮问答难以覆盖持续任务", "模型参数知识存在时效与可靠性边界", "缺少工具、知识库、权限与会话协同", "多用户场景需要后台治理与状态追踪"];
-  const right = ["自然语言作为统一交互入口", "外部工具弥补计算与业务动作不足", "私有知识库提升资料型回答依据", "上下文治理保持多轮对话连续性"];
-  chip(slide, ctx, "论文指出的现实问题", 92, 178, 180, C.red);
-  chip(slide, ctx, "智能体平台的设计方向", 702, 178, 198, C.teal);
-  bulletList(slide, ctx, left, 98, 244, 475, { dot: C.red, size: 20, gap: 58 });
-  bulletList(slide, ctx, right, 708, 244, 450, { dot: C.teal, size: 20, gap: 58 });
-  t(slide, ctx, "研究重点：把大模型能力稳定组织进业务平台，而不是只完成一次模型接口调用。", 230, 582, 820, 58, { size: 21, bold: true, align: "center", color: C.blue });
+  const rows = [
+    ["interfaces", "Controller：接收 HTTP 请求，读取 UserContext，返回 Result/SseEmitter", C.blue],
+    ["application", "AppService：编排一次业务用例，例如登录、对话、RAG 搜索", C.teal],
+    ["domain", "DomainService/Entity：表达业务规则、状态流转和数据合法性", C.red],
+    ["infrastructure", "外部能力：JWT、LLM、MQ、对象存储、向量库、MCP/HTTP 工具", C.gold],
+  ];
+  rows.forEach((r, i) => {
+    const y = 184 + i * 88;
+    box(slide, ctx, 110, y, 920, 58, { fill: C.white, line: r[2] });
+    ctx.addShape(slide, { x: 110, y, width: 10, height: 58, fill: r[2] });
+    text(slide, ctx, r[0], 144, y + 16, 180, 26, { size: 21, bold: true, color: r[2], face: font.mono });
+    text(slide, ctx, r[1], 360, y + 17, 600, 24, { size: 17 });
+    if (i < rows.length - 1) arrow(slide, ctx, 570, y + 58, 570, y + 88, C.muted);
+  });
+  text(slide, ctx, "答辩时的讲法：每个功能都说清楚“入口在哪、谁编排、规则在哪、外部依赖怎么接”。", 168, 586, 820, 30, {
+    size: 19,
+    bold: true,
+    align: "center",
+  });
 }
 
-async function renderGoals(slide, ctx, s) {
+async function loginFlow(slide, ctx, s) {
   title(slide, ctx, s.title, s.subtitle, s.source);
+  flow(slide, ctx, ["POST /login", "检查 NORMAL_LOGIN", "查询用户", "BCrypt 校验", "生成 JWT", "返回 token"], 95, 206, 1040);
+  codeBox(slide, ctx, [
+    "LoginController.login()",
+    "  token = loginAppService.login(request)",
+    "  return { token }",
+    "",
+    "LoginAppService.login()",
+    "  isFeatureEnabled(NORMAL_LOGIN)",
+    "  userDomainService.login(account, password)",
+    "  JwtUtils.generateToken(userId)",
+  ], 145, 370, 470, 178, C.blue);
+  codeBox(slide, ctx, [
+    "UserDomainService.login()",
+    "  where email = account or phone = account",
+    "  PasswordUtils.matches(raw, encoded)",
+    "  fail -> BusinessException(\"账号密码错误\")",
+  ], 675, 388, 430, 126, C.teal);
+}
+
+async function jwtDetail(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  codeBox(slide, ctx, [
+    "generateToken(userId)",
+    "  subject(userId)",
+    "  issuedAt(now)",
+    "  expiration(now + 24h)",
+    "  signWith(HMAC key)",
+    "  compact()",
+  ], 105, 200, 360, 184, C.blue);
+  codeBox(slide, ctx, [
+    "validateToken(token)",
+    "  parseSignedClaims(token)",
+    "  verifyWith(signingKey)",
+    "  expiration.before(now) -> false",
+    "  JwtException -> false",
+  ], 500, 200, 360, 184, C.red);
+  codeBox(slide, ctx, [
+    "getUserIdFromToken(token)",
+    "  claims = parseSignedClaims(token)",
+    "  return claims.getSubject()",
+  ], 895, 200, 280, 184, C.teal);
+  bullets(slide, ctx, [
+    "Token 中不保存完整用户信息，只把 userId 放到 subject，降低载荷复杂度。",
+    "过期时间在 JwtUtils 内统一控制，当前实现为 24 小时。",
+    "校验失败不会进入业务 Controller，而是在拦截器层返回 401。"
+  ], 150, 470, 920, { color: C.gold, size: 18, gap: 48 });
+}
+
+async function authInterceptor(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  flow(slide, ctx, ["请求进入", "读取 Authorization", "校验 Bearer", "validateToken", "解析 userId", "写 UserContext", "after 清理"], 76, 206, 1128, [C.blue, C.teal, C.gold, C.red]);
+  codeBox(slide, ctx, [
+    "preHandle(request)",
+    "  authHeader = request.getHeader(AUTHORIZATION)",
+    "  token = authHeader.substring(\"Bearer \".length())",
+    "  JwtUtils.validateToken(token)",
+    "  userId = JwtUtils.getUserIdFromToken(token)",
+    "  UserContext.setCurrentUserId(userId)",
+    "",
+    "afterCompletion()",
+    "  UserContext.clear()",
+  ], 170, 360, 500, 210, C.teal);
+  bullets(slide, ctx, [
+    "ThreadLocal 让后续 Controller 可以直接 UserContext.getCurrentUserId()。",
+    "WebMvcConfig 排除 /login、/register、/health 等公开接口。",
+    "请求结束必须 clear，避免线程复用导致用户身份串扰。"
+  ], 735, 380, 390, { color: C.red, size: 17, gap: 55 });
+}
+
+async function dialogEntry(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  codeBox(slide, ctx, [
+    "PortalAgentSessionController.chat()",
+    "  userId = UserContext.getCurrentUserId()",
+    "  return conversationAppService.chat(request, userId)",
+  ], 110, 205, 430, 118, C.blue);
+  flow(slide, ctx, ["Controller", "ConversationAppService", "MessageTransport", "MessageHandler", "SseEmitter"], 140, 390, 980);
+  bullets(slide, ctx, [
+    "Controller 不读取 Agent、模型、工具等复杂对象，只传递请求和当前用户。",
+    "ConversationAppService 是对话用例的编排入口。",
+    "最终返回 SseEmitter，前端可以持续接收增量回复。"
+  ], 635, 198, 450, { color: C.teal, size: 16.5, gap: 68 });
+}
+
+async function dialogEnv(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  const items = [
+    ["会话", "sessionDomainService.getSession(sessionId, userId)", C.blue],
+    ["Agent", "getAgentWithValidation(agentId, userId)", C.teal],
+    ["工具", "getMcpServerNames(agent.toolIds, userId)", C.red],
+    ["模型", "getModelForChat(llmModelConfig, modelId, userId)", C.gold],
+    ["服务商", "selectBestProvider(model, userId, sessionId, fallbackChain)", C.green],
+    ["上下文", "setupContextAndHistory(chatContext, request)", C.purple],
+  ];
+  items.forEach((item, i) => {
+    const x = 92 + (i % 2) * 550;
+    const y = 178 + Math.floor(i / 2) * 122;
+    box(slide, ctx, x, y, 470, 78, { fill: C.white, line: item[2] });
+    text(slide, ctx, item[0], x + 22, y + 15, 90, 24, { size: 20, bold: true, color: item[2] });
+    text(slide, ctx, item[1], x + 126, y + 18, 315, 40, { size: 12.5, face: font.mono });
+  });
+  text(slide, ctx, "ChatContext 是这轮对话的“运行时上下文对象”，后续 MessageHandler 不再反复查这些配置。", 190, 580, 850, 30, {
+    size: 18,
+    bold: true,
+    align: "center",
+  });
+}
+
+async function context(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  box(slide, ctx, 100, 190, 330, 260, { fill: C.white, line: C.blue });
+  box(slide, ctx, 475, 190, 330, 260, { fill: C.white, line: C.teal });
+  box(slide, ctx, 850, 190, 330, 260, { fill: C.white, line: C.red });
+  text(slide, ctx, "MessageEntity", 128, 224, 260, 30, { size: 22, bold: true, color: C.blue });
+  bullets(slide, ctx, ["完整历史消息", "用户/助手角色", "tokenCount 与 bodyTokenCount", "文件 URL"], 130, 285, 240, { color: C.blue, size: 15, gap: 34 });
+  text(slide, ctx, "ContextEntity", 503, 224, 260, 30, { size: 22, bold: true, color: C.teal });
+  bullets(slide, ctx, ["activeMessages", "summary", "当前运行时视图", "避免每次扫描全部历史"], 505, 285, 240, { color: C.teal, size: 15, gap: 34 });
+  text(slide, ctx, "TokenDomainService", 878, 224, 260, 30, { size: 22, bold: true, color: C.red });
+  bullets(slide, ctx, ["NONE", "SLIDING_WINDOW", "SUMMARIZE", "处理后回写上下文"], 880, 285, 240, { color: C.red, size: 15, gap: 34 });
+  arrow(slide, ctx, 430, 320, 475, 320, C.muted);
+  arrow(slide, ctx, 805, 320, 850, 320, C.muted);
+  codeBox(slide, ctx, [
+    "TokenProcessResult result = tokenDomainService.processMessages(...)",
+    "if (result.isProcessed()) {",
+    "  contextEntity.setActiveMessages(retainedMessageIds)",
+    "  contextEntity.setSummary(summary)",
+    "}",
+  ], 210, 500, 820, 102, C.gold);
+}
+
+async function handler(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  flow(slide, ctx, ["createConnection", "onChatStart", "create messages", "initMemory", "buildHistory", "provideTools", "stream/sync"], 66, 204, 1148);
+  codeBox(slide, ctx, [
+    "AbstractMessageHandler.chat()",
+    "  connection = transport.createConnection(...)",
+    "  userEntity = createUserMessage(context)",
+    "  llmEntity = createLlmMessage(context)",
+    "  memory = initMemory()",
+    "  buildHistoryMessage(context, memory)",
+    "  toolProvider = provideTools(context)",
+    "  processStreamingChat(...) or processSyncChat(...)",
+  ], 170, 355, 520, 210, C.blue);
+  bullets(slide, ctx, [
+    "这是典型模板方法：公共流程固定，具体工具由子类覆盖 provideTools。",
+    "AgentMessageHandler 会提供工具；普通 ChatMessageHandler 不额外覆盖。",
+    "系统提示词、摘要、历史消息在进入模型前写入 MessageWindowChatMemory。"
+  ], 740, 370, 400, { color: C.teal, size: 16.5, gap: 58 });
+}
+
+async function stream(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  flow(slide, ctx, ["agent.chat()", "onPartialResponse", "SSE send", "onToolExecuted", "onCompleteResponse", "save context"], 86, 205, 1100, [C.blue, C.teal, C.green, C.gold, C.red]);
+  codeBox(slide, ctx, [
+    "tokenStream.onPartialResponse(reply -> {",
+    "  messageBuilder.append(reply)",
+    "  transport.sendMessage(connection, AgentChatResponse.build(reply))",
+    "})",
+    "",
+    "tokenStream.onCompleteResponse(resp -> {",
+    "  setMessageTokenCount(...)",
+    "  messageDomainService.saveMessageAndUpdateContext(llmEntity, context)",
+    "  transport.sendEndMessage(connection, ...)",
+    "})",
+  ], 122, 360, 620, 220, C.teal);
+  bullets(slide, ctx, [
+    "用户消息会先保存并更新 activeMessages。",
+    "工具调用发生时会额外保存 TOOL_CALL 类型消息。",
+    "模型调用结果会上报给高可用服务，用于后续服务商选择。"
+  ], 800, 388, 335, { color: C.red, size: 16.5, gap: 58 });
+}
+
+async function toolOverview(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  flow(slide, ctx, ["Agent 工具 ID", "用户安装工具", "mcpServerName", "DirectToolRuntime", "ToolProvider", "AiServices"], 88, 208, 1090);
+  codeBox(slide, ctx, [
+    "AgentMessageHandler.provideTools(context)",
+    "  names = agentToolManager.getAvailableTools(context)",
+    "  return agentToolManager.createToolProvider(",
+    "    names, presetParams, userId",
+    "  )",
+  ], 160, 380, 450, 150, C.red);
+  bullets(slide, ctx, [
+    "工具不会直接拼到 Prompt 文本里，而是注册为 LangChain4j ToolProvider。",
+    "模型在推理过程中根据 ToolSpecification 决定是否调用。",
+    "预设参数通过 presetToolParameters 注入，减少用户重复填写。"
+  ], 680, 375, 420, { color: C.teal, size: 17, gap: 55 });
+}
+
+async function toolRuntime(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  codeBox(slide, ctx, [
+    "resolve(serverName, userId)",
+    "  userTool = getUserInstalledToolByServerName(serverName, userId)",
+    "  runtimeConfig = findByToolIdAndVersion(toolId, version)",
+    "  credential = findByUserToolId(userTool.id, userId)",
+    "  return new DirectToolRuntime(serverName, userTool, config, credential)",
+  ], 120, 196, 680, 156, C.blue);
   const cols = [
-    ["需求分析", "明确普通用户与管理员需求，覆盖功能与非功能约束", C.blue],
-    ["总体设计", "构建分层架构、功能模块、数据库与核心流程", C.teal],
-    ["核心实现", "实现认证、对话、模型、MCP、RAG、上下文等模块", C.red],
-    ["系统测试", "通过黑盒与白盒测试验证主要功能和关键分支", C.gold],
+    ["UserToolEntity", "用户是否已安装、当前版本、服务名", C.teal],
+    ["ToolRuntimeConfigEntity", "运行类型、端点、方法、schema、鉴权方式", C.red],
+    ["UserToolCredentialEntity", "用户自己的 token、apiKey、username/password", C.gold],
   ];
   cols.forEach((c, i) => {
-    const x = 86 + i * 288;
-    box(slide, ctx, x, 205, 248, 260, { fill: C.white, line: c[2] });
-    t(slide, ctx, c[0], x + 24, 235, 190, 34, { size: 24, bold: true, color: c[2] });
-    t(slide, ctx, c[1], x + 24, 295, 196, 94, { size: 18, color: C.ink });
-    t(slide, ctx, `0${i + 1}`, x + 164, 394, 54, 40, { size: 28, bold: true, color: C.line, align: "right" });
+    const x = 115 + i * 370;
+    box(slide, ctx, x, 416, 315, 122, { fill: C.white, line: c[2] });
+    text(slide, ctx, c[0], x + 18, 444, 260, 22, { size: 17, bold: true, color: c[2], face: font.mono });
+    text(slide, ctx, c[1], x + 18, 474, 260, 42, { size: 13.5 });
   });
-  t(slide, ctx, "目标产物：一个支持智能体创建、运行、工具增强、知识增强和后台治理的完整工程系统。", 118, 552, 1010, 40, { size: 22, bold: true, align: "center" });
-}
-
-async function renderRequirements(slide, ctx, s) {
-  title(slide, ctx, s.title, s.subtitle, s.source);
-  const groups = [
-    ["普通用户主链路", ["登录注册与账户维护", "模型服务商与 API Key 配置", "Agent 创建、版本维护与工作区使用", "持续会话、历史消息和流式回复"], C.blue],
-    ["增强能力需求", ["远程 MCP / HTTP 工具接入", "知识库上传、处理、检索和问答", "会话上下文保留、裁剪与摘要", "异常提示与权限边界"], C.teal],
-    ["平台治理需求", ["用户、Agent、工具、RAG 管理", "发布审核与认证策略配置", "可靠性、安全性、可扩展性", "性能与可用性保障"], C.gold],
-  ];
-  groups.forEach((g, i) => {
-    const x = 75 + i * 385;
-    box(slide, ctx, x, 184, 335, 395, { fill: C.white, line: g[2] });
-    ctx.addShape(slide, { x, y: 184, width: 335, height: 10, fill: g[2] });
-    t(slide, ctx, g[0], x + 22, 220, 260, 34, { size: 22, bold: true, color: g[2] });
-    bulletList(slide, ctx, g[1], x + 28, 288, 280, { dot: g[2], size: 17, gap: 56 });
+  text(slide, ctx, "这一步保证：模型只能调用当前用户已安装、且平台保存了运行配置的工具。", 230, 584, 820, 28, {
+    size: 18,
+    bold: true,
+    align: "center",
   });
 }
 
-async function renderStack(slide, ctx, s) {
+async function toolInvoke(slide, ctx, s) {
   title(slide, ctx, s.title, s.subtitle, s.source);
-  const rows = [
-    ["后端框架", "Java 17 / Spring Boot 3 / DDD 分层", C.blue],
-    ["数据与检索", "MyBatis-Plus / PostgreSQL / pgvector", C.teal],
-    ["智能体能力", "LangChain4j / 流式响应 / MCP / RAG", C.red],
-    ["运行支撑", "RabbitMQ / 对象存储 / JWT / 邮件验证码", C.gold],
-    ["前端交互", "Next.js / React / TypeScript / Tailwind CSS", C.green],
-  ];
-  rows.forEach((r, i) => {
-    const y = 176 + i * 78;
-    ctx.addShape(slide, { x: 110, y, width: 9, height: 52, fill: r[2] });
-    t(slide, ctx, r[0], 138, y + 4, 150, 28, { size: 20, bold: true, color: r[2] });
-    t(slide, ctx, r[1], 330, y + 3, 700, 30, { size: 21 });
-    ctx.addShape(slide, { x: 110, y: y + 64, width: 960, height: 1, fill: C.line });
-  });
-  t(slide, ctx, "选型逻辑：每项技术都对应智能体平台的运行环节，而不是简单堆叠。", 190, 614, 840, 30, { size: 19, color: C.muted, align: "center" });
+  box(slide, ctx, 92, 190, 500, 330, { fill: C.white, line: C.blue });
+  box(slide, ctx, 688, 190, 500, 330, { fill: C.white, line: C.red });
+  text(slide, ctx, "HTTP_API", 130, 220, 180, 28, { size: 23, bold: true, color: C.blue, face: font.mono });
+  bullets(slide, ctx, ["ToolSpecification 根据 ToolDefinition 生成", "HttpApiToolExecutor 解析 request.arguments()", "GET 参数拼 query；POST/PUT 写 JSON body", "ToolAuthSupport 写 Header 或 Query 鉴权", "响应过长截断，HTTP 4xx/5xx 返回状态和 body"], 130, 270, 380, { color: C.blue, size: 15.5, gap: 42 });
+  text(slide, ctx, "REMOTE_MCP_SSE", 725, 220, 240, 28, { size: 23, bold: true, color: C.red, face: font.mono });
+  bullets(slide, ctx, ["RemoteMcpToolProviderFactory 创建 DefaultMcpClient", "HttpMcpTransport 使用 sseUrl 建立远程连接", "当前 MCP SSE 只支持 query 参数鉴权", "McpToolProvider.provideTools 拉取远端工具列表", "执行异常被包装为可读失败消息返回给模型"], 725, 270, 390, { color: C.red, size: 15.5, gap: 42 });
 }
 
-async function renderArchitecture(slide, ctx, s) {
+async function ragIngest(slide, ctx, s) {
   title(slide, ctx, s.title, s.subtitle, s.source);
-  const layers = [
-    ["接口层", "Portal / Admin / External API", C.blue],
-    ["应用服务层", "业务用例编排：认证、会话、Agent、RAG、工具", C.teal],
-    ["领域层", "实体、领域服务、状态与核心规则", C.red],
-    ["基础设施层", "数据库、MQ、对象存储、模型、邮件、远程工具", C.gold],
-  ];
-  layers.forEach((l, i) => {
-    const y = 178 + i * 94;
-    box(slide, ctx, 128, y, 880, 62, { fill: C.white, line: l[2] });
-    ctx.addShape(slide, { x: 128, y, width: 12, height: 62, fill: l[2] });
-    t(slide, ctx, l[0], 162, y + 17, 130, 26, { size: 21, bold: true, color: l[2] });
-    t(slide, ctx, l[1], 330, y + 17, 610, 26, { size: 19 });
-    if (i < layers.length - 1) arrow(slide, ctx, 568, y + 62, 568, y + 92, C.muted);
-  });
-  t(slide, ctx, "调用方向", 1038, 258, 80, 24, { size: 15, color: C.muted });
-  arrow(slide, ctx, 1080, 292, 1080, 486, C.muted);
+  flow(slide, ctx, ["上传文件", "RagDocMessage", "RabbitMQ", "选择策略", "保存 DocumentUnit", "自动向量化"], 82, 205, 1110, [C.green, C.blue, C.gold, C.red]);
+  codeBox(slide, ctx, [
+    "RagDocConsumer.receiveMessage()",
+    "  startFileOcrProcessing(fileId)",
+    "  fileExt = getFileExtension(fileId)",
+    "  strategy = documentProcessingFactory.getDocumentStrategyHandler(fileExt)",
+    "  strategy.handle(docMessage, fileExt)",
+    "  completeFileOcrProcessing(fileId)",
+    "  autoStartVectorization(fileId, fileEntity)",
+  ], 140, 355, 575, 198, C.green);
+  bullets(slide, ctx, [
+    "文件上传成功不代表已经可检索，后台状态机会继续处理。",
+    "RabbitMQ 解耦前台请求和耗时文档解析。",
+    "失败时会更新文件处理状态，便于前端提示和后续重试。"
+  ], 770, 370, 365, { color: C.red, size: 17, gap: 58 });
 }
 
-async function renderModules(slide, ctx, s) {
+async function ragSplit(slide, ctx, s) {
   title(slide, ctx, s.title, s.subtitle, s.source);
-  const modules = [
-    ["用户认证", C.blue], ["Agent 管理", C.teal], ["工作区会话", C.red], ["模型服务商", C.gold],
-    ["工具市场", C.green], ["RAG 知识库", C.blue], ["API Key", C.teal], ["管理后台", C.red],
-  ];
-  modules.forEach((m, i) => {
-    const x = 100 + (i % 4) * 270;
-    const y = 190 + Math.floor(i / 4) * 150;
-    box(slide, ctx, x, y, 222, 86, { fill: C.white, line: m[1] });
-    ctx.addShape(slide, { x, y, width: 222, height: 8, fill: m[1] });
-    t(slide, ctx, m[0], x + 22, y + 30, 160, 30, { size: 22, bold: true, color: m[1] });
-  });
-  t(slide, ctx, "用户链路：登录 -> 配置模型 -> 创建 Agent -> 绑定工具/知识库 -> 工作区持续对话", 150, 528, 930, 34, { size: 22, bold: true, align: "center", color: C.ink });
-  t(slide, ctx, "管理员链路：用户、Agent、工具、RAG、服务商、认证配置治理", 260, 584, 710, 30, { size: 18, align: "center", color: C.muted });
-}
-
-async function renderData(slide, ctx, s) {
-  title(slide, ctx, s.title, s.subtitle, s.source);
-  const nodes = [
-    ["User", 90, 205, C.blue], ["Agent / Version", 315, 205, C.teal], ["Session / Message", 580, 205, C.red], ["Context", 860, 205, C.gold],
-    ["Provider / Model", 190, 420, C.blue], ["Tool / Version", 445, 420, C.teal], ["RAG / File / Unit", 700, 420, C.green], ["Vector Store", 975, 420, C.red],
-  ];
-  nodes.forEach((n) => {
-    box(slide, ctx, n[1], n[2], 178, 72, { fill: C.white, line: n[3] });
-    t(slide, ctx, n[0], n[1] + 12, n[2] + 15, 154, 44, { size: 16, bold: true, color: n[3], align: "center" });
-  });
-  arrow(slide, ctx, 268, 241, 315, 241, C.muted);
-  arrow(slide, ctx, 493, 241, 580, 241, C.muted);
-  arrow(slide, ctx, 758, 241, 860, 241, C.muted);
-  arrow(slide, ctx, 878, 456, 975, 456, C.muted);
-  t(slide, ctx, "设计重点：完整历史、运行时上下文、工具配置、知识库片段与向量数据分表承担职责。", 188, 596, 850, 32, { size: 19, bold: true, align: "center" });
-}
-
-async function renderFlow(slide, ctx, s, labels, colors, note) {
-  title(slide, ctx, s.title, s.subtitle, s.source);
-  labels.forEach((label, i) => {
-    const x = 86 + i * 175;
-    box(slide, ctx, x, 278, 138, 78, { fill: C.white, line: colors[i % colors.length] });
-    t(slide, ctx, label, x + 10, 299, 118, 34, { size: 16, bold: true, color: colors[i % colors.length], align: "center" });
-    if (i < labels.length - 1) arrow(slide, ctx, x + 138, 317, x + 174, 317, C.muted);
-  });
-  t(slide, ctx, note, 146, 495, 970, 62, { size: 21, bold: true, align: "center" });
-}
-
-async function renderConversation(slide, ctx, s) {
-  await renderFlow(slide, ctx, s, ["用户消息", "会话校验", "模型配置", "上下文恢复", "增强装配", "流式生成", "状态回写"], [C.blue, C.teal, C.red], "对话主链路同时处理模型调用、消息持久化、流式传输和上下文维护。");
-}
-
-async function renderModel(slide, ctx, s) {
-  title(slide, ctx, s.title, s.subtitle, s.source);
-  const cols = [["服务商配置", "平台维护服务商、端点和模型信息", C.blue], ["用户凭据", "用户维护自己的 API Key 和偏好配置", C.teal], ["运行解析", "会话运行时组合模型参数并发起调用", C.red]];
-  cols.forEach((c, i) => {
-    const x = 126 + i * 345;
-    box(slide, ctx, x, 222, 275, 210, { fill: C.white, line: c[2] });
-    t(slide, ctx, c[0], x + 26, 250, 210, 32, { size: 23, bold: true, color: c[2] });
-    t(slide, ctx, c[1], x + 26, 315, 216, 62, { size: 18 });
-    if (i < 2) arrow(slide, ctx, x + 275, 326, x + 344, 326, C.muted);
-  });
-  t(slide, ctx, "设计收益：降低对单一模型服务的绑定，便于后续扩展服务商和模型参数。", 226, 544, 820, 34, { size: 20, bold: true, align: "center" });
-}
-
-async function renderMcp(slide, ctx, s) {
-  await renderFlow(slide, ctx, s, ["提交配置", "端点探测", "能力解析", "审核发布", "安装绑定", "对话调用"], [C.teal, C.gold, C.red], "工具调用失败时返回清晰错误提示，并保持整轮会话连续性。");
-}
-
-async function renderRag(slide, ctx, s) {
-  await renderFlow(slide, ctx, s, ["文件上传", "异步解析", "文档切分", "向量写入", "混合检索", "引用回答"], [C.green, C.blue, C.gold], "RAG 链路通过 RabbitMQ 异步处理文件，并用 pgvector 支撑知识片段检索。");
-}
-
-async function renderContext(slide, ctx, s) {
-  title(slide, ctx, s.title, s.subtitle, s.source);
-  box(slide, ctx, 108, 210, 424, 260, { fill: C.white, line: C.blue });
-  box(slide, ctx, 748, 210, 424, 260, { fill: C.white, line: C.red });
-  t(slide, ctx, "消息表", 150, 248, 160, 34, { size: 25, bold: true, color: C.blue });
-  t(slide, ctx, "保存完整历史记录，支持刷新后恢复与审计追踪。", 150, 314, 320, 70, { size: 19 });
-  t(slide, ctx, "上下文表", 790, 248, 180, 34, { size: 25, bold: true, color: C.red });
-  t(slide, ctx, "维护当前参与模型输入的有效消息或摘要视图。", 790, 314, 330, 70, { size: 19 });
-  arrow(slide, ctx, 532, 340, 748, 340, C.muted);
-  t(slide, ctx, "Token 过长时：保留近期消息或将早期内容压缩为摘要。", 288, 552, 700, 32, { size: 21, bold: true, align: "center" });
-}
-
-async function renderGovernance(slide, ctx, s) {
-  title(slide, ctx, s.title, s.subtitle, s.source);
-  const groups = [
-    ["管理后台", ["用户", "Agent", "工具", "RAG", "服务商", "认证配置"], C.blue],
-    ["运行支撑", ["RabbitMQ", "文件状态机", "对象存储", "异常提示", "异步向量化"], C.teal],
-  ];
-  groups.forEach((g, i) => {
-    const x = 118 + i * 560;
-    box(slide, ctx, x, 205, 485, 285, { fill: C.white, line: g[2] });
-    t(slide, ctx, g[0], x + 28, 238, 220, 34, { size: 25, bold: true, color: g[2] });
-    g[1].forEach((item, idx) => {
-      chip(slide, ctx, item, x + 30 + (idx % 3) * 140, 310 + Math.floor(idx / 3) * 60, 110, g[2]);
-    });
-  });
-  t(slide, ctx, "重点不是消除外部服务不稳定性，而是做到状态可追踪、失败可反馈、能力可治理。", 196, 578, 880, 32, { size: 20, bold: true, align: "center" });
-}
-
-async function renderTesting(slide, ctx, s) {
-  title(slide, ctx, s.title, s.subtitle, s.source);
-  stat(slide, ctx, "18", "黑盒测试用例：认证、对话、RAG、MCP", 120, 202, C.blue);
-  stat(slide, ctx, "5", "白盒路径：登录与对话主流程分支", 380, 202, C.teal);
-  stat(slide, ctx, "通过", "主要功能结果与预期一致", 640, 202, C.green);
-  box(slide, ctx, 118, 350, 1000, 160, { fill: C.white, line: C.line });
-  const rows = [
-    ["认证", "注册、重复注册、验证码、登录、重置密码"],
-    ["智能对话", "创建 Agent、加入工作区、流式回复、历史恢复、中断生成"],
-    ["RAG / MCP", "知识库问答、无权限访问、工具探测、工具增强对话、异常提示"],
-  ];
-  rows.forEach((r, i) => {
-    const y = 378 + i * 42;
-    t(slide, ctx, r[0], 150, y, 120, 24, { size: 18, bold: true, color: [C.blue, C.teal, C.red][i] });
-    t(slide, ctx, r[1], 310, y, 720, 24, { size: 17 });
+  flow(slide, ctx, ["AST 解析", "文档树", "层次化分段", "原文入库", "特殊节点翻译", "二次切分", "发送向量任务"], 58, 200, 1160, [C.green, C.teal, C.gold, C.red]);
+  codeBox(slide, ctx, [
+    "MarkdownRagDocumentProcessing.insertData()",
+    "  save raw segment -> DocumentUnitEntity",
+    "  isOcr = true; isVector = false",
+    "  vectorSegmentProcessor.processDocumentUnits(savedUnits, context)",
+    "",
+    "DocumentVectorizationOrchestrator.processSingleUnit()",
+    "  translateSpecialNodes(originalContent)",
+    "  splitter.splitIfNeeded(translatedContent, titleContext)",
+    "  triggerVectorization(unit, vectorText, index, context)",
+  ], 125, 344, 760, 226, C.teal);
+  text(slide, ctx, "关键设计：原文 content 不被覆盖；向量化使用翻译/增强后的 vectorText，通过 MQ 消息传递。", 210, 598, 860, 28, {
+    size: 18,
+    bold: true,
+    align: "center",
+    color: C.ink,
   });
 }
 
-async function renderConclusion(slide, ctx, s) {
+async function vector(slide, ctx, s) {
   title(slide, ctx, s.title, s.subtitle, s.source);
-  const left = ["完成从需求分析到系统测试的完整工程闭环", "融合用户体系、Agent、MCP、RAG、上下文和后台治理", "体现传统 Web 后端能力与大模型智能体能力结合"];
-  const right = ["补充自动化测试覆盖", "量化评估 RAG 检索效果", "完善运行监控、日志审计和生产级安全配置"];
-  chip(slide, ctx, "主要结论", 108, 190, 128, C.blue);
-  chip(slide, ctx, "后续工作", 718, 190, 128, C.red);
-  bulletList(slide, ctx, left, 112, 262, 470, { dot: C.blue, size: 20, gap: 66 });
-  bulletList(slide, ctx, right, 722, 262, 420, { dot: C.red, size: 20, gap: 66 });
+  codeBox(slide, ctx, [
+    "EmbeddingDomainService.syncStorage(message)",
+    "  content = message.getContent()",
+    "  metadata = { fileId, fileName, documentId, datasetId }",
+    "  textSegment = new TextSegment(content, metadata)",
+    "  embedding = embeddingModel.embed(textSegment)",
+    "  embeddingStore.add(embedding, textSegment)",
+    "  update DocumentUnit.isVector = true",
+  ], 110, 190, 570, 194, C.green);
+  box(slide, ctx, 750, 195, 360, 260, { fill: C.white, line: C.blue });
+  text(slide, ctx, "metadata 的作用", 782, 230, 250, 26, { size: 22, bold: true, color: C.blue });
+  bullets(slide, ctx, ["按 datasetId 过滤知识库范围", "按 fileId 追踪文件来源", "按 documentId 反查原文片段", "搜索结果可展示引用来源"], 780, 282, 260, { color: C.blue, size: 15, gap: 38 });
+  text(slide, ctx, "向量库只负责相似度检索；真正展示给用户的原文片段仍回到 DocumentUnitEntity 查询。", 195, 520, 850, 32, {
+    size: 19,
+    bold: true,
+    align: "center",
+  });
 }
 
-async function renderThanks(slide, ctx, s) {
+async function ragSearch(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  flow(slide, ctx, ["RagSearchRequest", "权限过滤", "嵌入模型配置", "聊天模型配置", "HybridSearchConfig", "DTO 返回"], 86, 200, 1100, [C.green, C.blue, C.teal, C.gold, C.red]);
+  codeBox(slide, ctx, [
+    "RAGSearchAppService.ragSearch(request, userId)",
+    "  for datasetId in request.datasetIds:",
+    "    isRagInstalledByOriginalId(userId, datasetId)",
+    "    or checkDatasetExists(datasetId, userId)",
+    "  embeddingConfig = userModelConfigResolver.getUserEmbeddingModelConfig(userId)",
+    "  chatModelConfig = getUserChatModelConfig(userId)",
+    "  config = HybridSearchConfig.builder(validDatasetIds, question)...build()",
+    "  entities = hybridSearchDomainService.hybridSearch(config)",
+  ], 140, 350, 810, 196, C.green);
+  bullets(slide, ctx, ["权限先于检索", "模型配置按用户隔离", "HyDE 可用时使用聊天模型生成假设文档"], 990, 378, 180, { color: C.red, size: 15, gap: 58 });
+}
+
+async function hybrid(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  box(slide, ctx, 82, 190, 520, 300, { fill: C.white, line: C.teal });
+  box(slide, ctx, 680, 190, 500, 300, { fill: C.white, line: C.red });
+  text(slide, ctx, "并行召回", 120, 225, 180, 28, { size: 24, bold: true, color: C.teal });
+  bullets(slide, ctx, ["HyDE 先把问题改写为假设文档", "CompletableFuture 并行执行向量检索和关键词检索", "向量检索失败不影响关键词结果", "关键词检索失败不影响向量结果"], 124, 285, 390, { color: C.teal, size: 16, gap: 44 });
+  text(slide, ctx, "RRF 融合与重排序", 720, 225, 260, 28, { size: 24, bold: true, color: C.red });
+  codeBox(slide, ctx, [
+    "RRF(d) = sum(1 / (k + rank_i(d)))",
+    "k = 60",
+    "vector rank + keyword rank -> fused rank",
+    "enableRerank -> rerank(texts, question)",
+  ], 720, 285, 390, 122, C.red);
+  text(slide, ctx, "RRF 的价值：不同检索方式的分数不可直接相加，但排名可以融合。", 245, 565, 760, 30, {
+    size: 19,
+    bold: true,
+    align: "center",
+  });
+}
+
+async function ragTool(slide, ctx, s) {
+  title(slide, ctx, s.title, s.subtitle, s.source);
+  flow(slide, ctx, ["Agent 绑定知识库", "BuiltInToolRegistry", "defineTools", "knowledge_search", "ragSearch", "格式化片段", "模型回答"], 60, 205, 1160, [C.green, C.blue, C.teal, C.gold, C.red]);
+  codeBox(slide, ctx, [
+    "RagBuiltInToolProvider.defineTools(agent)",
+    "  knowledgeBaseIds = agent.getKnowledgeBaseIds()",
+    "  validateKnowledgeBases(ids, agent.userId)",
+    "  ToolDefinition name = \"knowledge_search\"",
+    "",
+    "doExecute()",
+    "  query/maxResults/minScore/enableRerank",
+    "  ragSearchAppService.ragSearch(searchRequest, agent.userId)",
+    "  formatSearchResults(...)",
+  ], 135, 350, 660, 210, C.green);
+  bullets(slide, ctx, [
+    "RAG 在普通 Agent 对话中不是单独页面逻辑，而是内置工具。",
+    "模型决定何时调用 knowledge_search，并把片段作为回答依据。",
+    "返回内容会带片段序号和来源信息。"
+  ], 855, 370, 300, { color: C.red, size: 16, gap: 58 });
+}
+
+async function close(slide, ctx, s) {
   ctx.addShape(slide, { x: 0, y: 0, width: W, height: H, fill: C.ink });
-  t(slide, ctx, s.title, 120, 210, 760, 62, { size: 42, bold: true, color: C.white, face: font.title });
-  t(slide, ctx, s.subtitle, 124, 304, 280, 44, { size: 30, color: C.gold, bold: true });
-  t(slide, ctx, "基于大模型的智能体生成工具的设计与实现", 124, 520, 650, 30, { size: 18, color: "#CED6DC" });
-  t(slide, ctx, "徐昊 · 软件工程", 124, 558, 280, 26, { size: 16, color: "#CED6DC" });
+  text(slide, ctx, s.title, 96, 105, 910, 52, { size: 34, bold: true, color: C.white, face: font.title });
+  text(slide, ctx, s.subtitle, 100, 170, 760, 28, { size: 18, color: "#D9E2EA" });
+  const items = [
+    ["登录身份闭环", "登录签发 JWT，拦截器验签并恢复 UserContext", C.blue],
+    ["对话状态闭环", "ChatContext 装配，SSE 流式输出，消息和上下文落库", C.teal],
+    ["RAG 知识闭环", "异步解析、二次切分、向量化、混合检索、内置工具", C.green],
+    ["工具调用闭环", "安装工具、解析运行配置、HTTP/MCP 调用、异常可反馈", C.red],
+  ];
+  items.forEach((item, i) => {
+    const y = 260 + i * 78;
+    ctx.addShape(slide, { x: 108, y, width: 10, height: 50, fill: item[2] });
+    text(slide, ctx, item[0], 136, y + 2, 190, 24, { size: 21, bold: true, color: item[2] });
+    text(slide, ctx, item[1], 360, y + 4, 620, 24, { size: 18, color: C.white });
+  });
+  text(slide, ctx, "请各位老师批评指正", 98, 620, 420, 34, { size: 26, bold: true, color: C.gold });
 }
 
 export async function renderSlide(presentation, ctx, idx) {
   const s = slides[idx - 1];
+  if (!s) throw new Error(`Missing slide ${idx}`);
   const slide = presentation.slides.add();
-  if (!s) throw new Error(`Missing slide data for ${idx}`);
-  if (!["cover", "thanks"].includes(s.kind)) {
+  if (!["cover", "close"].includes(s.kind)) {
     bg(slide, ctx);
-    sectionNumber(slide, ctx, idx);
+    slideNo(slide, ctx, idx);
   }
-  if (s.kind === "cover") await renderCover(slide, ctx, s);
-  else if (s.kind === "agenda") await renderAgenda(slide, ctx, s);
-  else if (s.kind === "problem") await renderProblem(slide, ctx, s);
-  else if (s.kind === "goals") await renderGoals(slide, ctx, s);
-  else if (s.kind === "requirements") await renderRequirements(slide, ctx, s);
-  else if (s.kind === "stack") await renderStack(slide, ctx, s);
-  else if (s.kind === "architecture") await renderArchitecture(slide, ctx, s);
-  else if (s.kind === "modules") await renderModules(slide, ctx, s);
-  else if (s.kind === "data") await renderData(slide, ctx, s);
-  else if (s.kind === "conversation") await renderConversation(slide, ctx, s);
-  else if (s.kind === "model") await renderModel(slide, ctx, s);
-  else if (s.kind === "mcp") await renderMcp(slide, ctx, s);
-  else if (s.kind === "rag") await renderRag(slide, ctx, s);
-  else if (s.kind === "context") await renderContext(slide, ctx, s);
-  else if (s.kind === "governance") await renderGovernance(slide, ctx, s);
-  else if (s.kind === "testing") await renderTesting(slide, ctx, s);
-  else if (s.kind === "conclusion") await renderConclusion(slide, ctx, s);
-  else if (s.kind === "thanks") await renderThanks(slide, ctx, s);
+  if (s.kind === "cover") await cover(slide, ctx, s);
+  else if (s.kind === "agenda") await agenda(slide, ctx, s);
+  else if (s.kind === "layers") await layers(slide, ctx, s);
+  else if (s.kind === "loginFlow") await loginFlow(slide, ctx, s);
+  else if (s.kind === "jwtDetail") await jwtDetail(slide, ctx, s);
+  else if (s.kind === "authInterceptor") await authInterceptor(slide, ctx, s);
+  else if (s.kind === "dialogEntry") await dialogEntry(slide, ctx, s);
+  else if (s.kind === "dialogEnv") await dialogEnv(slide, ctx, s);
+  else if (s.kind === "context") await context(slide, ctx, s);
+  else if (s.kind === "handler") await handler(slide, ctx, s);
+  else if (s.kind === "stream") await stream(slide, ctx, s);
+  else if (s.kind === "toolOverview") await toolOverview(slide, ctx, s);
+  else if (s.kind === "toolRuntime") await toolRuntime(slide, ctx, s);
+  else if (s.kind === "toolInvoke") await toolInvoke(slide, ctx, s);
+  else if (s.kind === "ragIngest") await ragIngest(slide, ctx, s);
+  else if (s.kind === "ragSplit") await ragSplit(slide, ctx, s);
+  else if (s.kind === "vector") await vector(slide, ctx, s);
+  else if (s.kind === "ragSearch") await ragSearch(slide, ctx, s);
+  else if (s.kind === "hybrid") await hybrid(slide, ctx, s);
+  else if (s.kind === "ragTool") await ragTool(slide, ctx, s);
+  else if (s.kind === "close") await close(slide, ctx, s);
   else throw new Error(`Unknown slide kind: ${s.kind}`);
   return slide;
 }

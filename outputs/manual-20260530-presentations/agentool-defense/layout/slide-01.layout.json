@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/mbxnc3",
-    "id": "mbxnc3",
+    "aid": "sl/0brlg8",
+    "id": "0brlg8",
     "slide": 1,
-    "layoutId": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+    "layoutId": "79891f45-d097-46e8-bddb-68fe971b49e3",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+    "masterLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
     "masterLayoutName": "Master",
     "frame": {
       "left": 0,
@@ -44,15 +44,15 @@
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+      "id": "79891f45-d097-46e8-bddb-68fe971b49e3",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "parentLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "id": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -63,7 +63,7 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/byhgn29g",
+      "aid": "sh/7u54zido",
       "id": "1",
       "bbox": [
         0,
@@ -80,12 +80,12 @@
       "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/0je9cvix",
+      "aid": "sh/wfyxobm5",
       "id": "2",
       "bbox": [
         0,
         0,
-        742.4,
+        720,
         720
       ],
       "geometry": "rect",
@@ -97,12 +97,12 @@
       "order": 3,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/t47y1kre",
+      "aid": "sh/l0rqd4vm",
       "id": "3",
       "bbox": [
-        732,
+        720,
         0,
-        548,
+        560,
         720
       ],
       "geometry": "rect",
@@ -114,13 +114,13 @@
       "order": 4,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/il0rqd4v",
+      "aid": "sh/eloj2t83",
       "id": "4",
       "bbox": [
         78,
-        118,
-        610,
-        122
+        116,
+        590,
+        120
       ],
       "geometry": "rect",
       "text": "基于大模型的智能体生成工具的设计与实现",
@@ -185,21 +185,21 @@
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/b6xkf6dc",
+      "aid": "sh/36hcrmhk",
       "id": "5",
       "bbox": [
         82,
-        258,
+        262,
         560,
-        48
+        36
       ],
       "geometry": "rect",
-      "text": "Design and Implementation of An Agent Generation Tool Based on Large Language Models",
-      "textPreview": "Design and Implementation of An Agent Generation Tool Based on Large Language Models",
-      "resolvedFontSize": 17,
+      "text": "代码链路讲解版答辩 PPT | 徐昊 20222241361",
+      "textPreview": "代码链路讲解版答辩 PPT | 徐昊 20222241361",
+      "resolvedFontSize": 18,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 17,
+        "fontSize": 18,
         "typeface": "Microsoft YaHei",
         "color": "#D9E2EA",
         "alignment": "left",
@@ -212,24 +212,20 @@
         }
       },
       "textLayout": {
-        "lineCount": 2,
+        "lineCount": 1,
         "lines": [
           {
             "index": 1,
-            "text": "Design and Implementation of An Agent Generation Tool Based on Large"
-          },
-          {
-            "index": 2,
-            "text": "Language Models"
+            "text": "代码链路讲解版答辩 PPT | 徐昊 20222241361"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Design and Implementation of An Agent Generation Tool Based on Large Language Models",
+          "text": "代码链路讲解版答辩 PPT | 徐昊 20222241361",
           "resolvedTextStyle": {
-            "fontSize": 17,
+            "fontSize": 18,
             "typeface": "Microsoft YaHei",
             "color": "#D9E2EA",
             "alignment": "left"
@@ -237,8 +233,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "Design and Implementation of An Agent Generation Tool Based on Large Language Models",
-              "fontSize": 17,
+              "text": "代码链路讲解版答辩 PPT | 徐昊 20222241361",
+              "fontSize": 18,
               "typeface": "Microsoft YaHei",
               "color": "#D9E2EA"
             }
@@ -253,11 +249,11 @@
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/0rqd4vmt",
+      "aid": "sh/wra5gbq1",
       "id": "6",
       "bbox": [
         82,
-        342,
+        340,
         164,
         28
       ],
@@ -270,12 +266,12 @@
       "order": 7,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/tcj6tova",
+      "aid": "sh/lc7u54zi",
       "id": "7",
       "bbox": [
-        94,
-        347,
-        140,
+        93,
+        345,
+        142,
         18
       ],
       "geometry": "rect",
@@ -337,23 +333,24 @@
       "order": 8,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/ixczed8v",
+      "aid": "sh/epkzupwb",
       "id": "8",
       "bbox": [
         82,
-        438,
-        470,
-        96
+        430,
+        520,
+        80
       ],
       "geometry": "rect",
-      "text": "软件学院 · 软件工程\n学生：徐昊   学号：20222241361\n指导教师：梁文新",
-      "textPreview": "软件学院 · 软件工程 | 学生：徐昊   学号：20222241361 | 指导教师：梁文新",
-      "resolvedFontSize": 20,
+      "text": "本版重点：核心代码逻辑讲解\n登录 JWT | 用户对话 | RAG 切分检索 | 工具调用",
+      "textPreview": "本版重点：核心代码逻辑讲解 | 登录 JWT | 用户对话 | RAG 切分检索 | 工具调用",
+      "resolvedFontSize": 22,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 20,
+        "fontSize": 22,
         "typeface": "Microsoft YaHei",
         "color": "#FFFFFF",
+        "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
         "insets": {
@@ -364,79 +361,59 @@
         }
       },
       "textLayout": {
-        "lineCount": 3,
+        "lineCount": 2,
         "lines": [
           {
             "index": 1,
-            "text": "软件学院 · 软件工程"
+            "text": "本版重点：核心代码逻辑讲解"
           },
           {
             "index": 2,
-            "text": "学生：徐昊   学号：20222241361"
-          },
-          {
-            "index": 3,
-            "text": "指导教师：梁文新"
+            "text": "登录 JWT | 用户对话 | RAG 切分检索 | 工具调用"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "软件学院 · 软件工程",
+          "text": "本版重点：核心代码逻辑讲解",
           "resolvedTextStyle": {
-            "fontSize": 20,
+            "fontSize": 22,
             "typeface": "Microsoft YaHei",
             "color": "#FFFFFF",
+            "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "软件学院 · 软件工程",
-              "fontSize": 20,
+              "text": "本版重点：核心代码逻辑讲解",
+              "fontSize": 22,
               "typeface": "Microsoft YaHei",
-              "color": "#FFFFFF"
+              "color": "#FFFFFF",
+              "bold": true
             }
           ],
           "marginLeft": 0
         },
         {
           "index": 2,
-          "text": "学生：徐昊   学号：20222241361",
+          "text": "登录 JWT | 用户对话 | RAG 切分检索 | 工具调用",
           "resolvedTextStyle": {
-            "fontSize": 20,
+            "fontSize": 22,
             "typeface": "Microsoft YaHei",
             "color": "#FFFFFF",
+            "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "学生：徐昊   学号：20222241361",
-              "fontSize": 20,
+              "text": "登录 JWT | 用户对话 | RAG 切分检索 | 工具调用",
+              "fontSize": 22,
               "typeface": "Microsoft YaHei",
-              "color": "#FFFFFF"
-            }
-          ],
-          "marginLeft": 0
-        },
-        {
-          "index": 3,
-          "text": "指导教师：梁文新",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Microsoft YaHei",
-            "color": "#FFFFFF",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "指导教师：梁文新",
-              "fontSize": 20,
-              "typeface": "Microsoft YaHei",
-              "color": "#FFFFFF"
+              "color": "#FFFFFF",
+              "bold": true
             }
           ],
           "marginLeft": 0
@@ -449,30 +426,30 @@
       "order": 9,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/bi9s36hc",
+      "aid": "sh/7adsji5s",
       "id": "9",
       "bbox": [
         790,
-        142,
-        344,
-        70
+        132,
+        350,
+        72
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
-      "lineColor": "#D8D3C7",
+      "lineColor": "#2456A6",
       "lineWidth": 1
     },
     {
       "order": 10,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/rytsvu9k",
+      "aid": "sh/nqxs72x4",
       "id": "10",
       "bbox": [
         790,
-        142,
+        132,
         9,
-        70
+        72
       ],
       "geometry": "rect",
       "fillColor": "#2456A6",
@@ -483,23 +460,23 @@
       "order": 11,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/yd0z6103",
+      "aid": "sh/u54zidon",
       "id": "11",
       "bbox": [
         820,
-        162,
-        260,
-        28
+        154,
+        280,
+        26
       ],
       "geometry": "rect",
-      "text": "智能体配置",
-      "textPreview": "智能体配置",
-      "resolvedFontSize": 22,
+      "text": "LoginAppService",
+      "textPreview": "LoginAppService",
+      "resolvedFontSize": 20,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 22,
+        "fontSize": 20,
         "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "color": "#2456A6",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -515,28 +492,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "智能体配置"
+            "text": "LoginAppService"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "智能体配置",
+          "text": "LoginAppService",
           "resolvedTextStyle": {
-            "fontSize": 22,
+            "fontSize": 20,
             "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "color": "#2456A6",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "智能体配置",
-              "fontSize": 22,
+              "text": "LoginAppService",
+              "fontSize": 20,
               "typeface": "Microsoft YaHei",
-              "color": "#172026",
+              "color": "#2456A6",
               "bold": true
             }
           ],
@@ -550,30 +527,30 @@
       "order": 12,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/90je9cvi",
+      "aid": "sh/5sneloj2",
       "id": "12",
       "bbox": [
         790,
-        244,
-        344,
-        70
+        236,
+        350,
+        72
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
-      "lineColor": "#D8D3C7",
+      "lineColor": "#2B8A83",
       "lineWidth": 1
     },
     {
       "order": 13,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/gfmlkjm1",
+      "aid": "sh/cbulwval",
       "id": "13",
       "bbox": [
         790,
-        244,
+        236,
         9,
-        70
+        72
       ],
       "geometry": "rect",
       "fillColor": "#2B8A83",
@@ -584,23 +561,23 @@
       "order": 14,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/rmhk3q5o",
+      "aid": "sh/neloj2t8",
       "id": "14",
       "bbox": [
         820,
-        264,
-        260,
-        28
+        258,
+        280,
+        26
       ],
       "geometry": "rect",
-      "text": "MCP 工具接入",
-      "textPreview": "MCP 工具接入",
-      "resolvedFontSize": 22,
+      "text": "ConversationAppService",
+      "textPreview": "ConversationAppService",
+      "resolvedFontSize": 20,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 22,
+        "fontSize": 20,
         "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "color": "#2B8A83",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -616,28 +593,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "MCP 工具接入"
+            "text": "ConversationAppService"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "MCP 工具接入",
+          "text": "ConversationAppService",
           "resolvedTextStyle": {
-            "fontSize": 22,
+            "fontSize": 20,
             "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "color": "#2B8A83",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "MCP 工具接入",
-              "fontSize": 22,
+              "text": "ConversationAppService",
+              "fontSize": 20,
               "typeface": "Microsoft YaHei",
-              "color": "#172026",
+              "color": "#2B8A83",
               "bold": true
             }
           ],
@@ -651,30 +628,30 @@
       "order": 15,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/y1kre1w7",
+      "aid": "sh/ytsvu9kn",
       "id": "15",
       "bbox": [
         790,
-        346,
-        344,
-        70
+        340,
+        350,
+        72
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
-      "lineColor": "#D8D3C7",
+      "lineColor": "#4E8D54",
       "lineWidth": 1
     },
     {
       "order": 16,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/9s36hcrm",
+      "aid": "sh/5kb6xkf6",
       "id": "16",
       "bbox": [
         790,
-        346,
+        340,
         9,
-        70
+        72
       ],
       "geometry": "rect",
       "fillColor": "#4E8D54",
@@ -685,23 +662,23 @@
       "order": 17,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/g7adsji5",
+      "aid": "sh/czed8v6p",
       "id": "17",
       "bbox": [
         820,
-        366,
-        260,
-        28
+        362,
+        280,
+        26
       ],
       "geometry": "rect",
-      "text": "RAG 知识增强",
-      "textPreview": "RAG 知识增强",
-      "resolvedFontSize": 22,
+      "text": "HybridSearchDomainService",
+      "textPreview": "HybridSearchDomainService",
+      "resolvedFontSize": 20,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 22,
+        "fontSize": 20,
         "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "color": "#4E8D54",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -717,28 +694,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "RAG 知识增强"
+            "text": "HybridSearchDomainService"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "RAG 知识增强",
+          "text": "HybridSearchDomainService",
           "resolvedTextStyle": {
-            "fontSize": 22,
+            "fontSize": 20,
             "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "color": "#4E8D54",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "RAG 知识增强",
-              "fontSize": 22,
+              "text": "HybridSearchDomainService",
+              "fontSize": 20,
               "typeface": "Microsoft YaHei",
-              "color": "#172026",
+              "color": "#4E8D54",
               "bold": true
             }
           ],
@@ -752,30 +729,30 @@
       "order": 18,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/nih4byhg",
+      "aid": "sh/n29gr2p8",
       "id": "18",
       "bbox": [
         790,
-        448,
-        344,
-        70
+        444,
+        350,
+        72
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
-      "lineColor": "#D8D3C7",
+      "lineColor": "#B2473E",
       "lineWidth": 1
     },
     {
       "order": 19,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/yxobm58z",
+      "aid": "sh/yhgn29gr",
       "id": "19",
       "bbox": [
         790,
-        448,
+        444,
         9,
-        70
+        72
       ],
       "geometry": "rect",
       "fillColor": "#B2473E",
@@ -786,23 +763,23 @@
       "order": 20,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/61032lsz",
+      "aid": "sh/6hcrmhk3",
       "id": "20",
       "bbox": [
         820,
-        468,
-        260,
-        28
+        466,
+        280,
+        26
       ],
       "geometry": "rect",
-      "text": "上下文治理",
-      "textPreview": "上下文治理",
-      "resolvedFontSize": 22,
+      "text": "AgentToolManager",
+      "textPreview": "AgentToolManager",
+      "resolvedFontSize": 20,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 22,
+        "fontSize": 20,
         "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "color": "#B2473E",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -818,28 +795,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "上下文治理"
+            "text": "AgentToolManager"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "上下文治理",
+          "text": "AgentToolManager",
           "resolvedTextStyle": {
-            "fontSize": 22,
+            "fontSize": 20,
             "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "color": "#B2473E",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "上下文治理",
-              "fontSize": 22,
+              "text": "AgentToolManager",
+              "fontSize": 20,
               "typeface": "Microsoft YaHei",
-              "color": "#172026",
+              "color": "#B2473E",
               "bold": true
             }
           ],

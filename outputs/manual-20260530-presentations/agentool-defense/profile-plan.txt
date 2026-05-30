@@ -1,22 +1,20 @@
-task mode: create
+task mode: targeted-edit
 primary deck-profile: engineering-platform
-secondary gates: undergraduate thesis defense, source-faithful academic presentation
+request focus:
+- revise previous thesis defense deck because content was too high-level
+- explain core code logic for user conversation, RAG splitting/search, tool invocation, and login JWT
 required proof objects:
-- overall architecture map
-- functional module map
-- database/entity relationship map
-- conversation, MCP tool, RAG and context workflows
-- testing evidence from black-box and white-box cases
+- exact backend class/method chain for login and JWT validation
+- exact backend class/method chain for conversation runtime assembly and streaming persistence
+- RAG ingestion, two-stage splitting, vector storage, hybrid retrieval and RAG-as-tool flow
+- direct tool runtime resolution plus HTTP API and MCP SSE execution path
 source requirements:
-- primary source is /Users/liyoh/Downloads/论文-徐昊-20222241361 (4).doc extracted to source/thesis.txt
-- local agentool repository is used only to confirm project naming, stack, modules, and implementation boundaries
-brand/authenticity constraints:
-- no external logos or invented metrics
-- use thesis terminology: large language model, agent platform, DDD layered architecture, MCP tool integration, RAG, streaming response, context governance
+- primary sources are current agentool backend files under agentool-backend/src/main/java/org/xh
+- thesis source remains supporting context, but implementation explanation must be code-grounded
 QA gates:
-- 15 to 20 slides
-- concise defense-oriented pages
-- technical diagrams remain legible at thumbnail scale
-- speaker script is around 3000 Chinese characters and follows the deck order
-known missing inputs:
-- no school PPT template was supplied, so the deck uses a clean original academic-technical visual system
+- 20-slide deck maximum
+- every technical slide must include class/method evidence
+- speaker script must explain why each code layer exists, not only list names
+- render previews and run layout quality checks before delivery
+known caveats:
+- no new runtime behavior is changed; this is a documentation/deck artifact update

@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/g4n32t",
-    "id": "g4n32t",
+    "aid": "sl/nbhxnw",
+    "id": "nbhxnw",
     "slide": 10,
-    "layoutId": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+    "layoutId": "79891f45-d097-46e8-bddb-68fe971b49e3",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+    "masterLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
     "masterLayoutName": "Master",
     "frame": {
       "left": 0,
@@ -38,21 +38,22 @@
       "folHlink": "#96607D"
     },
     "typefaces": [
+      "Aptos Mono",
       "Microsoft YaHei"
     ]
   },
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+      "id": "79891f45-d097-46e8-bddb-68fe971b49e3",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "parentLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "id": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -63,7 +64,7 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/87ed8bat",
+      "aid": "sh/r65wjudg",
       "id": "1",
       "bbox": [
         0,
@@ -80,7 +81,7 @@
       "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/fmlkjm1c",
+      "aid": "sh/gr2p8nqx",
       "id": "2",
       "bbox": [
         0,
@@ -97,7 +98,7 @@
       "order": 3,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/q1orytsv",
+      "aid": "sh/9cvixcze",
       "id": "3",
       "bbox": [
         0,
@@ -114,21 +115,21 @@
       "order": 4,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/1gvy90je",
+      "aid": "sh/yxobm58z",
       "id": "4",
       "bbox": [
-        1118,
-        56,
+        1120,
+        54,
         80,
-        40
+        36
       ],
       "geometry": "rect",
       "text": "10",
       "textPreview": "10",
-      "resolvedFontSize": 30,
+      "resolvedFontSize": 28,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 28,
         "typeface": "Microsoft YaHei",
         "color": "#D8D3C7",
         "bold": true,
@@ -155,7 +156,7 @@
           "index": 1,
           "text": "10",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 28,
             "typeface": "Microsoft YaHei",
             "color": "#D8D3C7",
             "bold": true,
@@ -165,7 +166,7 @@
             {
               "index": 1,
               "text": "10",
-              "fontSize": 30,
+              "fontSize": 28,
               "typeface": "Microsoft YaHei",
               "color": "#D8D3C7",
               "bold": true
@@ -181,21 +182,21 @@
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/8z25kb6x",
+      "aid": "sh/nih4byhg",
       "id": "5",
       "bbox": [
         70,
-        54,
-        780,
-        48
+        48,
+        900,
+        60
       ],
       "geometry": "rect",
-      "text": "对话主流程：环境装配、流式响应与状态回写",
-      "textPreview": "对话主流程：环境装配、流式响应与状态回写",
-      "resolvedFontSize": 30,
+      "text": "对话模板方法：AbstractMessageHandler 串起整轮生成",
+      "textPreview": "对话模板方法：AbstractMessageHandler 串起整轮生成",
+      "resolvedFontSize": 26,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 26,
         "typeface": "Microsoft YaHei",
         "color": "#172026",
         "bold": true,
@@ -213,16 +214,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "对话主流程：环境装配、流式响应与状态回写"
+            "text": "对话模板方法：AbstractMessageHandler 串起整轮生成"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "对话主流程：环境装配、流式响应与状态回写",
+          "text": "对话模板方法：AbstractMessageHandler 串起整轮生成",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 26,
             "typeface": "Microsoft YaHei",
             "color": "#172026",
             "bold": true,
@@ -231,8 +232,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "对话主流程：环境装配、流式响应与状态回写",
-              "fontSize": 30,
+              "text": "对话模板方法：AbstractMessageHandler 串起整轮生成",
+              "fontSize": 26,
               "typeface": "Microsoft YaHei",
               "color": "#172026",
               "bold": true
@@ -248,17 +249,17 @@
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/je9cvixc",
+      "aid": "sh/g3ex0nux",
       "id": "6",
       "bbox": [
         72,
-        103,
-        880,
-        26
+        110,
+        940,
+        28
       ],
       "geometry": "rect",
-      "text": "用户请求不是直接发给模型，而是先完成会话、模型、上下文和增强能力装配",
-      "textPreview": "用户请求不是直接发给模型，而是先完成会话、模型、上下文和增强能力装配",
+      "text": "保存用户消息、构建内存、装配工具、流式输出、保存助手消息都在同一模板流程中完成",
+      "textPreview": "保存用户消息、构建内存、装配工具、流式输出、保存助手消息都在同一模板流程中完成",
       "resolvedFontSize": 15,
       "resolvedTextStyle": {
         "anchor": 1,
@@ -279,14 +280,14 @@
         "lines": [
           {
             "index": 1,
-            "text": "用户请求不是直接发给模型，而是先完成会话、模型、上下文和增强能力装配"
+            "text": "保存用户消息、构建内存、装配工具、流式输出、保存助手消息都在同一模板流程中完成"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "用户请求不是直接发给模型，而是先完成会话、模型、上下文和增强能力装配",
+          "text": "保存用户消息、构建内存、装配工具、流式输出、保存助手消息都在同一模板流程中完成",
           "resolvedTextStyle": {
             "fontSize": 15,
             "typeface": "Microsoft YaHei",
@@ -296,7 +297,7 @@
           "runs": [
             {
               "index": 1,
-              "text": "用户请求不是直接发给模型，而是先完成会话、模型、上下文和增强能力装配",
+              "text": "保存用户消息、构建内存、装配工具、流式输出、保存助手消息都在同一模板流程中完成",
               "fontSize": 15,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
@@ -312,11 +313,11 @@
       "order": 7,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/qtcj6tov",
+      "aid": "sh/5o7qpg3e",
       "id": "7",
       "bbox": [
         70,
-        142,
+        150,
         1140,
         1.2
       ],
@@ -329,21 +330,21 @@
       "order": 8,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/xczed8v6",
+      "aid": "sh/y1kre1w7",
       "id": "8",
       "bbox": [
         72,
-        674,
-        930,
+        673,
+        1060,
         22
       ],
       "geometry": "rect",
-      "text": "依据论文 5.2",
-      "textPreview": "依据论文 5.2",
-      "resolvedFontSize": 12,
+      "text": "AbstractMessageHandler.chat / processChat",
+      "textPreview": "AbstractMessageHandler.chat / processChat",
+      "resolvedFontSize": 11,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 12,
+        "fontSize": 11,
         "typeface": "Microsoft YaHei",
         "color": "#5F6972",
         "alignment": "left",
@@ -360,16 +361,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "依据论文 5.2"
+            "text": "AbstractMessageHandler.chat / processChat"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "依据论文 5.2",
+          "text": "AbstractMessageHandler.chat / processChat",
           "resolvedTextStyle": {
-            "fontSize": 12,
+            "fontSize": 11,
             "typeface": "Microsoft YaHei",
             "color": "#5F6972",
             "alignment": "left"
@@ -377,8 +378,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "依据论文 5.2",
-              "fontSize": 12,
+              "text": "AbstractMessageHandler.chat / processChat",
+              "fontSize": 11,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
             }
@@ -393,13 +394,13 @@
       "order": 9,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/8v6psfil",
+      "aid": "sh/rmhk3q5o",
       "id": "9",
       "bbox": [
-        86,
-        278,
-        138,
-        78
+        66,
+        204,
+        145.14,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -410,21 +411,21 @@
       "order": 10,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/yhgn29gr",
+      "aid": "sh/fa9w3m94",
       "id": "10",
       "bbox": [
-        96,
-        299,
-        118,
-        34
+        74,
+        220,
+        129.14,
+        42
       ],
       "geometry": "rect",
-      "text": "用户消息",
-      "textPreview": "用户消息",
-      "resolvedFontSize": 16,
+      "text": "createConnection",
+      "textPreview": "createConnection",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#2456A6",
         "bold": true,
@@ -442,16 +443,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "用户消息"
+            "text": "createConnection"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "用户消息",
+          "text": "createConnection",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#2456A6",
             "bold": true,
@@ -460,8 +461,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "用户消息",
-              "fontSize": 16,
+              "text": "createConnection",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#2456A6",
               "bold": true
@@ -477,12 +478,12 @@
       "order": 11,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/n29gr2p8",
+      "aid": "sh/qpg3ex0n",
       "id": "11",
       "bbox": [
-        224,
-        316,
-        36,
+        211.14,
+        240,
+        22,
         2
       ],
       "geometry": "rect",
@@ -494,11 +495,11 @@
       "order": 12,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/gn29gr2p",
+      "aid": "sh/xczed8v6",
       "id": "12",
       "bbox": [
-        252,
-        312,
+        225.14,
+        236,
         10,
         10
       ],
@@ -511,13 +512,13 @@
       "order": 13,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/58z25kb6",
+      "aid": "sh/8v6psfil",
       "id": "13",
       "bbox": [
-        261,
-        278,
-        138,
-        78
+        233.14,
+        204,
+        145.14,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -528,21 +529,21 @@
       "order": 14,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/y90je9cv",
+      "aid": "sh/fyxobm58",
       "id": "14",
       "bbox": [
-        271,
-        299,
-        118,
-        34
+        241.14,
+        220,
+        129.14,
+        42
       ],
       "geometry": "rect",
-      "text": "会话校验",
-      "textPreview": "会话校验",
-      "resolvedFontSize": 16,
+      "text": "onChatStart",
+      "textPreview": "onChatStart",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#2B8A83",
         "bold": true,
@@ -560,16 +561,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "会话校验"
+            "text": "onChatStart"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "会话校验",
+          "text": "onChatStart",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#2B8A83",
             "bold": true,
@@ -578,8 +579,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "会话校验",
-              "fontSize": 16,
+              "text": "onChatStart",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#2B8A83",
               "bold": true
@@ -595,12 +596,12 @@
       "order": 15,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/nuxc3ylc",
+      "aid": "sh/qd4vmtwr",
       "id": "15",
       "bbox": [
-        399,
-        316,
-        36,
+        378.29,
+        240,
+        22,
         2
       ],
       "geometry": "rect",
@@ -612,11 +613,11 @@
       "order": 16,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/gbq1oryt",
+      "aid": "sh/x4nap4r6",
       "id": "16",
       "bbox": [
-        427,
-        312,
+        392.29,
+        236,
         10,
         10
       ],
@@ -629,13 +630,131 @@
       "order": 17,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/5wjudg7a",
+      "aid": "sh/8jqh0fep",
       "id": "17",
       "bbox": [
-        436,
-        278,
-        138,
-        78
+        400.29,
+        204,
+        145.14,
+        74
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#C9922A",
+      "lineWidth": 1
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fmlkjm1c",
+      "id": "18",
+      "bbox": [
+        408.29,
+        220,
+        129.14,
+        42
+      ],
+      "geometry": "rect",
+      "text": "create messages",
+      "textPreview": "create messages",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Microsoft YaHei",
+        "color": "#C9922A",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "create messages"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "create messages",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Microsoft YaHei",
+            "color": "#C9922A",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "create messages",
+              "fontSize": 14,
+              "typeface": "Microsoft YaHei",
+              "color": "#C9922A",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q1orytsv",
+      "id": "19",
+      "bbox": [
+        545.43,
+        240,
+        22,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y1kre1w7",
+      "id": "20",
+      "bbox": [
+        559.43,
+        236,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rmhk3q5o",
+      "id": "21",
+      "bbox": [
+        567.43,
+        204,
+        145.14,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -643,24 +762,24 @@
       "lineWidth": 1
     },
     {
-      "order": 18,
+      "order": 22,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/u54zidon",
-      "id": "18",
+      "aid": "sh/g7adsji5",
+      "id": "22",
       "bbox": [
-        446,
-        299,
-        118,
-        34
+        575.43,
+        220,
+        129.14,
+        42
       ],
       "geometry": "rect",
-      "text": "模型配置",
-      "textPreview": "模型配置",
-      "resolvedFontSize": 16,
+      "text": "initMemory",
+      "textPreview": "initMemory",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#B2473E",
         "bold": true,
@@ -678,16 +797,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "模型配置"
+            "text": "initMemory"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "模型配置",
+          "text": "initMemory",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#B2473E",
             "bold": true,
@@ -696,8 +815,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "模型配置",
-              "fontSize": 16,
+              "text": "initMemory",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#B2473E",
               "bold": true
@@ -710,15 +829,15 @@
       "lineWidth": 0
     },
     {
-      "order": 19,
+      "order": 23,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/nqxs72x4",
-      "id": "19",
+      "aid": "sh/9s36hcrm",
+      "id": "23",
       "bbox": [
-        574,
-        316,
-        36,
+        712.57,
+        240,
+        22,
         2
       ],
       "geometry": "rect",
@@ -727,14 +846,14 @@
       "lineWidth": 0
     },
     {
-      "order": 20,
+      "order": 24,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/je9cvixc",
-      "id": "20",
+      "aid": "sh/yd0z6103",
+      "id": "24",
       "bbox": [
-        602,
-        312,
+        726.57,
+        236,
         10,
         10
       ],
@@ -744,16 +863,16 @@
       "lineWidth": 0
     },
     {
-      "order": 21,
+      "order": 25,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/qtcj6tov",
-      "id": "21",
+      "aid": "sh/rytsvu9k",
+      "id": "25",
       "bbox": [
-        611,
-        278,
-        138,
-        78
+        734.57,
+        204,
+        145.14,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -761,24 +880,24 @@
       "lineWidth": 1
     },
     {
-      "order": 22,
+      "order": 26,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/1gvy90je",
-      "id": "22",
+      "aid": "sh/gfmlkjm1",
+      "id": "26",
       "bbox": [
-        621,
-        299,
-        118,
-        34
+        742.57,
+        220,
+        129.14,
+        42
       ],
       "geometry": "rect",
-      "text": "上下文恢复",
-      "textPreview": "上下文恢复",
-      "resolvedFontSize": 16,
+      "text": "buildHistory",
+      "textPreview": "buildHistory",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#2456A6",
         "bold": true,
@@ -796,16 +915,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "上下文恢复"
+            "text": "buildHistory"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "上下文恢复",
+          "text": "buildHistory",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#2456A6",
             "bold": true,
@@ -814,8 +933,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "上下文恢复",
-              "fontSize": 16,
+              "text": "buildHistory",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#2456A6",
               "bold": true
@@ -828,15 +947,15 @@
       "lineWidth": 0
     },
     {
-      "order": 23,
+      "order": 27,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/8z25kb6x",
-      "id": "23",
+      "aid": "sh/90je9cvi",
+      "id": "27",
       "bbox": [
-        749,
-        316,
-        36,
+        879.71,
+        240,
+        22,
         2
       ],
       "geometry": "rect",
@@ -845,14 +964,14 @@
       "lineWidth": 0
     },
     {
-      "order": 24,
+      "order": 28,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/fmlkjm1c",
-      "id": "24",
+      "aid": "sh/ylc7u54z",
+      "id": "28",
       "bbox": [
-        777,
-        312,
+        893.71,
+        236,
         10,
         10
       ],
@@ -862,16 +981,16 @@
       "lineWidth": 0
     },
     {
-      "order": 25,
+      "order": 29,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/q1orytsv",
-      "id": "25",
+      "aid": "sh/r65wjudg",
+      "id": "29",
       "bbox": [
-        786,
-        278,
-        138,
-        78
+        901.71,
+        204,
+        145.14,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
@@ -879,24 +998,24 @@
       "lineWidth": 1
     },
     {
-      "order": 26,
+      "order": 30,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/xs72x4na",
-      "id": "26",
+      "aid": "sh/d8v6psfi",
+      "id": "30",
       "bbox": [
-        796,
-        299,
-        118,
-        34
+        909.71,
+        220,
+        129.14,
+        42
       ],
       "geometry": "rect",
-      "text": "增强装配",
-      "textPreview": "增强装配",
-      "resolvedFontSize": 16,
+      "text": "provideTools",
+      "textPreview": "provideTools",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#2B8A83",
         "bold": true,
@@ -914,16 +1033,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "增强装配"
+            "text": "provideTools"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "增强装配",
+          "text": "provideTools",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#2B8A83",
             "bold": true,
@@ -932,128 +1051,10 @@
           "runs": [
             {
               "index": 1,
-              "text": "增强装配",
-              "fontSize": 16,
+              "text": "provideTools",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#2B8A83",
-              "bold": true
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 27,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/87ed8bat",
-      "id": "27",
-      "bbox": [
-        924,
-        316,
-        36,
-        2
-      ],
-      "geometry": "rect",
-      "fillColor": "#5F6972",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 28,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/fyxobm58",
-      "id": "28",
-      "bbox": [
-        952,
-        312,
-        10,
-        10
-      ],
-      "geometry": "triangle",
-      "fillColor": "#5F6972",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 29,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/qd4vmtwr",
-      "id": "29",
-      "bbox": [
-        961,
-        278,
-        138,
-        78
-      ],
-      "geometry": "rect",
-      "fillColor": "#FFFFFF",
-      "lineColor": "#B2473E",
-      "lineWidth": 1
-    },
-    {
-      "order": 30,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/wjudg7ad",
-      "id": "30",
-      "bbox": [
-        971,
-        299,
-        118,
-        34
-      ],
-      "geometry": "rect",
-      "text": "流式生成",
-      "textPreview": "流式生成",
-      "resolvedFontSize": 16,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 16,
-        "typeface": "Microsoft YaHei",
-        "color": "#B2473E",
-        "bold": true,
-        "alignment": "center",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "流式生成"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "流式生成",
-          "resolvedTextStyle": {
-            "fontSize": 16,
-            "typeface": "Microsoft YaHei",
-            "color": "#B2473E",
-            "bold": true,
-            "alignment": "center"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "流式生成",
-              "fontSize": 16,
-              "typeface": "Microsoft YaHei",
-              "color": "#B2473E",
               "bold": true
             }
           ],
@@ -1067,12 +1068,12 @@
       "order": 31,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/p4r65wju",
+      "aid": "sh/onyd0z61",
       "id": "31",
       "bbox": [
-        1099,
-        316,
-        36,
+        1046.86,
+        240,
+        22,
         2
       ],
       "geometry": "rect",
@@ -1084,11 +1085,11 @@
       "order": 32,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/ed8v6psf",
+      "aid": "sh/z25kb6xk",
       "id": "32",
       "bbox": [
-        1127,
-        312,
+        1060.86,
+        236,
         10,
         10
       ],
@@ -1101,40 +1102,40 @@
       "order": 33,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/7y1kre1w",
+      "aid": "sh/6hcrmhk3",
       "id": "33",
       "bbox": [
-        1136,
-        278,
-        138,
-        78
+        1068.86,
+        204,
+        145.14,
+        74
       ],
       "geometry": "rect",
       "fillColor": "#FFFFFF",
-      "lineColor": "#2456A6",
+      "lineColor": "#C9922A",
       "lineWidth": 1
     },
     {
       "order": 34,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/0bi9s36h",
+      "aid": "sh/dg7adsji",
       "id": "34",
       "bbox": [
-        1146,
-        299,
-        118,
-        34
+        1076.86,
+        220,
+        129.14,
+        42
       ],
       "geometry": "rect",
-      "text": "状态回写",
-      "textPreview": "状态回写",
-      "resolvedFontSize": 16,
+      "text": "stream/sync",
+      "textPreview": "stream/sync",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 16,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
-        "color": "#2456A6",
+        "color": "#C9922A",
         "bold": true,
         "alignment": "center",
         "verticalAlignment": "top",
@@ -1150,28 +1151,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "状态回写"
+            "text": "stream/sync"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "状态回写",
+          "text": "stream/sync",
           "resolvedTextStyle": {
-            "fontSize": 16,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
-            "color": "#2456A6",
+            "color": "#C9922A",
             "bold": true,
             "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "状态回写",
-              "fontSize": 16,
+              "text": "stream/sync",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
-              "color": "#2456A6",
+              "color": "#C9922A",
               "bold": true
             }
           ],
@@ -1185,25 +1186,58 @@
       "order": 35,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/pwb2hwfy",
+      "aid": "sh/ovahoza1",
       "id": "35",
       "bbox": [
-        146,
-        495,
-        970,
-        62
+        170,
+        355,
+        520,
+        210
       ],
       "geometry": "rect",
-      "text": "对话主链路同时处理模型调用、消息持久化、流式传输和上下文维护。",
-      "textPreview": "对话主链路同时处理模型调用、消息持久化、流式传输和上下文维护。",
-      "resolvedFontSize": 21,
+      "fillColor": "#FAFAF7",
+      "lineColor": "#2456A6",
+      "lineWidth": 1
+    },
+    {
+      "order": 36,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vahoza1g",
+      "id": "36",
+      "bbox": [
+        170,
+        355,
+        8,
+        210
+      ],
+      "geometry": "rect",
+      "fillColor": "#2456A6",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 37,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6tovahoz",
+      "id": "37",
+      "bbox": [
+        188,
+        369,
+        492,
+        188
+      ],
+      "geometry": "rect",
+      "text": "AbstractMessageHandler.chat()\n  connection = transport.createConnection(...)\n  userEntity = createUserMessage(context)\n  llmEntity = createLlmMessage(context)\n  memory = initMemory()\n  buildHistoryMessage(context, memory)\n  toolProvider = provideTools(context)\n  processStreamingChat(...) or processSyncChat(...)",
+      "textPreview": "AbstractMessageHandler.chat() |   connection = transport.createConnection(...) |   userEntity = createUserMessage(context) |   llmEntity ...",
+      "resolvedFontSize": 12.51,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 21,
-        "typeface": "Microsoft YaHei",
+        "fontSize": 12.51,
+        "typeface": "Aptos Mono",
         "color": "#172026",
-        "bold": true,
-        "alignment": "center",
+        "alignment": "left",
         "verticalAlignment": "top",
         "insets": {
           "top": 0,
@@ -1213,33 +1247,454 @@
         }
       },
       "textLayout": {
-        "lineCount": 1,
+        "lineCount": 8,
         "lines": [
           {
             "index": 1,
-            "text": "对话主链路同时处理模型调用、消息持久化、流式传输和上下文维护。"
+            "text": "AbstractMessageHandler.chat()"
+          },
+          {
+            "index": 2,
+            "text": "  connection = transport.createConnection(...)"
+          },
+          {
+            "index": 3,
+            "text": "  userEntity = createUserMessage(context)"
+          },
+          {
+            "index": 4,
+            "text": "  llmEntity = createLlmMessage(context)"
+          },
+          {
+            "index": 5,
+            "text": "  memory = initMemory()"
+          },
+          {
+            "index": 6,
+            "text": "  buildHistoryMessage(context, memory)"
+          },
+          {
+            "index": 7,
+            "text": "  toolProvider = provideTools(context)"
+          },
+          {
+            "index": 8,
+            "text": "  processStreamingChat(...) or processSyncChat(...)"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "对话主链路同时处理模型调用、消息持久化、流式传输和上下文维护。",
+          "text": "AbstractMessageHandler.chat()",
           "resolvedTextStyle": {
-            "fontSize": 21,
-            "typeface": "Microsoft YaHei",
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
             "color": "#172026",
-            "bold": true,
-            "alignment": "center"
+            "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "对话主链路同时处理模型调用、消息持久化、流式传输和上下文维护。",
-              "fontSize": 21,
+              "text": "AbstractMessageHandler.chat()",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "  connection = transport.createConnection(...)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  connection = transport.createConnection(...)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "  userEntity = createUserMessage(context)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  userEntity = createUserMessage(context)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "  llmEntity = createLlmMessage(context)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  llmEntity = createLlmMessage(context)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "  memory = initMemory()",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  memory = initMemory()",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 6,
+          "text": "  buildHistoryMessage(context, memory)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  buildHistoryMessage(context, memory)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 7,
+          "text": "  toolProvider = provideTools(context)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  toolProvider = provideTools(context)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 8,
+          "text": "  processStreamingChat(...) or processSyncChat(...)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  processStreamingChat(...) or processSyncChat(...)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 38,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dsji5sne",
+      "id": "38",
+      "bbox": [
+        740,
+        377,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B8A83",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 39,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o7qpg3ex",
+      "id": "39",
+      "bbox": [
+        758,
+        370,
+        382,
+        56
+      ],
+      "geometry": "rect",
+      "text": "这是典型模板方法：公共流程固定，具体工具由子类覆盖 provideTools。",
+      "textPreview": "这是典型模板方法：公共流程固定，具体工具由子类覆盖 provideTools。",
+      "resolvedFontSize": 16.51,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16.51,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "这是典型模板方法：公共流程固定，具体工具由子类"
+          },
+          {
+            "index": 2,
+            "text": "覆盖 provideTools。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "这是典型模板方法：公共流程固定，具体工具由子类覆盖 provideTools。",
+          "resolvedTextStyle": {
+            "fontSize": 16.51,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "这是典型模板方法：公共流程固定，具体工具由子类覆盖 provideTools。",
+              "fontSize": 16.51,
               "typeface": "Microsoft YaHei",
-              "color": "#172026",
-              "bold": true
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 40,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wb2hwfyx",
+      "id": "40",
+      "bbox": [
+        740,
+        435,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B8A83",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 41,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lwval87e",
+      "id": "41",
+      "bbox": [
+        758,
+        428,
+        382,
+        56
+      ],
+      "geometry": "rect",
+      "text": "AgentMessageHandler 会提供工具；普通 ChatMessageHandler 不额外覆盖。",
+      "textPreview": "AgentMessageHandler 会提供工具；普通 ChatMessageHandler 不额外覆盖。",
+      "resolvedFontSize": 16.51,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16.51,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AgentMessageHandler 会提供工具；普通"
+          },
+          {
+            "index": 2,
+            "text": "ChatMessageHandler 不额外覆盖。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AgentMessageHandler 会提供工具；普通 ChatMessageHandler 不额外覆盖。",
+          "resolvedTextStyle": {
+            "fontSize": 16.51,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AgentMessageHandler 会提供工具；普通 ChatMessageHandler 不额外覆盖。",
+              "fontSize": 16.51,
+              "typeface": "Microsoft YaHei",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 42,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/e9cvixcz",
+      "id": "42",
+      "bbox": [
+        740,
+        493,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B8A83",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 43,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3q5o7qpg",
+      "id": "43",
+      "bbox": [
+        758,
+        486,
+        382,
+        56
+      ],
+      "geometry": "rect",
+      "text": "系统提示词、摘要、历史消息在进入模型前写入 MessageWindowChatMemory。",
+      "textPreview": "系统提示词、摘要、历史消息在进入模型前写入 MessageWindowChatMemory。",
+      "resolvedFontSize": 16.51,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16.51,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "系统提示词、摘要、历史消息在进入模型前写入"
+          },
+          {
+            "index": 2,
+            "text": "MessageWindowChatMemory。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "系统提示词、摘要、历史消息在进入模型前写入 MessageWindowChatMemory。",
+          "resolvedTextStyle": {
+            "fontSize": 16.51,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "系统提示词、摘要、历史消息在进入模型前写入 MessageWindowChatMemory。",
+              "fontSize": 16.51,
+              "typeface": "Microsoft YaHei",
+              "color": "#172026"
             }
           ],
           "marginLeft": 0

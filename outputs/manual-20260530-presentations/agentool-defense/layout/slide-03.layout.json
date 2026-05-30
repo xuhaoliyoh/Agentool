@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/tgofyc",
-    "id": "tgofyc",
+    "aid": "sl/gpk6o6",
+    "id": "gpk6o6",
     "slide": 3,
-    "layoutId": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+    "layoutId": "79891f45-d097-46e8-bddb-68fe971b49e3",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+    "masterLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
     "masterLayoutName": "Master",
     "frame": {
       "left": 0,
@@ -38,21 +38,22 @@
       "folHlink": "#96607D"
     },
     "typefaces": [
+      "Aptos Mono",
       "Microsoft YaHei"
     ]
   },
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+      "id": "79891f45-d097-46e8-bddb-68fe971b49e3",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "parentLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "id": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -63,7 +64,7 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/65wjudg7",
+      "aid": "sh/val87ed8",
       "id": "1",
       "bbox": [
         0,
@@ -80,7 +81,7 @@
       "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/hwfyxobm",
+      "aid": "sh/kre1w7mp",
       "id": "2",
       "bbox": [
         0,
@@ -97,7 +98,7 @@
       "order": 3,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/obm58z25",
+      "aid": "sh/dcbulwva",
       "id": "3",
       "bbox": [
         0,
@@ -114,21 +115,21 @@
       "order": 4,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/zed8v6ps",
+      "aid": "sh/2x4nap4r",
       "id": "4",
       "bbox": [
-        1118,
-        56,
+        1120,
+        54,
         80,
-        40
+        36
       ],
       "geometry": "rect",
       "text": "03",
       "textPreview": "03",
-      "resolvedFontSize": 30,
+      "resolvedFontSize": 28,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 28,
         "typeface": "Microsoft YaHei",
         "color": "#D8D3C7",
         "bold": true,
@@ -155,7 +156,7 @@
           "index": 1,
           "text": "03",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 28,
             "typeface": "Microsoft YaHei",
             "color": "#D8D3C7",
             "bold": true,
@@ -165,7 +166,7 @@
             {
               "index": 1,
               "text": "03",
-              "fontSize": 30,
+              "fontSize": 28,
               "typeface": "Microsoft YaHei",
               "color": "#D8D3C7",
               "bold": true
@@ -181,21 +182,21 @@
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/6xkf6dcb",
+      "aid": "sh/vixczed8",
       "id": "5",
       "bbox": [
         70,
-        54,
-        780,
-        48
+        48,
+        900,
+        60
       ],
       "geometry": "rect",
-      "text": "研究背景：从模型调用走向智能体平台",
-      "textPreview": "研究背景：从模型调用走向智能体平台",
-      "resolvedFontSize": 30,
+      "text": "工程主线：接口层、应用层、领域层、基础设施层分工",
+      "textPreview": "工程主线：接口层、应用层、领域层、基础设施层分工",
+      "resolvedFontSize": 26,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 26,
         "typeface": "Microsoft YaHei",
         "color": "#172026",
         "bold": true,
@@ -213,16 +214,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "研究背景：从模型调用走向智能体平台"
+            "text": "工程主线：接口层、应用层、领域层、基础设施层分工"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "研究背景：从模型调用走向智能体平台",
+          "text": "工程主线：接口层、应用层、领域层、基础设施层分工",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 26,
             "typeface": "Microsoft YaHei",
             "color": "#172026",
             "bold": true,
@@ -231,8 +232,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "研究背景：从模型调用走向智能体平台",
-              "fontSize": 30,
+              "text": "工程主线：接口层、应用层、领域层、基础设施层分工",
+              "fontSize": 26,
               "typeface": "Microsoft YaHei",
               "color": "#172026",
               "bold": true
@@ -248,17 +249,17 @@
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/hk3q5o7q",
+      "aid": "sh/k3q5o7qp",
       "id": "6",
       "bbox": [
         72,
-        103,
-        880,
-        26
+        110,
+        940,
+        28
       ],
       "geometry": "rect",
-      "text": "问题不只是“接入一个模型接口”，而是组织稳定的工程闭环",
-      "textPreview": "问题不只是“接入一个模型接口”，而是组织稳定的工程闭环",
+      "text": "后续四条链路都按这个调用方向讲解",
+      "textPreview": "后续四条链路都按这个调用方向讲解",
       "resolvedFontSize": 15,
       "resolvedTextStyle": {
         "anchor": 1,
@@ -279,14 +280,14 @@
         "lines": [
           {
             "index": 1,
-            "text": "问题不只是“接入一个模型接口”，而是组织稳定的工程闭环"
+            "text": "后续四条链路都按这个调用方向讲解"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "问题不只是“接入一个模型接口”，而是组织稳定的工程闭环",
+          "text": "后续四条链路都按这个调用方向讲解",
           "resolvedTextStyle": {
             "fontSize": 15,
             "typeface": "Microsoft YaHei",
@@ -296,7 +297,7 @@
           "runs": [
             {
               "index": 1,
-              "text": "问题不只是“接入一个模型接口”，而是组织稳定的工程闭环",
+              "text": "后续四条链路都按这个调用方向讲解",
               "fontSize": 15,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
@@ -312,11 +313,11 @@
       "order": 7,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/oza1gvy9",
+      "aid": "sh/donyd0z6",
       "id": "7",
       "bbox": [
         70,
-        142,
+        150,
         1140,
         1.2
       ],
@@ -329,21 +330,21 @@
       "order": 8,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/z61032ls",
+      "aid": "sh/29gr2p8n",
       "id": "8",
       "bbox": [
         72,
-        674,
-        930,
+        673,
+        1060,
         22
       ],
       "geometry": "rect",
-      "text": "依据论文 1.1、1.2",
-      "textPreview": "依据论文 1.1、1.2",
-      "resolvedFontSize": 12,
+      "text": "源码包：interfaces / application / domain / infrastructure",
+      "textPreview": "源码包：interfaces / application / domain / infrastructure",
+      "resolvedFontSize": 11,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 12,
+        "fontSize": 11,
         "typeface": "Microsoft YaHei",
         "color": "#5F6972",
         "alignment": "left",
@@ -360,16 +361,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "依据论文 1.1、1.2"
+            "text": "源码包：interfaces / application / domain / infrastructure"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "依据论文 1.1、1.2",
+          "text": "源码包：interfaces / application / domain / infrastructure",
           "resolvedTextStyle": {
-            "fontSize": 12,
+            "fontSize": 11,
             "typeface": "Microsoft YaHei",
             "color": "#5F6972",
             "alignment": "left"
@@ -377,8 +378,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "依据论文 1.1、1.2",
-              "fontSize": 12,
+              "text": "源码包：interfaces / application / domain / infrastructure",
+              "fontSize": 11,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
             }
@@ -393,40 +394,57 @@
       "order": 9,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/al87ed8b",
+      "aid": "sh/vu9knih4",
       "id": "9",
       "bbox": [
-        92,
-        178,
-        180,
-        28
+        110,
+        184,
+        920,
+        58
       ],
       "geometry": "rect",
-      "fillColor": "#B2473E",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
+      "fillColor": "#FFFFFF",
+      "lineColor": "#2456A6",
+      "lineWidth": 1
     },
     {
       "order": 10,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/k3q5o7qp",
+      "aid": "sh/3ylc7u54",
       "id": "10",
       "bbox": [
-        104,
-        183,
-        156,
-        18
+        110,
+        184,
+        10,
+        58
       ],
       "geometry": "rect",
-      "text": "论文指出的现实问题",
-      "textPreview": "论文指出的现实问题",
-      "resolvedFontSize": 12,
+      "fillColor": "#2456A6",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/adsji5sn",
+      "id": "11",
+      "bbox": [
+        144,
+        200,
+        180,
+        26
+      ],
+      "geometry": "rect",
+      "text": "interfaces",
+      "textPreview": "interfaces",
+      "resolvedFontSize": 21,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 12,
-        "typeface": "Microsoft YaHei",
-        "color": "#FFFFFF",
+        "fontSize": 21,
+        "typeface": "Aptos Mono",
+        "color": "#2456A6",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -442,28 +460,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "论文指出的现实问题"
+            "text": "interfaces"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "论文指出的现实问题",
+          "text": "interfaces",
           "resolvedTextStyle": {
-            "fontSize": 12,
-            "typeface": "Microsoft YaHei",
-            "color": "#FFFFFF",
+            "fontSize": 21,
+            "typeface": "Aptos Mono",
+            "color": "#2456A6",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "论文指出的现实问题",
-              "fontSize": 12,
-              "typeface": "Microsoft YaHei",
-              "color": "#FFFFFF",
+              "text": "interfaces",
+              "fontSize": 21,
+              "typeface": "Aptos Mono",
+              "color": "#2456A6",
               "bold": true
             }
           ],
@@ -474,44 +492,26 @@
       "lineWidth": 0
     },
     {
-      "order": 11,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/donyd0z6",
-      "id": "11",
-      "bbox": [
-        702,
-        178,
-        198,
-        28
-      ],
-      "geometry": "rect",
-      "fillColor": "#2B8A83",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
       "order": 12,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/2x4nap4r",
+      "aid": "sh/h4byhgn2",
       "id": "12",
       "bbox": [
-        714,
-        183,
-        174,
-        18
+        360,
+        201,
+        600,
+        24
       ],
       "geometry": "rect",
-      "text": "智能体平台的设计方向",
-      "textPreview": "智能体平台的设计方向",
-      "resolvedFontSize": 12,
+      "text": "Controller：接收 HTTP 请求，读取 UserContext，返回 Result/SseEmitter",
+      "textPreview": "Controller：接收 HTTP 请求，读取 UserContext，返回 Result/SseEmitter",
+      "resolvedFontSize": 17,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 12,
+        "fontSize": 17,
         "typeface": "Microsoft YaHei",
-        "color": "#FFFFFF",
-        "bold": true,
+        "color": "#172026",
         "alignment": "left",
         "verticalAlignment": "top",
         "insets": {
@@ -526,29 +526,27 @@
         "lines": [
           {
             "index": 1,
-            "text": "智能体平台的设计方向"
+            "text": "Controller：接收 HTTP 请求，读取 UserContext，返回 Result/SseEmitter"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "智能体平台的设计方向",
+          "text": "Controller：接收 HTTP 请求，读取 UserContext，返回 Result/SseEmitter",
           "resolvedTextStyle": {
-            "fontSize": 12,
+            "fontSize": 17,
             "typeface": "Microsoft YaHei",
-            "color": "#FFFFFF",
-            "bold": true,
+            "color": "#172026",
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "智能体平台的设计方向",
-              "fontSize": 12,
+              "text": "Controller：接收 HTTP 请求，读取 UserContext，返回 Result/SseEmitter",
+              "fontSize": 17,
               "typeface": "Microsoft YaHei",
-              "color": "#FFFFFF",
-              "bold": true
+              "color": "#172026"
             }
           ],
           "marginLeft": 0
@@ -561,16 +559,16 @@
       "order": 13,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/vixczed8",
+      "aid": "sh/sji5snel",
       "id": "13",
       "bbox": [
-        98,
-        251,
-        8,
-        8
+        569,
+        242,
+        2,
+        30
       ],
       "geometry": "rect",
-      "fillColor": "#B2473E",
+      "fillColor": "#5F6972",
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -578,80 +576,33 @@
       "order": 14,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/kre1w7mp",
+      "aid": "sh/3m94fu18",
       "id": "14",
       "bbox": [
-        118,
-        244,
-        455,
-        54
+        110,
+        272,
+        920,
+        58
       ],
       "geometry": "rect",
-      "text": "单轮问答难以覆盖持续任务",
-      "textPreview": "单轮问答难以覆盖持续任务",
-      "resolvedFontSize": 20,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 20,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "单轮问答难以覆盖持续任务"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "单轮问答难以覆盖持续任务",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "单轮问答难以覆盖持续任务",
-              "fontSize": 20,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
+      "fillColor": "#FFFFFF",
+      "lineColor": "#2B8A83",
+      "lineWidth": 1
     },
     {
       "order": 15,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/dcbulwva",
+      "aid": "sh/a5gbq1or",
       "id": "15",
       "bbox": [
-        98,
-        309,
-        8,
-        8
+        110,
+        272,
+        10,
+        58
       ],
       "geometry": "rect",
-      "fillColor": "#B2473E",
+      "fillColor": "#2B8A83",
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -659,23 +610,24 @@
       "order": 16,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/6psfil0r",
+      "aid": "sh/lszqtcj6",
       "id": "16",
       "bbox": [
-        118,
-        302,
-        455,
-        54
+        144,
+        288,
+        180,
+        26
       ],
       "geometry": "rect",
-      "text": "模型参数知识存在时效与可靠性边界",
-      "textPreview": "模型参数知识存在时效与可靠性边界",
-      "resolvedFontSize": 20,
+      "text": "application",
+      "textPreview": "application",
+      "resolvedFontSize": 21,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 20,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "fontSize": 21,
+        "typeface": "Aptos Mono",
+        "color": "#2B8A83",
+        "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
         "insets": {
@@ -690,27 +642,29 @@
         "lines": [
           {
             "index": 1,
-            "text": "模型参数知识存在时效与可靠性边界"
+            "text": "application"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "模型参数知识存在时效与可靠性边界",
+          "text": "application",
           "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "fontSize": 21,
+            "typeface": "Aptos Mono",
+            "color": "#2B8A83",
+            "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "模型参数知识存在时效与可靠性边界",
-              "fontSize": 20,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
+              "text": "application",
+              "fontSize": 21,
+              "typeface": "Aptos Mono",
+              "color": "#2B8A83",
+              "bold": true
             }
           ],
           "marginLeft": 0
@@ -723,16 +677,63 @@
       "order": 17,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/val87ed8",
+      "aid": "sh/s72x4nap",
       "id": "17",
       "bbox": [
-        98,
-        367,
-        8,
-        8
+        360,
+        289,
+        600,
+        24
       ],
       "geometry": "rect",
-      "fillColor": "#B2473E",
+      "text": "AppService：编排一次业务用例，例如登录、对话、RAG 搜索",
+      "textPreview": "AppService：编排一次业务用例，例如登录、对话、RAG 搜索",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AppService：编排一次业务用例，例如登录、对话、RAG 搜索"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AppService：编排一次业务用例，例如登录、对话、RAG 搜索",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AppService：编排一次业务用例，例如登录、对话、RAG 搜索",
+              "fontSize": 17,
+              "typeface": "Microsoft YaHei",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -740,63 +741,16 @@
       "order": 18,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/knih4byh",
+      "aid": "sh/zidonyd0",
       "id": "18",
       "bbox": [
-        118,
-        360,
-        455,
-        54
+        569,
+        330,
+        2,
+        30
       ],
       "geometry": "rect",
-      "text": "缺少工具、知识库、权限与会话协同",
-      "textPreview": "缺少工具、知识库、权限与会话协同",
-      "resolvedFontSize": 20,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 20,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "缺少工具、知识库、权限与会话协同"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "缺少工具、知识库、权限与会话协同",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "缺少工具、知识库、权限与会话协同",
-              "fontSize": 20,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
+      "fillColor": "#5F6972",
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -804,13 +758,30 @@
       "order": 19,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/d8bat47y",
+      "aid": "sh/a1gvy90j",
       "id": "19",
       "bbox": [
-        98,
-        425,
-        8,
-        8
+        110,
+        360,
+        920,
+        58
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#B2473E",
+      "lineWidth": 1
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ylc7u54z",
+      "id": "20",
+      "bbox": [
+        110,
+        360,
+        10,
+        58
       ],
       "geometry": "rect",
       "fillColor": "#B2473E",
@@ -818,26 +789,27 @@
       "lineWidth": 0
     },
     {
-      "order": 20,
+      "order": 21,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/d4vmtwra",
-      "id": "20",
+      "aid": "sh/r65wjudg",
+      "id": "21",
       "bbox": [
-        118,
-        418,
-        455,
-        54
+        144,
+        376,
+        180,
+        26
       ],
       "geometry": "rect",
-      "text": "多用户场景需要后台治理与状态追踪",
-      "textPreview": "多用户场景需要后台治理与状态追踪",
-      "resolvedFontSize": 20,
+      "text": "domain",
+      "textPreview": "domain",
+      "resolvedFontSize": 21,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 20,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "fontSize": 21,
+        "typeface": "Aptos Mono",
+        "color": "#B2473E",
+        "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
         "insets": {
@@ -852,27 +824,29 @@
         "lines": [
           {
             "index": 1,
-            "text": "多用户场景需要后台治理与状态追踪"
+            "text": "domain"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "多用户场景需要后台治理与状态追踪",
+          "text": "domain",
           "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "fontSize": 21,
+            "typeface": "Aptos Mono",
+            "color": "#B2473E",
+            "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "多用户场景需要后台治理与状态追踪",
-              "fontSize": 20,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
+              "text": "domain",
+              "fontSize": 21,
+              "typeface": "Aptos Mono",
+              "color": "#B2473E",
+              "bold": true
             }
           ],
           "marginLeft": 0
@@ -882,41 +856,24 @@
       "lineWidth": 0
     },
     {
-      "order": 21,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/oj2t83it",
-      "id": "21",
-      "bbox": [
-        708,
-        251,
-        8,
-        8
-      ],
-      "geometry": "rect",
-      "fillColor": "#2B8A83",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
       "order": 22,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/vy90je9c",
+      "aid": "sh/gr2p8nqx",
       "id": "22",
       "bbox": [
-        728,
-        244,
-        430,
-        54
+        360,
+        377,
+        600,
+        24
       ],
       "geometry": "rect",
-      "text": "自然语言作为统一交互入口",
-      "textPreview": "自然语言作为统一交互入口",
-      "resolvedFontSize": 20,
+      "text": "DomainService/Entity：表达业务规则、状态流转和数据合法性",
+      "textPreview": "DomainService/Entity：表达业务规则、状态流转和数据合法性",
+      "resolvedFontSize": 17,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 20,
+        "fontSize": 17,
         "typeface": "Microsoft YaHei",
         "color": "#172026",
         "alignment": "left",
@@ -933,16 +890,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "自然语言作为统一交互入口"
+            "text": "DomainService/Entity：表达业务规则、状态流转和数据合法性"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "自然语言作为统一交互入口",
+          "text": "DomainService/Entity：表达业务规则、状态流转和数据合法性",
           "resolvedTextStyle": {
-            "fontSize": 20,
+            "fontSize": 17,
             "typeface": "Microsoft YaHei",
             "color": "#172026",
             "alignment": "left"
@@ -950,8 +907,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "自然语言作为统一交互入口",
-              "fontSize": 20,
+              "text": "DomainService/Entity：表达业务规则、状态流转和数据合法性",
+              "fontSize": 17,
               "typeface": "Microsoft YaHei",
               "color": "#172026"
             }
@@ -966,16 +923,16 @@
       "order": 23,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/6dcbulwv",
+      "aid": "sh/9cvixcze",
       "id": "23",
       "bbox": [
-        708,
-        309,
-        8,
-        8
+        569,
+        418,
+        2,
+        30
       ],
       "geometry": "rect",
-      "fillColor": "#2B8A83",
+      "fillColor": "#5F6972",
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -983,80 +940,33 @@
       "order": 24,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/dsji5sne",
+      "aid": "sh/yxobm58z",
       "id": "24",
       "bbox": [
-        728,
-        302,
-        430,
-        54
+        110,
+        448,
+        920,
+        58
       ],
       "geometry": "rect",
-      "text": "外部工具弥补计算与业务动作不足",
-      "textPreview": "外部工具弥补计算与业务动作不足",
-      "resolvedFontSize": 20,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 20,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "外部工具弥补计算与业务动作不足"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "外部工具弥补计算与业务动作不足",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "外部工具弥补计算与业务动作不足",
-              "fontSize": 20,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
+      "fillColor": "#FFFFFF",
+      "lineColor": "#C9922A",
+      "lineWidth": 1
     },
     {
       "order": 25,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/o7qpg3ex",
+      "aid": "sh/nih4byhg",
       "id": "25",
       "bbox": [
-        708,
-        367,
-        8,
-        8
+        110,
+        448,
+        10,
+        58
       ],
       "geometry": "rect",
-      "fillColor": "#2B8A83",
+      "fillColor": "#C9922A",
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -1064,23 +974,24 @@
       "order": 26,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/vmtwra5g",
+      "aid": "sh/g3ex0nux",
       "id": "26",
       "bbox": [
-        728,
-        360,
-        430,
-        54
+        144,
+        464,
+        180,
+        26
       ],
       "geometry": "rect",
-      "text": "私有知识库提升资料型回答依据",
-      "textPreview": "私有知识库提升资料型回答依据",
-      "resolvedFontSize": 20,
+      "text": "infrastructure",
+      "textPreview": "infrastructure",
+      "resolvedFontSize": 21,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 20,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
+        "fontSize": 21,
+        "typeface": "Aptos Mono",
+        "color": "#C9922A",
+        "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
         "insets": {
@@ -1095,27 +1006,29 @@
         "lines": [
           {
             "index": 1,
-            "text": "私有知识库提升资料型回答依据"
+            "text": "infrastructure"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "私有知识库提升资料型回答依据",
+          "text": "infrastructure",
           "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
+            "fontSize": 21,
+            "typeface": "Aptos Mono",
+            "color": "#C9922A",
+            "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "私有知识库提升资料型回答依据",
-              "fontSize": 20,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
+              "text": "infrastructure",
+              "fontSize": 21,
+              "typeface": "Aptos Mono",
+              "color": "#C9922A",
+              "bold": true
             }
           ],
           "marginLeft": 0
@@ -1128,38 +1041,21 @@
       "order": 27,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/61032lsz",
+      "aid": "sh/5o7qpg3e",
       "id": "27",
       "bbox": [
-        708,
-        425,
-        8,
-        8
+        360,
+        465,
+        600,
+        24
       ],
       "geometry": "rect",
-      "fillColor": "#2B8A83",
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 28,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/dg7adsji",
-      "id": "28",
-      "bbox": [
-        728,
-        418,
-        430,
-        54
-      ],
-      "geometry": "rect",
-      "text": "上下文治理保持多轮对话连续性",
-      "textPreview": "上下文治理保持多轮对话连续性",
-      "resolvedFontSize": 20,
+      "text": "外部能力：JWT、LLM、MQ、对象存储、向量库、MCP/HTTP 工具",
+      "textPreview": "外部能力：JWT、LLM、MQ、对象存储、向量库、MCP/HTTP 工具",
+      "resolvedFontSize": 17,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 20,
+        "fontSize": 17,
         "typeface": "Microsoft YaHei",
         "color": "#172026",
         "alignment": "left",
@@ -1176,16 +1072,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "上下文治理保持多轮对话连续性"
+            "text": "外部能力：JWT、LLM、MQ、对象存储、向量库、MCP/HTTP 工具"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "上下文治理保持多轮对话连续性",
+          "text": "外部能力：JWT、LLM、MQ、对象存储、向量库、MCP/HTTP 工具",
           "resolvedTextStyle": {
-            "fontSize": 20,
+            "fontSize": 17,
             "typeface": "Microsoft YaHei",
             "color": "#172026",
             "alignment": "left"
@@ -1193,8 +1089,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "上下文治理保持多轮对话连续性",
-              "fontSize": 20,
+              "text": "外部能力：JWT、LLM、MQ、对象存储、向量库、MCP/HTTP 工具",
+              "fontSize": 17,
               "typeface": "Microsoft YaHei",
               "color": "#172026"
             }
@@ -1206,26 +1102,26 @@
       "lineWidth": 0
     },
     {
-      "order": 29,
+      "order": 28,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/ovahoza1",
-      "id": "29",
+      "aid": "sh/y1kre1w7",
+      "id": "28",
       "bbox": [
-        230,
-        582,
+        168,
+        586,
         820,
-        58
+        30
       ],
       "geometry": "rect",
-      "text": "研究重点：把大模型能力稳定组织进业务平台，而不是只完成一次模型接口调用。",
-      "textPreview": "研究重点：把大模型能力稳定组织进业务平台，而不是只完成一次模型接口调用。",
-      "resolvedFontSize": 21,
+      "text": "答辩时的讲法：每个功能都说清楚“入口在哪、谁编排、规则在哪、外部依赖怎么接”。",
+      "textPreview": "答辩时的讲法：每个功能都说清楚“入口在哪、谁编排、规则在哪、外部依赖怎么接”。",
+      "resolvedFontSize": 19,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 21,
+        "fontSize": 19,
         "typeface": "Microsoft YaHei",
-        "color": "#2456A6",
+        "color": "#172026",
         "bold": true,
         "alignment": "center",
         "verticalAlignment": "top",
@@ -1241,28 +1137,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "研究重点：把大模型能力稳定组织进业务平台，而不是只完成一次模型接口调用。"
+            "text": "答辩时的讲法：每个功能都说清楚“入口在哪、谁编排、规则在哪、外部依赖怎么接”。"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "研究重点：把大模型能力稳定组织进业务平台，而不是只完成一次模型接口调用。",
+          "text": "答辩时的讲法：每个功能都说清楚“入口在哪、谁编排、规则在哪、外部依赖怎么接”。",
           "resolvedTextStyle": {
-            "fontSize": 21,
+            "fontSize": 19,
             "typeface": "Microsoft YaHei",
-            "color": "#2456A6",
+            "color": "#172026",
             "bold": true,
             "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "研究重点：把大模型能力稳定组织进业务平台，而不是只完成一次模型接口调用。",
-              "fontSize": 21,
+              "text": "答辩时的讲法：每个功能都说清楚“入口在哪、谁编排、规则在哪、外部依赖怎么接”。",
+              "fontSize": 19,
               "typeface": "Microsoft YaHei",
-              "color": "#2456A6",
+              "color": "#172026",
               "bold": true
             }
           ],

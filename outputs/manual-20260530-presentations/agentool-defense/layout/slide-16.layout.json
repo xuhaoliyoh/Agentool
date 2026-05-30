@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/uwg1xp",
-    "id": "uwg1xp",
+    "aid": "sl/69oufq",
+    "id": "69oufq",
     "slide": 16,
-    "layoutId": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+    "layoutId": "79891f45-d097-46e8-bddb-68fe971b49e3",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+    "masterLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
     "masterLayoutName": "Master",
     "frame": {
       "left": 0,
@@ -38,21 +38,22 @@
       "folHlink": "#96607D"
     },
     "typefaces": [
+      "Aptos Mono",
       "Microsoft YaHei"
     ]
   },
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "bd3ad4d5-68ef-4027-ad3a-411d820d9058",
+      "id": "79891f45-d097-46e8-bddb-68fe971b49e3",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "parentLayoutId": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "bb8f5f9f-9412-4253-9cd5-41a652a980a5",
+      "id": "72727801-6b77-4acb-85eb-6db67ac1740a",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -63,7 +64,7 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/25kb6xkf",
+      "aid": "sh/mlkjm1cf",
       "id": "1",
       "bbox": [
         0,
@@ -80,7 +81,7 @@
       "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/9w3m94fu",
+      "aid": "sh/xc3ylc7u",
       "id": "2",
       "bbox": [
         0,
@@ -97,7 +98,7 @@
       "order": 3,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/kb6xkf6d",
+      "aid": "sh/4r65wjud",
       "id": "3",
       "bbox": [
         0,
@@ -114,21 +115,21 @@
       "order": 4,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/re1w7mp0",
+      "aid": "sh/fepkzupw",
       "id": "4",
       "bbox": [
-        1118,
-        56,
+        1120,
+        54,
         80,
-        40
+        36
       ],
       "geometry": "rect",
       "text": "16",
       "textPreview": "16",
-      "resolvedFontSize": 30,
+      "resolvedFontSize": 28,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 28,
         "typeface": "Microsoft YaHei",
         "color": "#D8D3C7",
         "bold": true,
@@ -155,7 +156,7 @@
           "index": 1,
           "text": "16",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 28,
             "typeface": "Microsoft YaHei",
             "color": "#D8D3C7",
             "bold": true,
@@ -165,7 +166,7 @@
             {
               "index": 1,
               "text": "16",
-              "fontSize": 30,
+              "fontSize": 28,
               "typeface": "Microsoft YaHei",
               "color": "#D8D3C7",
               "bold": true
@@ -181,21 +182,21 @@
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/2t83itgf",
+      "aid": "sh/mtwra5gb",
       "id": "5",
       "bbox": [
         70,
-        54,
-        780,
-        48
+        48,
+        900,
+        60
       ],
       "geometry": "rect",
-      "text": "系统测试：黑盒场景 + 白盒路径",
-      "textPreview": "系统测试：黑盒场景 + 白盒路径",
-      "resolvedFontSize": 30,
+      "text": "RAG 切分逻辑：Markdown 两阶段处理保留原文并生成向量片段",
+      "textPreview": "RAG 切分逻辑：Markdown 两阶段处理保留原文并生成向量片段",
+      "resolvedFontSize": 26,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 30,
+        "fontSize": 26,
         "typeface": "Microsoft YaHei",
         "color": "#172026",
         "bold": true,
@@ -213,16 +214,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "系统测试：黑盒场景 + 白盒路径"
+            "text": "RAG 切分逻辑：Markdown 两阶段处理保留原文并生成向量片段"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "系统测试：黑盒场景 + 白盒路径",
+          "text": "RAG 切分逻辑：Markdown 两阶段处理保留原文并生成向量片段",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 26,
             "typeface": "Microsoft YaHei",
             "color": "#172026",
             "bold": true,
@@ -231,8 +232,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "系统测试：黑盒场景 + 白盒路径",
-              "fontSize": 30,
+              "text": "RAG 切分逻辑：Markdown 两阶段处理保留原文并生成向量片段",
+              "fontSize": 26,
               "typeface": "Microsoft YaHei",
               "color": "#172026",
               "bold": true
@@ -248,17 +249,17 @@
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/9knih4by",
+      "aid": "sh/xkf6dcbu",
       "id": "6",
       "bbox": [
         72,
-        103,
-        880,
-        26
+        110,
+        940,
+        28
       ],
       "geometry": "rect",
-      "text": "验证核心功能闭环和关键后端分支处理是否符合预期",
-      "textPreview": "验证核心功能闭环和关键后端分支处理是否符合预期",
+      "text": "第一阶段按结构保存原文 DocumentUnit，第二阶段翻译特殊节点、二次切分并发送向量化任务",
+      "textPreview": "第一阶段按结构保存原文 DocumentUnit，第二阶段翻译特殊节点、二次切分并发送向量化任务",
       "resolvedFontSize": 15,
       "resolvedTextStyle": {
         "anchor": 1,
@@ -279,14 +280,14 @@
         "lines": [
           {
             "index": 1,
-            "text": "验证核心功能闭环和关键后端分支处理是否符合预期"
+            "text": "第一阶段按结构保存原文 DocumentUnit，第二阶段翻译特殊节点、二次切分并发送向量化任务"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "验证核心功能闭环和关键后端分支处理是否符合预期",
+          "text": "第一阶段按结构保存原文 DocumentUnit，第二阶段翻译特殊节点、二次切分并发送向量化任务",
           "resolvedTextStyle": {
             "fontSize": 15,
             "typeface": "Microsoft YaHei",
@@ -296,7 +297,7 @@
           "runs": [
             {
               "index": 1,
-              "text": "验证核心功能闭环和关键后端分支处理是否符合预期",
+              "text": "第一阶段按结构保存原文 DocumentUnit，第二阶段翻译特殊节点、二次切分并发送向量化任务",
               "fontSize": 15,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
@@ -312,11 +313,11 @@
       "order": 7,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/kzupwb2h",
+      "aid": "sh/4zidonyd",
       "id": "7",
       "bbox": [
         70,
-        142,
+        150,
         1140,
         1.2
       ],
@@ -329,21 +330,21 @@
       "order": 8,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/ra5gbq1o",
+      "aid": "sh/fil0rqd4",
       "id": "8",
       "bbox": [
         72,
-        674,
-        930,
+        673,
+        1060,
         22
       ],
       "geometry": "rect",
-      "text": "依据论文第 6 章",
-      "textPreview": "依据论文第 6 章",
-      "resolvedFontSize": 12,
+      "text": "MarkdownRagDocumentProcessing.java / DocumentVectorizationOrchestrator.java",
+      "textPreview": "MarkdownRagDocumentProcessing.java / DocumentVectorizationOrchestrator.java",
+      "resolvedFontSize": 11,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 12,
+        "fontSize": 11,
         "typeface": "Microsoft YaHei",
         "color": "#5F6972",
         "alignment": "left",
@@ -360,16 +361,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "依据论文第 6 章"
+            "text": "MarkdownRagDocumentProcessing.java / DocumentVectorizationOrchestrator.java"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "依据论文第 6 章",
+          "text": "MarkdownRagDocumentProcessing.java / DocumentVectorizationOrchestrator.java",
           "resolvedTextStyle": {
-            "fontSize": 12,
+            "fontSize": 11,
             "typeface": "Microsoft YaHei",
             "color": "#5F6972",
             "alignment": "left"
@@ -377,8 +378,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "依据论文第 6 章",
-              "fontSize": 12,
+              "text": "MarkdownRagDocumentProcessing.java / DocumentVectorizationOrchestrator.java",
+              "fontSize": 11,
               "typeface": "Microsoft YaHei",
               "color": "#5F6972"
             }
@@ -393,295 +394,42 @@
       "order": 9,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/2p8nqxs7",
+      "aid": "sh/qxs72x4n",
       "id": "9",
       "bbox": [
-        120,
-        202,
-        170,
-        42
+        58,
+        200,
+        146.86,
+        74
       ],
       "geometry": "rect",
-      "text": "18",
-      "textPreview": "18",
-      "resolvedFontSize": 30,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 30,
-        "typeface": "Microsoft YaHei",
-        "color": "#2456A6",
-        "bold": true,
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "18"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "18",
-          "resolvedTextStyle": {
-            "fontSize": 30,
-            "typeface": "Microsoft YaHei",
-            "color": "#2456A6",
-            "bold": true,
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "18",
-              "fontSize": 30,
-              "typeface": "Microsoft YaHei",
-              "color": "#2456A6",
-              "bold": true
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
+      "fillColor": "#FFFFFF",
+      "lineColor": "#4E8D54",
+      "lineWidth": 1
     },
     {
       "order": 10,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/gvy90je9",
+      "aid": "sh/0bi9s36h",
       "id": "10",
       "bbox": [
-        120,
-        246,
-        180,
-        40
+        66,
+        216,
+        130.86,
+        42
       ],
       "geometry": "rect",
-      "text": "黑盒测试用例：认证、对话、RAG、MCP",
-      "textPreview": "黑盒测试用例：认证、对话、RAG、MCP",
+      "text": "AST 解析",
+      "textPreview": "AST 解析",
       "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
         "fontSize": 14,
-        "typeface": "Microsoft YaHei",
-        "color": "#5F6972",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 2,
-        "lines": [
-          {
-            "index": 1,
-            "text": "黑盒测试用例：认证、对话"
-          },
-          {
-            "index": 2,
-            "text": "、RAG、MCP"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "黑盒测试用例：认证、对话、RAG、MCP",
-          "resolvedTextStyle": {
-            "fontSize": 14,
-            "typeface": "Microsoft YaHei",
-            "color": "#5F6972",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "黑盒测试用例：认证、对话、RAG、MCP",
-              "fontSize": 14,
-              "typeface": "Microsoft YaHei",
-              "color": "#5F6972"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 11,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/9gr2p8nq",
-      "id": "11",
-      "bbox": [
-        380,
-        202,
-        170,
-        42
-      ],
-      "geometry": "rect",
-      "text": "5",
-      "textPreview": "5",
-      "resolvedFontSize": 30,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 30,
-        "typeface": "Microsoft YaHei",
-        "color": "#2B8A83",
-        "bold": true,
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "5"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "5",
-          "resolvedTextStyle": {
-            "fontSize": 30,
-            "typeface": "Microsoft YaHei",
-            "color": "#2B8A83",
-            "bold": true,
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "5",
-              "fontSize": 30,
-              "typeface": "Microsoft YaHei",
-              "color": "#2B8A83",
-              "bold": true
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 12,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/2p8nqxs7",
-      "id": "12",
-      "bbox": [
-        380,
-        246,
-        180,
-        40
-      ],
-      "geometry": "rect",
-      "text": "白盒路径：登录与对话主流程分支",
-      "textPreview": "白盒路径：登录与对话主流程分支",
-      "resolvedFontSize": 14,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 14,
-        "typeface": "Microsoft YaHei",
-        "color": "#5F6972",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 2,
-        "lines": [
-          {
-            "index": 1,
-            "text": "白盒路径：登录与对话主流"
-          },
-          {
-            "index": 2,
-            "text": "程分支"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "白盒路径：登录与对话主流程分支",
-          "resolvedTextStyle": {
-            "fontSize": 14,
-            "typeface": "Microsoft YaHei",
-            "color": "#5F6972",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "白盒路径：登录与对话主流程分支",
-              "fontSize": 14,
-              "typeface": "Microsoft YaHei",
-              "color": "#5F6972"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
-    },
-    {
-      "order": 13,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/ra5gbq1o",
-      "id": "13",
-      "bbox": [
-        640,
-        202,
-        170,
-        42
-      ],
-      "geometry": "rect",
-      "text": "通过",
-      "textPreview": "通过",
-      "resolvedFontSize": 30,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 30,
         "typeface": "Microsoft YaHei",
         "color": "#4E8D54",
         "bold": true,
-        "alignment": "left",
+        "alignment": "center",
         "verticalAlignment": "top",
         "insets": {
           "top": 0,
@@ -695,26 +443,26 @@
         "lines": [
           {
             "index": 1,
-            "text": "通过"
+            "text": "AST 解析"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "通过",
+          "text": "AST 解析",
           "resolvedTextStyle": {
-            "fontSize": 30,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#4E8D54",
             "bold": true,
-            "alignment": "left"
+            "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "通过",
-              "fontSize": 30,
+              "text": "AST 解析",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#4E8D54",
               "bold": true
@@ -727,27 +475,79 @@
       "lineWidth": 0
     },
     {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pwb2hwfy",
+      "id": "11",
+      "bbox": [
+        204.86,
+        236,
+        22,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i5sneloj",
+      "id": "12",
+      "bbox": [
+        218.86,
+        232,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7qpg3ex0",
+      "id": "13",
+      "bbox": [
+        226.86,
+        200,
+        146.86,
+        74
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#2B8A83",
+      "lineWidth": 1
+    },
+    {
       "order": 14,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/kjm1cfa9",
+      "aid": "sh/wjudg7ad",
       "id": "14",
       "bbox": [
-        640,
-        246,
-        180,
-        40
+        234.86,
+        216,
+        130.86,
+        42
       ],
       "geometry": "rect",
-      "text": "主要功能结果与预期一致",
-      "textPreview": "主要功能结果与预期一致",
+      "text": "文档树",
+      "textPreview": "文档树",
       "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
         "fontSize": 14,
         "typeface": "Microsoft YaHei",
-        "color": "#5F6972",
-        "alignment": "left",
+        "color": "#2B8A83",
+        "bold": true,
+        "alignment": "center",
         "verticalAlignment": "top",
         "insets": {
           "top": 0,
@@ -761,27 +561,29 @@
         "lines": [
           {
             "index": 1,
-            "text": "主要功能结果与预期一致"
+            "text": "文档树"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "主要功能结果与预期一致",
+          "text": "文档树",
           "resolvedTextStyle": {
             "fontSize": 14,
             "typeface": "Microsoft YaHei",
-            "color": "#5F6972",
-            "alignment": "left"
+            "color": "#2B8A83",
+            "bold": true,
+            "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "主要功能结果与预期一致",
+              "text": "文档树",
               "fontSize": 14,
               "typeface": "Microsoft YaHei",
-              "color": "#5F6972"
+              "color": "#2B8A83",
+              "bold": true
             }
           ],
           "marginLeft": 0
@@ -794,83 +596,33 @@
       "order": 15,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/94fu18jq",
+      "aid": "sh/p4r65wju",
       "id": "15",
       "bbox": [
-        118,
-        350,
-        1000,
-        160
+        373.71,
+        236,
+        22,
+        2
       ],
       "geometry": "rect",
-      "fillColor": "#FFFFFF",
-      "lineColor": "#D8D3C7",
-      "lineWidth": 1
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
     },
     {
       "order": 16,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/2hwfyxob",
+      "aid": "sh/ed8v6psf",
       "id": "16",
       "bbox": [
-        150,
-        378,
-        120,
-        24
+        387.71,
+        232,
+        10,
+        10
       ],
-      "geometry": "rect",
-      "text": "认证",
-      "textPreview": "认证",
-      "resolvedFontSize": 18,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 18,
-        "typeface": "Microsoft YaHei",
-        "color": "#2456A6",
-        "bold": true,
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "认证"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "认证",
-          "resolvedTextStyle": {
-            "fontSize": 18,
-            "typeface": "Microsoft YaHei",
-            "color": "#2456A6",
-            "bold": true,
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "认证",
-              "fontSize": 18,
-              "typeface": "Microsoft YaHei",
-              "color": "#2456A6",
-              "bold": true
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -878,89 +630,42 @@
       "order": 17,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/r2p8nqxs",
+      "aid": "sh/7y1kre1w",
       "id": "17",
       "bbox": [
-        310,
-        378,
-        720,
-        24
+        395.71,
+        200,
+        146.86,
+        74
       ],
       "geometry": "rect",
-      "text": "注册、重复注册、验证码、登录、重置密码",
-      "textPreview": "注册、重复注册、验证码、登录、重置密码",
-      "resolvedFontSize": 17,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 17,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "注册、重复注册、验证码、登录、重置密码"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "注册、重复注册、验证码、登录、重置密码",
-          "resolvedTextStyle": {
-            "fontSize": 17,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "注册、重复注册、验证码、登录、重置密码",
-              "fontSize": 17,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineColor": "rgba(0, 0, 0, 0)",
-      "lineWidth": 0
+      "fillColor": "#FFFFFF",
+      "lineColor": "#C9922A",
+      "lineWidth": 1
     },
     {
       "order": 18,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/kb6xkf6d",
+      "aid": "sh/0nuxc3yl",
       "id": "18",
       "bbox": [
-        150,
-        420,
-        120,
-        24
+        403.71,
+        216,
+        130.86,
+        42
       ],
       "geometry": "rect",
-      "text": "智能对话",
-      "textPreview": "智能对话",
-      "resolvedFontSize": 18,
+      "text": "层次化分段",
+      "textPreview": "层次化分段",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 18,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
-        "color": "#2B8A83",
+        "color": "#C9922A",
         "bold": true,
-        "alignment": "left",
+        "alignment": "center",
         "verticalAlignment": "top",
         "insets": {
           "top": 0,
@@ -974,28 +679,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "智能对话"
+            "text": "层次化分段"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "智能对话",
+          "text": "层次化分段",
           "resolvedTextStyle": {
-            "fontSize": 18,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
-            "color": "#2B8A83",
+            "color": "#C9922A",
             "bold": true,
-            "alignment": "left"
+            "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "智能对话",
-              "fontSize": 18,
+              "text": "层次化分段",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
-              "color": "#2B8A83",
+              "color": "#C9922A",
               "bold": true
             }
           ],
@@ -1009,63 +714,16 @@
       "order": 19,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/9w3m94fu",
+      "aid": "sh/p8nqxs72",
       "id": "19",
       "bbox": [
-        310,
-        420,
-        720,
-        24
+        542.57,
+        236,
+        22,
+        2
       ],
       "geometry": "rect",
-      "text": "创建 Agent、加入工作区、流式回复、历史恢复、中断生成",
-      "textPreview": "创建 Agent、加入工作区、流式回复、历史恢复、中断生成",
-      "resolvedFontSize": 17,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 17,
-        "typeface": "Microsoft YaHei",
-        "color": "#172026",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "insets": {
-          "top": 0,
-          "right": 0,
-          "bottom": 0,
-          "left": 0
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "创建 Agent、加入工作区、流式回复、历史恢复、中断生成"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "创建 Agent、加入工作区、流式回复、历史恢复、中断生成",
-          "resolvedTextStyle": {
-            "fontSize": 17,
-            "typeface": "Microsoft YaHei",
-            "color": "#172026",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "创建 Agent、加入工作区、流式回复、历史恢复、中断生成",
-              "fontSize": 17,
-              "typeface": "Microsoft YaHei",
-              "color": "#172026"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
+      "fillColor": "#5F6972",
       "lineColor": "rgba(0, 0, 0, 0)",
       "lineWidth": 0
     },
@@ -1073,25 +731,59 @@
       "order": 20,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/dg7adsji",
+      "aid": "sh/dcbulwva",
       "id": "20",
       "bbox": [
-        150,
-        462,
-        120,
-        24
+        556.57,
+        232,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kre1w7mp",
+      "id": "21",
+      "bbox": [
+        564.57,
+        200,
+        146.86,
+        74
       ],
       "geometry": "rect",
-      "text": "RAG / MCP",
-      "textPreview": "RAG / MCP",
-      "resolvedFontSize": 18,
+      "fillColor": "#FFFFFF",
+      "lineColor": "#B2473E",
+      "lineWidth": 1
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/val87ed8",
+      "id": "22",
+      "bbox": [
+        572.57,
+        216,
+        130.86,
+        42
+      ],
+      "geometry": "rect",
+      "text": "原文入库",
+      "textPreview": "原文入库",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 18,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
         "color": "#B2473E",
         "bold": true,
-        "alignment": "left",
+        "alignment": "center",
         "verticalAlignment": "top",
         "insets": {
           "top": 0,
@@ -1105,26 +797,26 @@
         "lines": [
           {
             "index": 1,
-            "text": "RAG / MCP"
+            "text": "原文入库"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "RAG / MCP",
+          "text": "原文入库",
           "resolvedTextStyle": {
-            "fontSize": 18,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
             "color": "#B2473E",
             "bold": true,
-            "alignment": "left"
+            "alignment": "center"
           },
           "runs": [
             {
               "index": 1,
-              "text": "RAG / MCP",
-              "fontSize": 18,
+              "text": "原文入库",
+              "fontSize": 14,
               "typeface": "Microsoft YaHei",
               "color": "#B2473E",
               "bold": true
@@ -1137,27 +829,79 @@
       "lineWidth": 0
     },
     {
-      "order": 21,
+      "order": 23,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/ovahoza1",
-      "id": "21",
+      "aid": "sh/6psfil0r",
+      "id": "23",
       "bbox": [
-        310,
-        462,
-        720,
-        24
+        711.43,
+        236,
+        22,
+        2
       ],
       "geometry": "rect",
-      "text": "知识库问答、无权限访问、工具探测、工具增强对话、异常提示",
-      "textPreview": "知识库问答、无权限访问、工具探测、工具增强对话、异常提示",
-      "resolvedFontSize": 17,
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/donyd0z6",
+      "id": "24",
+      "bbox": [
+        725.43,
+        232,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/k3q5o7qp",
+      "id": "25",
+      "bbox": [
+        733.43,
+        200,
+        146.86,
+        74
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#4E8D54",
+      "lineWidth": 1
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vixczed8",
+      "id": "26",
+      "bbox": [
+        741.43,
+        216,
+        130.86,
+        42
+      ],
+      "geometry": "rect",
+      "text": "特殊节点翻译",
+      "textPreview": "特殊节点翻译",
+      "resolvedFontSize": 14,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 17,
+        "fontSize": 14,
         "typeface": "Microsoft YaHei",
-        "color": "#172026",
-        "alignment": "left",
+        "color": "#4E8D54",
+        "bold": true,
+        "alignment": "center",
         "verticalAlignment": "top",
         "insets": {
           "top": 0,
@@ -1171,27 +915,602 @@
         "lines": [
           {
             "index": 1,
-            "text": "知识库问答、无权限访问、工具探测、工具增强对话、异常提示"
+            "text": "特殊节点翻译"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "知识库问答、无权限访问、工具探测、工具增强对话、异常提示",
+          "text": "特殊节点翻译",
           "resolvedTextStyle": {
-            "fontSize": 17,
+            "fontSize": 14,
             "typeface": "Microsoft YaHei",
+            "color": "#4E8D54",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "特殊节点翻译",
+              "fontSize": 14,
+              "typeface": "Microsoft YaHei",
+              "color": "#4E8D54",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2x4nap4r",
+      "id": "27",
+      "bbox": [
+        880.29,
+        236,
+        22,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d0z61032",
+      "id": "28",
+      "bbox": [
+        894.29,
+        232,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kf6dcbul",
+      "id": "29",
+      "bbox": [
+        902.29,
+        200,
+        146.86,
+        74
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#2B8A83",
+      "lineWidth": 1
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y90je9cv",
+      "id": "30",
+      "bbox": [
+        910.29,
+        216,
+        130.86,
+        42
+      ],
+      "geometry": "rect",
+      "text": "二次切分",
+      "textPreview": "二次切分",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Microsoft YaHei",
+        "color": "#2B8A83",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "二次切分"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "二次切分",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Microsoft YaHei",
+            "color": "#2B8A83",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "二次切分",
+              "fontSize": 14,
+              "typeface": "Microsoft YaHei",
+              "color": "#2B8A83",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nuxc3ylc",
+      "id": "31",
+      "bbox": [
+        1049.14,
+        236,
+        22,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbq1oryt",
+      "id": "32",
+      "bbox": [
+        1063.14,
+        232,
+        10,
+        10
+      ],
+      "geometry": "triangle",
+      "fillColor": "#5F6972",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjudg7a",
+      "id": "33",
+      "bbox": [
+        1071.14,
+        200,
+        146.86,
+        74
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#C9922A",
+      "lineWidth": 1
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yhgn29gr",
+      "id": "34",
+      "bbox": [
+        1079.14,
+        216,
+        130.86,
+        42
+      ],
+      "geometry": "rect",
+      "text": "发送向量任务",
+      "textPreview": "发送向量任务",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Microsoft YaHei",
+        "color": "#C9922A",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "发送向量任务"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "发送向量任务",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Microsoft YaHei",
+            "color": "#C9922A",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "发送向量任务",
+              "fontSize": 14,
+              "typeface": "Microsoft YaHei",
+              "color": "#C9922A",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 35,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n29gr2p8",
+      "id": "35",
+      "bbox": [
+        125,
+        344,
+        760,
+        226
+      ],
+      "geometry": "rect",
+      "fillColor": "#FAFAF7",
+      "lineColor": "#2B8A83",
+      "lineWidth": 1
+    },
+    {
+      "order": 36,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gn29gr2p",
+      "id": "36",
+      "bbox": [
+        125,
+        344,
+        8,
+        226
+      ],
+      "geometry": "rect",
+      "fillColor": "#2B8A83",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 37,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/58z25kb6",
+      "id": "37",
+      "bbox": [
+        143,
+        358,
+        732,
+        204
+      ],
+      "geometry": "rect",
+      "text": "MarkdownRagDocumentProcessing.insertData()\n  save raw segment -> DocumentUnitEntity\n  isOcr = true; isVector = false\n  vectorSegmentProcessor.processDocumentUnits(savedUnits, context)\n\nDocumentVectorizationOrchestrator.processSingleUnit()\n  translateSpecialNodes(originalContent)\n  splitter.splitIfNeeded(translatedContent, titleContext)\n  triggerVectorization(unit, vectorText, index, context)",
+      "textPreview": "MarkdownRagDocumentProcessing.insertData() |   save raw segment -> DocumentUnitEntity |   isOcr = true; isVector = false |   vectorSegmen...",
+      "resolvedFontSize": 12.51,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12.51,
+        "typeface": "Aptos Mono",
+        "color": "#172026",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 9,
+        "lines": [
+          {
+            "index": 1,
+            "text": "MarkdownRagDocumentProcessing.insertData()"
+          },
+          {
+            "index": 2,
+            "text": "  save raw segment -> DocumentUnitEntity"
+          },
+          {
+            "index": 3,
+            "text": "  isOcr = true; isVector = false"
+          },
+          {
+            "index": 4,
+            "text": "  vectorSegmentProcessor.processDocumentUnits(savedUnits, context)"
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": "DocumentVectorizationOrchestrator.processSingleUnit()"
+          },
+          {
+            "index": 7,
+            "text": "  translateSpecialNodes(originalContent)"
+          },
+          {
+            "index": 8,
+            "text": "  splitter.splitIfNeeded(translatedContent, titleContext)"
+          },
+          {
+            "index": 9,
+            "text": "  triggerVectorization(unit, vectorText, index, context)"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "MarkdownRagDocumentProcessing.insertData()",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
             "color": "#172026",
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "知识库问答、无权限访问、工具探测、工具增强对话、异常提示",
-              "fontSize": 17,
-              "typeface": "Microsoft YaHei",
+              "text": "MarkdownRagDocumentProcessing.insertData()",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
               "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "  save raw segment -> DocumentUnitEntity",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  save raw segment -> DocumentUnitEntity",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "  isOcr = true; isVector = false",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  isOcr = true; isVector = false",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "  vectorSegmentProcessor.processDocumentUnits(savedUnits, context)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  vectorSegmentProcessor.processDocumentUnits(savedUnits, context)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 6,
+          "text": "DocumentVectorizationOrchestrator.processSingleUnit()",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DocumentVectorizationOrchestrator.processSingleUnit()",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 7,
+          "text": "  translateSpecialNodes(originalContent)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  translateSpecialNodes(originalContent)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 8,
+          "text": "  splitter.splitIfNeeded(translatedContent, titleContext)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  splitter.splitIfNeeded(translatedContent, titleContext)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 9,
+          "text": "  triggerVectorization(unit, vectorText, index, context)",
+          "resolvedTextStyle": {
+            "fontSize": 12.51,
+            "typeface": "Aptos Mono",
+            "color": "#172026",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "  triggerVectorization(unit, vectorText, index, context)",
+              "fontSize": 12.51,
+              "typeface": "Aptos Mono",
+              "color": "#172026"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 38,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ytsvu9kn",
+      "id": "38",
+      "bbox": [
+        210,
+        598,
+        860,
+        28
+      ],
+      "geometry": "rect",
+      "text": "关键设计：原文 content 不被覆盖；向量化使用翻译/增强后的 vectorText，通过 MQ 消息传递。",
+      "textPreview": "关键设计：原文 content 不被覆盖；向量化使用翻译/增强后的 vectorText，通过 MQ 消息传递。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "Microsoft YaHei",
+        "color": "#172026",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "关键设计：原文 content 不被覆盖；向量化使用翻译/增强后的 vectorText，通过 MQ 消息传递。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "关键设计：原文 content 不被覆盖；向量化使用翻译/增强后的 vectorText，通过 MQ 消息传递。",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "Microsoft YaHei",
+            "color": "#172026",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "关键设计：原文 content 不被覆盖；向量化使用翻译/增强后的 vectorText，通过 MQ 消息传递。",
+              "fontSize": 18,
+              "typeface": "Microsoft YaHei",
+              "color": "#172026",
+              "bold": true
             }
           ],
           "marginLeft": 0
