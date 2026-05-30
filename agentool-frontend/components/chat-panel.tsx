@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useCallback } from "react"
-import { Send, Wrench, Clock, Square } from 'lucide-react'
+import { Clock, Send, Sparkles, Square, Wrench } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -682,10 +682,10 @@ export function ChatPanel({ conversationId, isFunctionalAgent = false, agentName
                     ) : (
                       /* AI消息 */
                       <div className="flex">
-                        <div className="h-8 w-8 mr-2 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="h-8 w-8 mr-2 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-violet-500 text-white shadow-sm ring-1 ring-pink-200 flex items-center justify-center flex-shrink-0">
                           {message.type && message.type !== MessageType.TEXT 
                             ? getMessageTypeInfo(message.type).icon 
-                            : <div className="text-lg">🤖</div>
+                            : <Sparkles className="h-4 w-4" />
                           }
                         </div>
                         <div className="max-w-[95%]">
@@ -724,8 +724,8 @@ export function ChatPanel({ conversationId, isFunctionalAgent = false, agentName
               {/* 思考中提示 */}
               {isThinking && (!currentAssistantMessage || !currentAssistantMessage.hasContent) && (
                 <div className="flex items-start">
-                  <div className="h-8 w-8 mr-2 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <div className="text-lg">🤖</div>
+                  <div className="h-8 w-8 mr-2 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-violet-500 text-white shadow-sm ring-1 ring-pink-200 flex items-center justify-center flex-shrink-0">
+                    <Sparkles className="h-4 w-4 animate-pulse" />
                   </div>
                   <div className="max-w-[95%]">
                     <div className="flex items-center mb-1 text-xs text-gray-500">
@@ -867,4 +867,3 @@ export function ChatPanel({ conversationId, isFunctionalAgent = false, agentName
     </div>
   )
 }
-

@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Loader2, MessageCircle, Send, Bot, User, AlertCircle, Paperclip, X, Wrench, Square } from 'lucide-react'
+import { AlertCircle, Bot, Loader2, MessageCircle, Paperclip, Send, Sparkles, Square, User, Wrench, X } from 'lucide-react'
 import { toast } from '@/hooks/use-toast'
 import { previewAgentStream, handlePreviewStream, parseStreamData, createStreamDecoder, type AgentPreviewRequest, type MessageHistoryItem, type AgentChatResponse } from '@/lib/agent-preview-service'
 import { uploadMultipleFiles, type UploadResult, type UploadFileInfo } from '@/lib/file-upload-service'
@@ -795,10 +795,10 @@ export default function AgentPreviewChat({
                 ) : (
                   /* AI消息 */
                   <div className="flex items-start">
-                    <div className="h-8 w-8 mr-2 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="h-8 w-8 mr-2 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-violet-500 text-white shadow-sm ring-1 ring-pink-200 flex items-center justify-center flex-shrink-0">
                       {message.type && message.type !== MessageType.TEXT 
                         ? getMessageTypeInfo(message.type).icon 
-                        : <div className="text-lg">🤖</div>
+                        : <Sparkles className="h-4 w-4" />
                       }
                     </div>
                     <div className="max-w-[95%]">
@@ -879,8 +879,8 @@ export default function AgentPreviewChat({
             {/* 思考中提示 - 和chat-panel保持一致 */}
             {isThinking && (!currentAssistantMessage || !currentAssistantMessage.hasContent) && (
               <div className="flex items-start">
-                <div className="h-8 w-8 mr-2 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <div className="text-lg">🤖</div>
+                <div className="h-8 w-8 mr-2 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-violet-500 text-white shadow-sm ring-1 ring-pink-200 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="h-4 w-4 animate-pulse" />
                 </div>
                 <div className="max-w-[95%]">
                   <div className="flex items-center mb-1 text-xs text-gray-500">
@@ -1055,4 +1055,4 @@ export default function AgentPreviewChat({
       </div>
     </Card>
   )
-} 
+}

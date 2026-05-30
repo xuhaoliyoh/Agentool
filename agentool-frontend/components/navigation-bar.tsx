@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Database, FileText, Hexagon, Menu, Search, Settings, LogOut, Wrench } from "lucide-react"
+import { AppWindow, BookOpen, Compass, Hexagon, LogOut, Menu, Settings, Store } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 
 import { cn } from "@/lib/utils"
@@ -25,22 +25,22 @@ const navItems = [
   {
     name: "探索",
     href: "/explore",
-    icon: Search,
+    icon: Compass,
   },
   {
     name: "工作室",
     href: "/studio",
-    icon: FileText,
+    icon: AppWindow,
   },
   {
     name: "知识库",
     href: "/knowledge",
-    icon: Database,
+    icon: BookOpen,
   },
   {
     name: "工具市场",
     href: "/tools",
-    icon: Wrench,
+    icon: Store,
   },
 ]
 

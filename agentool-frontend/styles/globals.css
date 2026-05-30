@@ -51,7 +51,10 @@
       linear-gradient(180deg, #fff7fb 0%, #fdf2ff 48%, #ffffff 100%);
     background-size: 40px 40px, 40px 40px, auto, auto, auto;
     color: hsl(var(--foreground));
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Inter", "SF Pro Display", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   body::before {
